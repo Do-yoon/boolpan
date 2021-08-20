@@ -1,17 +1,17 @@
 import React from 'react';
-import MainLayout from 'component/MainLayout';
+import Main from 'component/Main';
 import ChatRoomTable from 'component/ChatRoomTable';
 
 interface HomeProps {
     name?: string,
-    children?: React.ReactNode
+    children: React.ReactNode
 }
 
 function Home({name, children}: HomeProps) {
     return (
-        <MainLayout name={name}>
+        <Main>
             <ChatRoomTable/>
-        </MainLayout>
+        </Main>
     );
 }
 

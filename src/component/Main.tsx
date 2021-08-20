@@ -1,16 +1,18 @@
-import React from 'react';
-import MainLayout from 'component/MainLayout';
+import React, { useState } from 'react';
+import Layout from 'component/Layout';
 
 interface MainProps {
     name?: string,
-    children?: React.ReactNode
+    children: React.ReactNode
 }
 
 function Main({name, children}: MainProps) {
+    const [loginState, setLoginState] = useState(false);
+    const loginInfo = {loginState: loginState, setLoginState: setLoginState};
     return (
-        <MainLayout name={name}>
+        <Layout name={name} loginInfo={loginInfo}>
             {children}
-        </MainLayout>
+        </Layout>
     );
 }
 
