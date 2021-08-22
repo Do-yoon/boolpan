@@ -1,6 +1,6 @@
 import React from 'react';
-import Main from 'component/Main';
-import ChatRoomTable from 'component/ChatRoomTable';
+import Main from '@component/Main';
+import ChatRoomTable from '@component/ChatRoomTable';
 
 interface HomeProps {
     name?: string,

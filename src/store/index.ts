@@ -1,4 +1,4 @@
-import modules from "store/modules";
+import modules from "@store/modules";
 import { configureStore } from '@reduxjs/toolkit'
 
 const store = configureStore({

@@ -10,7 +10,7 @@ function Main({name, children}: MainProps) {
     const [loginState, setLoginState] = useState(false);
     const loginInfo = {loginState: loginState, setLoginState: setLoginState};
     return (
-        <Layout name={name} loginInfo={loginInfo}>
+        <Layout name={name}>
             {children}
         </Layout>
     );

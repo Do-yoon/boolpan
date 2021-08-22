@@ -7,16 +7,12 @@ import 'css/MainLayout.css'
 interface MainProps {
     name?: string,
     children?: React.ReactNode,
-    loginInfo: {
-        loginState: boolean;
-        setLoginState: React.Dispatch<React.SetStateAction<boolean>>;
-    },
 }
 
-function Layout({name, children, loginInfo}: MainProps) {
+function Layout({name, children}: MainProps) {
     return (
         <div>
-            <Header name={name} loginInfo={loginInfo}/>
+            <Header name={name}/>
             <div>
                 <NavBar className="navbar"/>
                 {children}

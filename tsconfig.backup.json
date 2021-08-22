@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "outDir": "./dist/",
+    "module": "es2015",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es2015"
+    ],
+    "sourceMap": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@store/*": [
+        "store/*",
+      ],
+      "@page/*": [
+        "page/*",
+      ],
+      "@component/*": [
+        "component/*"
+      ]
+    },
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": false,
+    "jsx": "react-jsx",
+    "noImplicitAny": true,
+    "allowJs": true,
+    "moduleResolution": "node",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "declaration": false
+  }
+}

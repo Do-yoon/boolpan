@@ -11,11 +11,16 @@ export function UserReducer(
                 ...state,
                 name: action.payload
             };
-        case 'SET_IS_LOGGED_IN':
+        case 'SET_LOGGED_IN':
             return {
                 ...state,
-                isLoggedIn: action.payload
+                isLoggedIn: true
             };
+            case 'SET_LOGGED_OUT':
+                return {
+                    ...state,
+                    isLoggedIn: false
+                };
         default:
             return initialUserState;
     }

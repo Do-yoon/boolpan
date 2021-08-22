@@ -71,17 +71,16 @@ let data = [
 
 
 function ChatRoomTable() {
-    const weekHeader = Constant.WEEK;
-    const weekTimeTable = Constant.TIMELIST;
+    const [row, col] = [14, 7];
+    const table_col = [...Array(col)].map((e, i) => <td></td>)
+    const table_row = [...Array(row)].map((e, i) => <tr>{table_col}</tr>)
 
     return (
         <table className="chat-room-table">
             <thead>
-                <th></th>
-                {weekHeader}
             </thead>
             <tbody>
-                {weekTimeTable}
+                {table_row}
             </tbody>
         </table>
     )

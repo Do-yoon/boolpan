@@ -1,4 +1,4 @@
-import MainRouter from 'router';
+import MainRouter from './router';
 import './App.css';
 
 function App() {

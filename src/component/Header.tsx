@@ -1,62 +1,51 @@
 import Constant from "util/Constant";
 import type { RootState, AppDispatch } from "store";
-import store from 'store';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-function LoginButton() {
-    return <button onClick={LoginHandler}>{Constant.LOGIN}</button>
+interface LocalProps {
+    name: string
 }
 
-function LogoutButton() {
-    return <button onClick={LogoutHandler}>{Constant.LOGOUT}</button>
-}
-
-function LoginHandler() {
-    useDispatch<AppDispatch>();
-}
-
-function LogoutHandler() {
-    useDispatch<AppDispatch>();
-}
-
-function LoggedIn(name: any) {
+function LoggedIn({name}: LocalProps) {
+    const dispatch = useDispatch();
     return (
         <div>
             {name}
-            <LogoutButton/>
+            <button onClick={() => dispatch({ type: 'SET_LOGGED_OUT' })}>{Constant.LOGOUT}</button>
         </div>
     )
 }
 
 function LoggedOut() {
+    const dispatch = useDispatch();
     return (
         <div>
             로그인 해 주세요.
-            <LoginButton/>
+            <button onClick={() => dispatch({ type: 'SET_LOGGED_IN' })}>{Constant.LOGIN}</button>
         </div>
     )
 }
 
-function LoginInfoArea(name: any) {
-    return (
+function LoginInfoArea({name}: LocalProps) {
+    const loginSelector = useSelector((state: RootState) => state.users.isLoggedIn);    return (
         <div className="login-info-area">
-            {store.getState().users.isLoggedIn ? <LoggedIn name={name}/> : <LoggedOut/>}
+            {loginSelector
+                ? <LoggedIn name={name}/>
+                : <LoggedOut/>
+            }
         </div>
     );
 }
 
 interface HeaderProps {
     name?: string
-    loginInfo: {
-        loginState: boolean;
-        setLoginState: React.Dispatch<React.SetStateAction<boolean>>;
-    }
 }
 
-function Header({name, loginInfo}: HeaderProps) {
+function Header({name}: HeaderProps) {
+    const name_test = "name";
     return (
         <div className="header">
-            <LoginInfoArea name={name}/>
+            <LoginInfoArea name={name_test}/>
         </div>
     );
 }

@@ -108,14 +108,13 @@ li {
     font-size: 15px;
 }
 
-.chat-room-table td{
+.chat-room-table tr{
     text-align: center;
-    width: 10%;
-    height: 30px;
+    height: 3vw;
 }
 
 .chat-room-table tr td{
     border: 1px solid #000000;
-    width: 10%;
+    width: 9vw;
     margin: 0;
 }
