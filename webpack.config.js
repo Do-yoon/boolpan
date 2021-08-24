@@ -1,5 +1,6 @@
 const path = require('path');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -13,6 +14,19 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', { targets: "defaults" }]
+            ],
+            plugins: ['@babel/plugin-transform-runtime']
+          }
+        }
+      },
+      {
         test: /\.(tsx|ts)?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
@@ -20,12 +34,18 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
-      }
+      },
+      {
+        test: /\.html$/i,
+        use: "html-loader",
+      },
     ],
   },
+
   output: {
-    filename: '[name].bundle.ts',
+    filename: '[name].[hash].js',
     path: path.resolve(__dirname, 'dist'),
+    chunkFilename: '[id].chunk.js',
   },
   devtool: 'inline-source-map',
   optimization: {
@@ -33,6 +53,11 @@ module.exports = {
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
-    plugins: [new TsconfigPathsPlugin({configFile: 'src/tsconfig.json'})]
-},
+    plugins: [new TsconfigPathsPlugin({ configFile: 'src/tsconfig.json' })]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html'
+    })
+  ]
 };
