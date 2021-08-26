@@ -1,9 +1,13 @@
+import webpack from 'webpack';
+import 'webpack-dev-server';
+
 const path = require('path');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const isProduction = process.env.NODE_ENV === 'production';
 
-module.exports = {
-  mode: 'development',
+
+const config: webpack.Configuration = {
   entry: {
     index: {
       import: './src/index.tsx',
@@ -60,4 +64,18 @@ module.exports = {
       template: './public/index.html'
     })
   ]
+};
+
+module.exports = () => {
+  if (isProduction) {
+    return {
+      ...config,
+      mode: 'production'
+    };
+  } else {
+    return {
+      ...config,
+      mode: 'development'
+    };
+  }
 };
