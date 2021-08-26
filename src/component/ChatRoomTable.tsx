@@ -72,8 +72,8 @@ let data = [
 
 function ChatRoomTable() {
     const [row, col] = [14, 7];
-    const table_col = [...Array(col)].map((e, i) => <td></td>)
-    const table_row = [...Array(row)].map((e, i) => <tr>{table_col}</tr>)
+    const table_col = [...Array(col)].map((e, i) => <td className={`chatRoomCol${i}`}></td>)
+    const table_row = [...Array(row)].map((e, i) => <tr className={`chatRoomRow${i}`}>{table_col}</tr>)
 
     return (
         <table className="chat-room-table">
