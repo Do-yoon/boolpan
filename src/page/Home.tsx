@@ -1,17 +1,14 @@
-import React from 'react';
-import Main from '@component/Main';
 import ChatRoomTable from '@component/ChatRoomTable';
+import SearchBar from "@component/SearchBar";
 
-interface HomeProps {
-    name?: string,
-    children: React.ReactNode
-}
-
-function Home({name, children}: HomeProps) {
+function Home() {
     return (
-        <Main>
+        <div id={'home-page'}>
+            <div id={'search-area'}>
+                <SearchBar/>
+            </div>
             <ChatRoomTable/>
-        </Main>
+        </div>
     );
 }
 

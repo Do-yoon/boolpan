@@ -1,7 +1,7 @@
 # Boolpan FE App
-## Test
+## Development Test
 ```bash
-npm start
+npm run serve
 ```
 ## Production
 ```bash

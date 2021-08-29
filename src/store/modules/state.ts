@@ -1,6 +1,7 @@
 export type UserState = {
     name: string,
-    isLoggedIn: boolean
+    isLoggedIn: boolean,
+    room?: number
 };
   
 export const initialUserState: UserState = {

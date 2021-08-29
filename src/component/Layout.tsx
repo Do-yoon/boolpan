@@ -4,19 +4,18 @@ import Header from "./Header";
 import NavBar from './NavBar';
 import 'css/MainLayout.css'
 
-interface MainProps {
-    name?: string,
+interface LayoutProps {
     children?: React.ReactNode,
 }
 
-function Layout({name, children}: MainProps) {
+function Layout({children}: LayoutProps) {
     return (
         <div>
-            <Header name={name}/>
-            <div>
-                <NavBar className="navbar"/>
-                {children}
-            </div>
+            <Header/>
+                <div id="layout-body">
+                    <NavBar className="navbar"/>
+                    {children}
+                </div>
             <Footer/>
         </div>
     );

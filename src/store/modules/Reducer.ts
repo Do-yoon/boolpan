@@ -1,27 +1,37 @@
-import { UserAction } from "store/modules/action";
-import { initialUserState, UserState } from "store/modules/state";
+import { ActionType, APIAction } from "@store/modules/action";
+import { initialUserState, UserState } from "@store/modules/state";
 
-export function UserReducer(
+export function APIReducer(
     state = initialUserState,
-    action: UserAction
+    action: APIAction
 ): UserState {
     switch (action.type) {
-        case 'SET_NAME':
+        case ActionType.ENTER_THE_ROOM:
+            // call backend API
             return {
                 ...state,
-                name: action.payload
+                room: action.payload.roomId
             };
-        case 'SET_LOGGED_IN':
+        case ActionType.EXIT_THE_ROOM:
             return {
                 ...state,
-                isLoggedIn: true
+                room: undefined
             };
-            case 'SET_LOGGED_OUT':
-                return {
-                    ...state,
-                    isLoggedIn: false
-                };
+        case ActionType.SEARCH:
+            
+            return state;
+        case ActionType.LOGOUT:
+            return {
+                ...state,
+                isLoggedIn: false
+            };
+        case ActionType.VALIDATE_LOGIN:
+            let isValid = false;
+            return {
+                ...state,
+                isLoggedIn: isValid
+            };
         default:
-            return initialUserState;
+            return state;
     }
 }

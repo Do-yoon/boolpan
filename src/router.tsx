@@ -1,15 +1,20 @@
-import Main from 'component/Main';
+import SearchResult from '@page/SearchResult';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import Home from './page/Home';
+import Home from '@page/Home';
+import Layout from '@component/Layout';
+
 
 function MainRouter() {
     return (
-        <BrowserRouter>
-            <Switch>
-            <Route path="/" exact component={Home}></Route>
-            <Redirect path="*" to="/" />
-            </Switch>
-        </BrowserRouter>
+        <Layout>
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path="/" component={Home}/>
+                    <Route exact path="/search" component={SearchResult}/>
+                    <Redirect path="/*" to="/" />
+                </Switch>
+            </BrowserRouter>
+        </Layout>
     )
 }
 

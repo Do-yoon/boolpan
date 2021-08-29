@@ -5,8 +5,10 @@ interface NavBarProps {
 }
 
 function NavBar({className}: NavBarProps) {
-    const categoryList = Constant.CATEGORY.map((category) =>
-        <div>{category}</div>
+    const categoryList = Constant.CATEGORY.map((category, i) =>
+        <div id={`navbar-${i}`}>
+            <span>{category}</span>
+        </div>
     );
     return (
         <div className={className}>

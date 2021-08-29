@@ -1,6 +1,6 @@
-import { combineReducers, Reducer } from "redux";
-import { UserReducer } from "store/modules/Reducer";
-import { UserState } from "store/modules/state";
+import { combineReducers } from "redux";
+import { APIReducer } from "@store/modules/reducer";
+import { UserState } from "@store/modules/state";
 
 
 export interface StoreState {
@@ -8,7 +8,7 @@ export interface StoreState {
 }
 
 const rootReducer = combineReducers({
-    users: UserReducer,
+    users: APIReducer,
 });
 
 export default rootReducer;
