@@ -13,7 +13,7 @@ function Layout({children}: LayoutProps) {
         <div>
             <Header/>
                 <div id="layout-body">
-                    <NavBar className="navbar"/>
+                    <NavBar/>
                     {children}
                 </div>
             <Footer/>

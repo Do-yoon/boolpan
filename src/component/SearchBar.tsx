@@ -1,39 +1,46 @@
-import Constant from "util/Constant";
+import Constant, {Urls} from "util/Constant";
+import {useState} from "react";
+import {useHistory} from "react-router-dom";
 
-const searchButtonOnClick = () => {
-    alert('검색 버튼입니당');
-}
-
-const createRoomOnClick = () => {
-    alert('방 만들기 버튼입니당')
-}
 
 function TextInputArea() {
-    return <div id={'search-text-input-area'}>
-        <input type={'text'}/>
-    </div>
-}
+    const [key, setKey] = useState('');
+    const history = useHistory();
+    const searchOnSubmit = () => {
+        history.push({
+            pathname: Urls.SEARCH,
+            search: '?' + new URLSearchParams({key: key})
+        });
+    }
 
-function SearchButton() {
-    return (
-        <div id={'search-button'} onClick={searchButtonOnClick}/>
+    return(
+        <form onSubmit={searchOnSubmit}>
+            <input type='text' id='search-text-input-area'
+                   placeholder={Constant.KEYWORD_SEARCH_PLACEHOLDER}
+                   value={key}
+                   onChange={(e) => setKey(e.target.value)}/>
+            <input type='submit' id='search-button' value='검색'/>
+        </form>
     );
 }
 
 function CreateRoomButton() {
+    const createRoomOnClick = () => {
+        alert('방 만들기 버튼입니당')
+    }
+
     return (
-        <div id={'create-room-button'} onClick={createRoomOnClick}>
-            {Constant.CREATE_ROOM}
+        <div id='create-room-button' onClick={createRoomOnClick}>
+            <span>{Constant.CREATE_ROOM}</span>
         </div>
     )
 }
 
 function SearchBar() {
     return (
-        <div id={'search-bar'}>
+        <div id='search-bar'>
             <CreateRoomButton/>
             <TextInputArea/>
-            <SearchButton/>
         </div>
     );
 }

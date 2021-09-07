@@ -42,7 +42,7 @@ function MainLogoArea() {
     return (
         <div id={'main-logo-area'}>
             <div id={'main-logo'}>
-                로고 영역
+                <span>불판프 로젝트</span>
             </div>
         </div>
     );

@@ -4,29 +4,96 @@ body, button, input, select, table, textarea {
     font-family: -apple-system,BlinkMacSystemFont,"Malgun Gothic","맑은 고딕",helvetica,"Apple SD Gothic Neo",sans-serif;
 }
 
+span {
+    vertical-align: middle;
+    display: inline-block;
+    text-align: left;
+}
+
 html {
     font-size: 10px;
     line-height: 10px;
 }
 
 .navbar {
-    width: 20vw;
-    display: inline-block;
-    font-size: 14pt;
-    line-height: 30px;
-    margin: 0;
-    text-align: left;
-}
-
-.navbar > div {
+    width: 165px;
+    height: 690px;
+    left: 0px;
+    top: 250px;
+    margin: 20px;
     text-align: center;
-    height: 10vh;
+    font-family: Roboto;
 }
 
-.navbar > div > span {
-    vertical-align: middle;
+#category-text {
+    text-align: center;
+    width: 80px;
+    height: 35px;
+    margin-left: 42px;
+
+    background: #000000;
+
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height */
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+
+    color: #FFFFFF;
+
+}
+
+#category-text > span {
+    text-align: center;
+}
+
+.category-list {
+    margin: 10pt;
+    text-align: left;
+    font-size: 14pt;
+    left: 35px;
+    top: 57px;
+}
+
+.category {
+    width: 156px;
+    height: 40px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    /* or 143% */
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.banner-area {
     display: inline-block;
-    line-height: normal;
+}
+
+.count-banner {
+    background-color: #e0e0e0;
+    height: 30px;
+    width: 125px;
+    margin-left: 20pt;
+    margin-bottom: 10pt;
+    border-radius: 4pt;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 4px;
+    text-align: left;
 }
 
 #search-result-list {
@@ -47,10 +114,6 @@ a:-webkit-any-link {
     color: -webkit-link;
     cursor: pointer;
     text-decoration: underline;
-}
-
-.header{
-    text-align: right;
 }
 
 #footer .footer-inner {
@@ -123,6 +186,7 @@ li {
 .chat-room-table {
     border: 2px solid #000000;
     border-collapse: collapse;
+    display: flex;
 }
 
 .chat-room-table .time-area {
@@ -133,21 +197,24 @@ li {
 
 .chat-room-table tr{
     text-align: center;
-    height: 3vw;
+    height: 50px;
 }
 
 .chat-room-table tr td{
     border: 1px solid #000000;
-    width: 9vw;
+    width: 140px;
     margin: 0;
 }
 
 #search-bar {
     text-align: center;
-    height: 30px;
-    width: fit-content;
+    width: 390px;
+    /* width: fit-content; */
     margin: auto;
-    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    /* flex-direction: column; */
     display: flex;
 }
 
@@ -157,8 +224,8 @@ li {
     margin: 0;
 }
 #search-button {
-    width: 22px;
-    height: 22px;
+    width: 35px;
+    height: 35px;
     border: 1px dashed #010101;
     display: inline-block;
     margin: 0;
@@ -166,24 +233,82 @@ li {
 
 #search-area {
     text-align: center;
-
+    height: 74px;
+    display: flex;
 }
 
 #create-room-button {
-    margin-right: 30px;
-    border: 1px dashed #010101;
-    height: 22px;
-    width: 80px;
+    width: 120px;
+    height: 30px;
+    left: 349px;
+    top: 22px;
+
+    background: #E0E0E0;
+    border-radius: 4px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 30px;
+    /* identical to box height, or 187% */
+    display: flex;
+    align-items: center;
+    color: #000000;
+    margin-right: 10pt;
+}
+
+#create-room-button > span {
+    width: 120px;
+    text-align: center;
+}
+
+.header{
+    align-content: center;
+    flex-direction: column;
+    text-align: right;
 }
 
 #main-logo {
     width: 200px;
-    height: 100px;
-    border: 1px dashed #010101;
-    text-align: center;
+    height: 200px;
     margin: auto;
+    display: flex;
+    text-align: center;
 }
 
 #main-logo-area {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    top: 50px;
     text-align: center;
+}
+
+#main-logo > span {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 100px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: 200px;
+
+    color: #E0E0E0;
+}
+
+.login-info-area {
+    text-align: right;
+}
+
+#home-page {
+    margin-left: 127px;
+}
+
+/* mobile */
+@media (max-width: 600px) {
+    .title {
+    }
 }
