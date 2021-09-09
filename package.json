@@ -1,9 +1,8 @@
 {
-  "homepage": "http://do-yoon.github.io/boolpan",
+  "homepage": ".",
   "name": "boolpan",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -68,6 +67,7 @@
     "tsconfig-paths": "^3.10.1",
     "tsconfig-paths-webpack-plugin": "^3.5.1",
     "typescript": "^4.3.5",
+    "url-loader": "^4.1.1",
     "webpack": "^5.51.1",
     "webpack-cli": "^4.8.0"
   }

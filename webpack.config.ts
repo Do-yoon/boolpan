@@ -47,6 +47,17 @@ const config: Configuration = {
         test: /\.html$/i,
         use: "html-loader",
       },
+      {
+        test: /\.(ttf|jpg|png)$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            name: '[name].[ext]?[hash]',
+            limit: 10000
+          }
+        },
+
+      }
     ],
   },
   devServer: {
