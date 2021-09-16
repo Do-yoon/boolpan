@@ -92,7 +92,6 @@ html {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    border-radius: 4px;
     text-align: left;
 }
 
@@ -184,7 +183,6 @@ li {
 
 
 .chat-room-table {
-    border: 2px solid #000000;
     border-collapse: collapse;
     display: flex;
 }
@@ -201,7 +199,6 @@ li {
 }
 
 .chat-room-table tr td{
-    border: 1px solid #000000;
     width: 140px;
     margin: 0;
 }
@@ -305,6 +302,14 @@ li {
 
 #home-page {
     margin-left: 127px;
+}
+
+.room-banner {
+    background-color: #E0E0E0;
+    border: 1px #FFFFFF solid;
+    height: 50px;
+    width: 140px;
+    display: inline-block;
 }
 
 /* mobile */

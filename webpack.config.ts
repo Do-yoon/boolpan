@@ -28,9 +28,10 @@ const config: Configuration = {
           loader: 'babel-loader',
           options: {
             presets: [
-              ['@babel/preset-env', { targets: "defaults" }]
+              ['@babel/preset-env', { targets: "defaults" }],
+              "@babel/preset-react"
             ],
-            plugins: ['@babel/plugin-transform-runtime']
+            plugins: ["@babel/plugin-transform-react-jsx"]
           }
         }
       },
@@ -38,6 +39,10 @@ const config: Configuration = {
         test: /\.(tsx|ts)?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
+      },
+      {
+        test: /\.(jsx)?$/,
+        use: 'jsx-loader'
       },
       {
         test: /\.css$/,
