@@ -31,6 +31,9 @@ jobs:
         env:
           AWS_ID_ACCESS_KEY: ${{ secrets.AWS_ID_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_S3_BUCKET: ${{ secrets.AWS_PRODUCTION_BUCKET_NAME }}
+          SOURCE_DIR: "dist"
         run: |
           aws s3 cp \
             --recursive \
