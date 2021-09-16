@@ -1,7 +1,11 @@
+@font-face {
+    font-family: -apple-system,BlinkMacSystemFont,"Nanum Gothic Coding","나눔 고딕 코딩",helvetica,"Apple SD Gothic Neo",sans-serif;
+    url: '../public/font/NanumGothicCoding.ttf' format('truetype');
+}
+
 body, button, input, select, table, textarea {
     font-size: 12px;
     line-height: 16px;
-    font-family: -apple-system,BlinkMacSystemFont,"Malgun Gothic","맑은 고딕",helvetica,"Apple SD Gothic Neo",sans-serif;
 }
 
 span {
