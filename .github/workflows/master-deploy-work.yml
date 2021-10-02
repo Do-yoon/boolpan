@@ -31,9 +31,6 @@ jobs:
         env:
           AWS_ID_ACCESS_KEY: ${{ secrets.AWS_ID_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ap-northeast-2
-          AWS_S3_BUCKET: boolpan-test
-          SOURCE_DIR: "dist"
         run: aws configure list |
           aws s3 cp \
             --recursive \
