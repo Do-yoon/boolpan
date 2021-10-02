@@ -34,7 +34,7 @@ jobs:
           AWS_REGION: ap-northeast-2
           AWS_S3_BUCKET: boolpan-test
           SOURCE_DIR: "dist"
-        run: |
+        run: aws configure list |
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
