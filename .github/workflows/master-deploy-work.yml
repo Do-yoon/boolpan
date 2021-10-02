@@ -32,7 +32,4 @@ jobs:
           AWS_ID_ACCESS_KEY: ${{ secrets.AWS_ID_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: aws configure list |
-          aws s3 cp \
-            --recursive \
-            --region ap-northeast-2 \
-            dist s3://boolpan-test
+          aws s3 cp --recursive --region ap-northeast-2 dist s3://boolpan-test
