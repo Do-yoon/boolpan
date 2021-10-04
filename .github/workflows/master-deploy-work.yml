@@ -28,7 +28,7 @@ jobs:
         run: npm run build
 
       - name: Route
-        run: ls ~
+        run: ls -ral
 
       - name: Deploy
         env:
