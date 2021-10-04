@@ -28,7 +28,7 @@ jobs:
         run: npm run build
 
       - name: Route
-        run: echo ~/dist
+        run: ls ~/dist
 
       - name: Deploy
         env:
