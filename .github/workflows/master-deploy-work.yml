@@ -28,7 +28,7 @@ jobs:
         run: npm run build
 
       - name: Route
-        run: ls -Ral
+        run: aws configure list
 
       - name: Deploy
         env:
