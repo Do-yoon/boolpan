@@ -19,7 +19,7 @@ function TextInputArea() {
                    placeholder={Constant.KEYWORD_SEARCH_PLACEHOLDER}
                    value={key}
                    onChange={(e) => setKey(e.target.value)}/>
-            <input type='submit' id='search-button' value='검색'/>
+            <input type='submit' id='search-button' value=''/>
         </form>
     );
 }
