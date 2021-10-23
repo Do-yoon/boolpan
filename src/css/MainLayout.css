@@ -227,9 +227,11 @@ li {
 #search-button {
     width: 35px;
     height: 35px;
-    border: 1px dashed #010101;
     display: inline-block;
     margin: 0;
+    background: url("../../public/img/search_button.png") no-repeat;
+    background-size: 35px;
+    background-color: #e0e0e0;
 }
 
 #search-area {
