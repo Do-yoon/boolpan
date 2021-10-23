@@ -356,4 +356,8 @@ li {
         top: 82px;
 
     }
+    #footer {
+        width: 100vw;
+        background-color: #2d3e50;
+    }
 }
