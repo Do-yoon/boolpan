@@ -14,7 +14,7 @@ function TextInputArea() {
     }
 
     return(
-        <form onSubmit={searchOnSubmit}>
+        <form id="search-bar-form" onSubmit={searchOnSubmit}>
             <input type='text' id='search-text-input-area'
                    placeholder={Constant.KEYWORD_SEARCH_PLACEHOLDER}
                    value={key}
