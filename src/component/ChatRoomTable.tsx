@@ -1,48 +1,51 @@
 import 'css/MainLayout.css'
-import * as _ from 'lodash';
-import Constant from 'util/Constant'
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
+import {min} from "mathjs";
 
-const columns = [
+interface RoomBannerProps {
+    title: string
+    limit: number
+    current_people: number
+}
+
+const columns: RoomBannerProps[] = [
     {
         title: 'roomName',
-        dataIndex: 'name',
-        key: 'name',
-        width: 100
+        limit: 1,
+        current_people: 100
     },
     {
-        title: 'roomName2',
-        dataIndex: 'name2',
-        key: 'name2',
-        width: 100
-    }
-    , {
         title: 'roomName',
-        dataIndex: 'name',
-        key: 'name',
-        width: 100
-    },
-    {
-        title: 'roomName2',
-        dataIndex: 'name2',
-        key: 'name2',
-        width: 100
+        limit: 2,
+        current_people: 100
     }, {
         title: 'roomName',
-        dataIndex: 'name',
-        key: 'name',
-        width: 100
-    },
-    {
-        title: 'roomName2',
-        dataIndex: 'name2',
-        key: 'name2',
-        width: 100
+        limit: 50,
+        current_people: 100
     }, {
         title: 'roomName',
-        dataIndex: 'name',
-        key: 'name',
-        width: 100
+        limit: 34,
+        current_people: 100
+    }, {
+        title: 'roomName',
+        limit: 12,
+        current_people: 100
+    }, {
+        title: 'roomName',
+        limit: 154,
+        current_people: 100
+    }, {
+        title: 'roomName',
+        limit: 1453,
+        current_people: 100
+    }, {
+        title: 'roomName',
+        limit: 341,
+        current_people: 100
+    }, {
+        title: 'roomName',
+        limit: 4,
+        current_people: 100
     },
 ]
 let data = [
@@ -69,21 +72,69 @@ let data = [
     }
 ]
 
+function RoomBanner(
+    data: RoomBannerProps
+): (JSX.Element | null) {
+    if (data === undefined) return null;
+    return (
+        <div className="room-banner">
+            <span className="title">제목: {data.title}</span>
+            <span className="limit">정원: {data.limit} / {data.current_people}</span>
+        </div>
+    );
+}
 
-function ChatRoomTable() {
-    const [row, col] = [14, 7];
-    const table_col = [...Array(col)].map((e, i) => <td className={`chatRoomCol${i}`}></td>)
-    const table_row = [...Array(row)].map((e, i) => <tr className={`chatRoomRow${i}`}>{table_col}</tr>)
+function getTable(row: number, col: number) {
+    const data_length = columns.length;
+    let matrix = [...Array(row)].map(() => [...Array(col)].fill(null));
+
+    let cnt = 0
+
+    for (let i = 0; i < min(row, data_length); i++) {
+        const idx = Math.floor(Math.random()) % col;
+        const temp = columns[i];
+        matrix[i][idx] = <RoomBanner title={temp.title} limit={temp.limit} current_people={temp.current_people}/>
+    }
+
+    let table: JSX.Element[] = [];
+    for (let i = 0; i < row; i++) {
+        const t = matrix[i].map((e, idx) => <td className={`chatRoomCol${idx}`}>{e}</td>);
+        table.push(<tr id={`chatRoomRow${i}`} className="table-row">{t}</tr>)
+    }
+
 
     return (
         <table className="chat-room-table">
-            <thead>
-            </thead>
+            <thead/>
             <tbody>
-                {table_row}
+            {table}
             </tbody>
         </table>
-    )
+    );
+}
+
+function ChatRoomTable() {
+    // To do: move this state to Reducer
+    const getWidth = () => {
+        const {innerWidth: widthValue} = window;
+        return widthValue;
+    }
+    const [windowDimensions, setWindowDimensions] = useState(getWidth);
+
+    useEffect(() => {
+        async function handleResize() {
+            setWindowDimensions(getWidth());
+        }
+
+        window.addEventListener('resize', handleResize);
+        window.removeEventListener('resize', handleResize);
+
+    }, []);
+
+    const [row, col] = [14, Math.floor((0.8 * windowDimensions - 165) / 140)];
+    const table = getTable(row, col);
+
+    return table;
 }
 
 export default ChatRoomTable;

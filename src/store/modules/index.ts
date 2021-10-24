@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { APIReducer } from "@store/modules/reducer";
-import { UserState } from "@store/modules/state";
+import { APIReducer } from "store/modules/Reducer";
+import { UserState } from "store/modules/state";
 
 
 export interface StoreState {
