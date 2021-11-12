@@ -1,6 +1,6 @@
 import 'css/MainLayout.css'
 import {useEffect, useState} from 'react';
-import {min} from "mathjs";
+import _ from "lodash";
 
 interface RoomBannerProps {
     title: string
@@ -90,7 +90,7 @@ function getTable(row: number, col: number) {
 
     let cnt = 0
 
-    for (let i = 0; i < min(row, data_length); i++) {
+    for (let i = 0; i < data_length; i++) {
         const idx = Math.floor(Math.random()) % col;
         const temp = columns[i];
         matrix[i][idx] = <RoomBanner title={temp.title} limit={temp.limit} current_people={temp.current_people}/>
