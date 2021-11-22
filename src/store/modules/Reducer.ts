@@ -1,5 +1,5 @@
-import { ActionType, APIAction } from "@store/modules/action";
-import { initialUserState, UserState } from "@store/modules/state";
+import {ActionType, APIAction} from "@store/modules/action";
+import {initialUserState, UserState} from "@store/modules/state";
 
 export function APIReducer(
     state = initialUserState,
@@ -30,6 +30,11 @@ export function APIReducer(
             return {
                 ...state,
                 isLoggedIn: isValid
+            };
+        case ActionType.RESIZE_WINDOW:
+            return {
+                ...state,
+                width: action.payload.width
             };
         default:
             return state;

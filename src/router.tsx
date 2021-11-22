@@ -1,7 +1,7 @@
-import SearchResult from '@page/SearchResult';
+import SearchResult from 'page/SearchResult';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import Home from '@page/Home';
-import Layout from '@component/Layout';
+import Home from 'page/Home';
+import Layout from 'component/Layout';
 
 
 function MainRouter() {

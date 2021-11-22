@@ -28,9 +28,10 @@ const config: Configuration = {
           loader: 'babel-loader',
           options: {
             presets: [
-              ['@babel/preset-env', { targets: "defaults" }]
+              ['@babel/preset-env', { targets: "defaults" }],
+              "@babel/preset-react"
             ],
-            plugins: ['@babel/plugin-transform-runtime']
+            plugins: ["@babel/plugin-transform-react-jsx"]
           }
         }
       },
@@ -40,6 +41,10 @@ const config: Configuration = {
         exclude: /node_modules/,
       },
       {
+        test: /\.(jsx)?$/,
+        use: 'jsx-loader'
+      },
+      {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
       },
@@ -47,6 +52,17 @@ const config: Configuration = {
         test: /\.html$/i,
         use: "html-loader",
       },
+      {
+        test: /\.(ttf|jpg|png)$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            name: '[name].[ext]?[hash]',
+            limit: 10000
+          }
+        },
+
+      }
     ],
   },
   devServer: {

@@ -186,23 +186,23 @@ li {
 }
 
 
-.chat-room-table {
+#chat-room-table {
     border-collapse: collapse;
     display: flex;
 }
 
-.chat-room-table .time-area {
+#chat-room-table .time-area {
     border: #FFFFFF;
     text-align: right;
     font-size: 15px;
 }
 
-.chat-room-table tr{
+#chat-room-table tr{
     text-align: center;
     height: 50px;
 }
 
-.chat-room-table tr td{
+#chat-room-table tr td{
     width: 140px;
     margin: 0;
 }
@@ -320,6 +320,10 @@ li {
 
 /* mobile */
 @media (max-width: 768px) {
+    body {
+        width: 100vw;
+    }
+
     #search-bar {
         position: absolute;
         height: 27px;
@@ -327,7 +331,6 @@ li {
         left: 129px;
         top: 237px;
         border-radius: 16px;
-        background-color: #E0E0E0;
 
         text-align: center;
         /* width: fit-content; */
@@ -338,11 +341,25 @@ li {
     }
 
     #search-text-input-area {
-        width: 62vw;
+        width: calc(62vw - 27px);
         height: 27px;
+        position: relative;
+        float: left;
         display: inline-block;
-        margin: 0;
+    }
 
+    #search-button {
+        background-color: #FFFFFF;
+        width: 27px;
+        height: 27px;
+        position: relative;
+        float: left;
+        display: inline-block;
+    }
+
+    #search-bar-form {
+
+        margin: 0;
     }
 
     #main-logo {
@@ -358,6 +375,37 @@ li {
     }
     #footer {
         width: 100vw;
-        background-color: #2d3e50;
+        background-color: #E0E0E0;
+    }
+
+    #create-room-button {
+        height: 27px;
+        width: 26vw;
+        margin-right: 30px;
+        border-radius: 16px;
+        text-align: center;
+
+    }
+
+    #chat-room-table {
+        margin-top: 34px;
+        position: inherit;
+        text-align: center;
+
+    }
+
+    #table-area {
+        width: 87.5vw;
+        height: 617px;
+        left: 0px;
+        top: 324px;
+    }
+
+    .category-list {
+        width: 100vw;
+    }
+
+    .navbar {
+        width: 100vw;
     }
 }

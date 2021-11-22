@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { APIReducer } from "store/modules/Reducer";
+import { APIReducer } from "store/modules/reducer";
 import { UserState } from "store/modules/state";
 
 

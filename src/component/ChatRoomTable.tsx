@@ -1,6 +1,6 @@
 import 'css/MainLayout.css'
 import {useEffect, useState} from 'react';
-import _ from "lodash";
+import {min} from "mathjs";
 
 interface RoomBannerProps {
     title: string
@@ -88,9 +88,8 @@ function getTable(row: number, col: number) {
     const data_length = columns.length;
     let matrix = [...Array(row)].map(() => [...Array(col)].fill(null));
 
-    let cnt = 0
 
-    for (let i = 0; i < data_length; i++) {
+    for (let i = 0; i < min(row, data_length); i++) {
         const idx = Math.floor(Math.random()) % col;
         const temp = columns[i];
         matrix[i][idx] = <RoomBanner title={temp.title} limit={temp.limit} current_people={temp.current_people}/>
@@ -104,7 +103,7 @@ function getTable(row: number, col: number) {
 
 
     return (
-        <table className="chat-room-table">
+        <table id="chat-room-table">
             <thead/>
             <tbody>
             {table}
@@ -134,7 +133,11 @@ function ChatRoomTable() {
     const [row, col] = [14, Math.floor((0.8 * windowDimensions - 165) / 140)];
     const table = getTable(row, col);
 
-    return table;
+    return (
+        <div id="table-area">
+            {table}
+        </div>
+    );
 }
 
 export default ChatRoomTable;
