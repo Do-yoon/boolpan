@@ -7,11 +7,6 @@ export enum UserActionType {
     RESIZE_WINDOW
 }
 
-export enum RoomActionType {
-    GET_CHATTING_ROOM_LIST,
-    GET_CHATTING_ROOM_INFO,
-}
-
 export type UserAction =
     { type: UserActionType.SEARCH; payload: SearchPayload }
     | { type: UserActionType.ENTER_THE_ROOM; payload: EnterTheRoomPayload }
@@ -20,9 +15,6 @@ export type UserAction =
     | { type: UserActionType.LOGOUT; payload: number }
     | { type: UserActionType.RESIZE_WINDOW; payload: ResizeWindowPayload };
 
-export function UserActionPayload() {
-
-}
 interface SearchPayload {
     key: string,
     option: number

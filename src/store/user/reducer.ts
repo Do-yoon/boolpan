@@ -1,7 +1,7 @@
 import {UserActionType, UserAction} from "@store/user/action";
 import {initialUserState, UserState} from "@store/user/state";
 
-export function APIReducer(
+export function UserReducer(
     state = initialUserState,
     action: UserAction
 ): UserState {

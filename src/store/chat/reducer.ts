@@ -1,40 +1,32 @@
-import {UserActionType, UserAction} from "@store/user/action";
-import {initialUserState, UserState} from "@store/user/state";
+import {ChatActionType, ChatAction} from "@store/chat/action";
+import {initialChatState, ChatState} from "@store/chat/state";
+import axios from 'axios';
 
-export function APIReducer(
-    state = initialUserState,
-    action: UserAction
-): UserState {
+export function ChatReducer(
+    state = initialChatState,
+    action: ChatAction
+): ChatState {
+    const axiosInstance = axios.create({
+        baseURL: 'http://localhost:3000/v0',
+        timeout: 1000
+    })
     switch (action.type) {
-        case UserActionType.ENTER_THE_ROOM:
+        case ChatActionType.GET_CHATTING_ROOM_LIST:
             // call backend API
+            let data;
+            axiosInstance.get('/getChatList')
+                .then((res) => {
+                    data = res.data
+                    console.log(data)
+                })
             return {
                 ...state,
-                room: action.payload.roomId
+                chat_list: data
             };
-        case UserActionType.EXIT_THE_ROOM:
+        case ChatActionType.SEND_MESSAGE:
             return {
                 ...state,
                 room: undefined
-            };
-        case UserActionType.SEARCH:
-            
-            return state;
-        case UserActionType.LOGOUT:
-            return {
-                ...state,
-                isLoggedIn: false
-            };
-        case UserActionType.VALIDATE_LOGIN:
-            let isValid = false;
-            return {
-                ...state,
-                isLoggedIn: isValid
-            };
-        case UserActionType.RESIZE_WINDOW:
-            return {
-                ...state,
-                width: action.payload.width
             };
         default:
             return state;

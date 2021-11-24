@@ -1,6 +1,8 @@
 import 'css/MainLayout.css'
+import {ChatActionType, ChatAction} from "@store/chat/action";
 import {useEffect, useState} from 'react';
 import {min} from "mathjs";
+import store from "@store/index";
 
 interface RoomBannerProps {
     title: string
@@ -101,6 +103,7 @@ function getTable(row: number, col: number) {
         table.push(<tr id={`chatRoomRow${i}`} className="table-row">{t}</tr>)
     }
 
+    store.dispatch({type: ChatActionType.GET_CHATTING_ROOM_LIST});
 
     return (
         <table id="chat-room-table">
