@@ -7,7 +7,7 @@ export function ChatReducer(
     action: ChatAction
 ): ChatState {
     const axiosInstance = axios.create({
-        baseURL: 'http://localhost:3000/v0',
+        baseURL: 'http://localhost:8080/v0',
         timeout: 1000
     })
     switch (action.type) {
