@@ -13,21 +13,20 @@ export function ChatReducer(
     switch (action.type) {
         case ChatActionType.GET_CHATTING_ROOM_LIST:
             // call backend API
-            let data;
-            axiosInstance.get('/getChatList')
-                .then((res: any) => {
-                    data = res.data
-                    console.log("here!")
+            let data: ChatState = {chat_list: []};
+            axiosInstance.get('/chat/chatRoomList')
+                .then((res) => {
+                    data.chat_list = res.data
                     console.log(data)
                 })
             return {
                 ...state,
-                chat_list: data
+                ...data
             };
         case ChatActionType.SEND_MESSAGE:
             return {
                 ...state,
-                room: undefined
+                chat_list: []
             };
         default:
             return state;
