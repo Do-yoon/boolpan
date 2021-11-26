@@ -15,8 +15,9 @@ export function ChatReducer(
             // call backend API
             let data;
             axiosInstance.get('/getChatList')
-                .then((res) => {
+                .then((res: any) => {
                     data = res.data
+                    console.log("here!")
                     console.log(data)
                 })
             return {

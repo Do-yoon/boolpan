@@ -1,4 +1,4 @@
-import ChatRoomTable from '@component/ChatRoomTable';
+import ChatTablePage from '@component/ChatTablePage';
 import SearchBar from "@component/SearchBar";
 
 function Home() {
@@ -7,7 +7,7 @@ function Home() {
             <div id={'search-area'}>
                 <SearchBar/>
             </div>
-            <ChatRoomTable/>
+            <ChatTablePage/>
         </div>
     );
 }

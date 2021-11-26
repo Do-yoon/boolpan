@@ -1,9 +1,26 @@
-import user from "@store/user";
-import { configureStore } from '@reduxjs/toolkit'
+import { UserReducer } from "@store/user/reducer";
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import {ChatReducer} from "@store/chat/reducer";
+import {PageReducer} from "@store/page/reducer";
+
+const rootReducer = combineReducers({
+    users: UserReducer,
+    pages: PageReducer,
+    chats: ChatReducer
+})
 
 const store = configureStore({
-    reducer: user
+    reducer: rootReducer
 })
+
+/*
+const render = () => {
+    const state = store.getState();
+    if(state.toggle)
+}
+
+store.subscribe()
+ */
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
