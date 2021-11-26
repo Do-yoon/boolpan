@@ -1,8 +1,8 @@
-import { connector } from '@store/chat/state'
+import {connector, PropsFromRedux} from '@store/chat/state'
 
 interface RoomBannerProps {
     id: number
-    title: string
+    name: string
     limit: number
     current: number
 }
@@ -13,7 +13,7 @@ function Chat(
     if (data === undefined) return null;
     return (
         <div className="room-banner">
-            <span className="title">제목: {data.title}</span>
+            <span className="name">제목: {data.name}</span>
             <span className="limit">정원: {data.limit} / {data.current}</span>
         </div>
     );

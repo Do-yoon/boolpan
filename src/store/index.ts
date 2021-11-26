@@ -1,7 +1,8 @@
 import { UserReducer } from "@store/user/reducer";
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import {combineReducers, configureStore, createStore} from '@reduxjs/toolkit'
 import {ChatReducer} from "@store/chat/reducer";
 import {PageReducer} from "@store/page/reducer";
+import {composeWithDevTools} from "redux-devtools-extension";
 
 const rootReducer = combineReducers({
     users: UserReducer,
@@ -9,9 +10,8 @@ const rootReducer = combineReducers({
     chats: ChatReducer
 })
 
-const store = configureStore({
-    reducer: rootReducer
-})
+const store = createStore(rootReducer, composeWithDevTools())
+
 
 /*
 const render = () => {

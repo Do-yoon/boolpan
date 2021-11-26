@@ -1,6 +1,7 @@
 import Constant, {Urls} from "util/Constant";
-import {useState} from "react";
+import React, {Dispatch, useState} from "react";
 import {useHistory} from "react-router-dom";
+import CreateRoomPopUp from "@component/CreateRoomPopUp";
 
 
 function TextInputArea() {
@@ -24,21 +25,23 @@ function TextInputArea() {
     );
 }
 
+
+
 function CreateRoomButton() {
-    const createRoomOnClick = () => {
-        alert('방 만들기 버튼입니당')
-    }
 
     return (
-        <div id='create-room-button' onClick={createRoomOnClick}>
+        <div id='create-room-button' onClick={() => alert('good')}>
             <span>{Constant.CREATE_ROOM}</span>
         </div>
     )
 }
 
 function SearchBar() {
+    const [createRoom, setCreateRoom] = useState(false);
+
     return (
         <div id='search-bar'>
+            <CreateRoomPopUp/>
             <CreateRoomButton/>
             <TextInputArea/>
         </div>

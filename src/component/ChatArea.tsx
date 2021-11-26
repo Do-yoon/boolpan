@@ -5,27 +5,33 @@ import {min} from "mathjs";
 import store from "@store/index";
 import {useDispatch, useSelector} from "react-redux";
 import Chat from "@component/Chat";
-import {ChatState} from "@store/chat/state";
+import {ChatState, PropsFromRedux} from "@store/chat/state";
 import {type} from "os";
 
 
 const columns = [
     {
         id: 1,
-        title: 'roomName',
+        name: 'roomName',
         limit: 1,
         current: 100
     },
     {
         id: 2,
-        title: 'roomName',
+        name: 'roomName',
         limit: 2,
         current: 100
     }
 ]
 
-interface ChatTableProps {
-    chat_list: typeof Chat[]
+
+interface ChatTableProps extends PropsFromRedux{
+    //chat_list: typeof Chat[]
+    windowDimensions: number
+}
+
+const mapStateToProps = (state: ChatTableProps) => {
+
 }
 
 
@@ -37,7 +43,8 @@ function ChatTable() {
     }
     const [windowDimensions, setWindowDimensions] = useState(getWidth);
     store.dispatch({type: ChatActionType.GET_CHATTING_ROOM_LIST});
-    const chat_list = useSelector((state: ChatState) => state.chat_list)
+
+    const chat_list = useSelector((state: ChatTableProps) => state.chat_list)
     console.log(`type is: ${typeof chat_list}`)
 
 
@@ -45,7 +52,7 @@ function ChatTable() {
     const [row, col] = [14, Math.floor((0.8 * windowDimensions - 165) / 140)];
     let matrix = [...Array(row)].map(() => [...Array(col)].fill(null));
 
-    const data_length = chat_list.length;
+    const data_length = columns.length;
 
 
     useEffect(() => {
@@ -62,9 +69,9 @@ function ChatTable() {
 
     for (let i = 0; i < min(row, data_length); i++) {
         const idx = Math.floor(Math.random()) % col;
-        const temp = chat_list[i];
+        const temp = columns[i];
         console.log(`instance is ${temp}`)
-        matrix[i][idx] = <Chat title={temp.name} limit={temp.limit} current={temp.current} id={temp.id}/>
+        matrix[i][idx] = <Chat id={temp.id} name={temp.name} limit={temp.limit} current={temp.current}/>
     }
 
     let table: JSX.Element[] = [];
@@ -72,8 +79,6 @@ function ChatTable() {
         const t = matrix[i].map((e, idx) => <td className={`chatRoomCol${idx}`}>{e}</td>);
         table.push(<tr id={`chatRoomRow${i}`} className="table-row">{t}</tr>)
     }
-
-
 
     return (
         <table id="chat-room-table">

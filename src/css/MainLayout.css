@@ -318,6 +318,35 @@ li {
     display: inline-block;
 }
 
+.createRoomPopUp .outer {
+    position: absolute;
+    width: 300px;
+    height: 260px;
+    top: 300px;
+    left: 50%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.createRoomPopUp .inner {
+    margin: auto;
+    width: 90%;
+    text-align: center;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.227451) 3px 3px 8px 0px;
+    background-color: #FFFFFF;
+}
+
+.inner > form {
+    margin: auto;
+    text-align: left;
+}
+
+.inner > form > oi {
+    top: 50%;
+    left: 50%;
+}
+
 /* mobile */
 @media (max-width: 768px) {
     body {
