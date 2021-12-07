@@ -1,7 +1,7 @@
 import Constant, {Urls} from "util/Constant";
 import React, {Dispatch, useState} from "react";
 import {useHistory} from "react-router-dom";
-import CreateRoomPopUp from "@component/CreateRoomPopUp";
+import CreateRoomPopUp from "@component/pop-up/CreateRoomPopUp";
 
 
 function TextInputArea() {

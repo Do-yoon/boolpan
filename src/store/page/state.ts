@@ -1,15 +1,11 @@
-export interface ChatState {
-    id: number
-    name: string
-    limit: number
-    current: number
+import PopUp from "@component/pop-up/PopUp";
+
+export interface PageState {
+    popUp: typeof PopUp | undefined
 };
 
-const initChatState: ChatState = {
-    id: 0,
-    name: "test",
-    limit: 100,
-    current: 12
+const initPageState: PageState = {
+    popUp: undefined
 }
 
-export default initChatState;
+export default initPageState;

@@ -2,7 +2,7 @@ import SearchResult from 'page/SearchResult';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Home from 'page/Home';
 import Layout from 'component/Layout';
-import CreateRoomPopUp from "@component/CreateRoomPopUp";
+import CreateRoomPopUp from "@component/pop-up/CreateRoomPopUp";
 
 
 function MainRouter() {

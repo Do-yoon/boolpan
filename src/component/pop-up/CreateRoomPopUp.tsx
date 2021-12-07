@@ -1,20 +1,13 @@
 import * as events from "events";
-import React from "react";
-
-let isPassword: boolean = false
-
-function setPassword(e: React.ChangeEvent<HTMLInputElement>) {
-    if (e.target.id === 'usePassword')
-        isPassword = true
-    else
-        isPassword = false
-}
+import React, {useState} from "react";
 
 function submit(e: React.FormEvent) {
     alert('summited')
 }
 
 function CreateRoomPopUp() {
+    const [isPassword, setPassword] = useState(false);
+
     return (
         <div className='createRoomPopUp'>
             <div className='createRoomPopUp outer'>
@@ -37,11 +30,13 @@ function CreateRoomPopUp() {
                             <li>최대 참여 인원 수</li>
                             <li><input type='number' className='createRoomPopup limit'/></li>
                             <li>비밀번호 생성</li>
-                            <li><input type='radio' className='createRoomPopup passwordToggle' id='usePassword'
-                                       checked={isPassword} onChange={setPassword}/>유
-                            </li>
-                            <li><input type='radio' className='createRoomPopup passwordToggle' id='notUsePassword'
-                                       checked={isPassword}/>무
+                            <li>
+                                <div onChange={() => setPassword}>
+                                    <input type='radio' className='createRoomPopup passwordToggle' id='usePassword'
+                                           checked={isPassword} onChange={()=>setPassword(true)}/>유
+                                    <input type='radio' className='createRoomPopup passwordToggle' id='notUsePassword'
+                                           checked={!isPassword} onChange={()=>setPassword(false)}/>무
+                                </div>
                             </li>
                         </ol>
                         <input type='submit' value='제출'/>

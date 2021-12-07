@@ -26,11 +26,12 @@ const columns = [
         current: 100
     }
 ]
-
+/*
 interface ChatTableProps extends PropsFromRedux{
     //chat_list: typeof Chat[]
     windowDimensions: number
 }
+ */
 
 const mapStateToProps = (state: ChatTableProps) => {
 }

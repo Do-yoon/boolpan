@@ -1,6 +1,6 @@
 import ChatArea from '@component/ChatArea';
 import SearchBar from "@component/SearchBar";
-import CreateRoomPopUp from "@component/CreateRoomPopUp";
+import CreateRoomPopUp from "@component/pop-up/CreateRoomPopUp";
 
 function Home() {
     return (
