@@ -5,8 +5,8 @@ import {min} from "mathjs";
 import store from "@store/index";
 import {useDispatch, useSelector} from "react-redux";
 import Chat from "@component/Chat";
-import {PropsFromRedux} from "@store/chat/state";
-import {ChatState} from "@store/chat/state";
+//import {PropsFromRedux} from "@store/state";
+import {State} from "@store/state";
 import {type} from "os";
 
 

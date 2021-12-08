@@ -1,5 +1,6 @@
 import * as events from "events";
 import React, {useState} from "react";
+import {State} from "@store/state";
 
 function submit(e: React.FormEvent) {
     alert('summited')
@@ -9,7 +10,6 @@ function CreateRoomPopUp() {
     const [isPassword, setPassword] = useState(false);
 
     return (
-        <div className='createRoomPopUp'>
             <div className='createRoomPopUp outer'>
                 <div className='createRoomPopUp inner'>
                     <form onSubmit={submit}>
@@ -28,7 +28,7 @@ function CreateRoomPopUp() {
                             <li>패스워드</li>
                             <li><input type='password' className='createRoomPopup keyword'/></li>
                             <li>최대 참여 인원 수</li>
-                            <li><input type='number' className='createRoomPopup limit'/></li>
+                            (isPassword ? <li><input type='number' className='createRoomPopup limit'/></li> : undefined)
                             <li>비밀번호 생성</li>
                             <li>
                                 <div onChange={() => setPassword}>
@@ -43,7 +43,6 @@ function CreateRoomPopUp() {
                     </form>
                 </div>
             </div>
-        </div>
     )
 }
 

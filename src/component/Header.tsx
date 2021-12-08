@@ -27,7 +27,7 @@ function LoggedOut() {
 }
 
 function LoginInfoArea({userName}: LocalProps) {
-    const loginSelector = useSelector((state: RootState) => state.users.isLoggedIn);
+    const loginSelector = useSelector((state: RootState) => state.users.user.isLoggedIn);
     return (
         <div className="login-info-area">
             {loginSelector

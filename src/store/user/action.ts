@@ -1,5 +1,4 @@
 export enum UserActionType {
-    SEARCH,
     ENTER_THE_ROOM,
     EXIT_THE_ROOM,
     VALIDATE_LOGIN,
@@ -8,25 +7,15 @@ export enum UserActionType {
 }
 
 export type UserAction =
-    { type: UserActionType.SEARCH; payload: SearchPayload }
     | { type: UserActionType.ENTER_THE_ROOM; payload: EnterTheRoomPayload }
-    | { type: UserActionType.EXIT_THE_ROOM; payload: ExitTheRoomPayload }
+    | { type: UserActionType.EXIT_THE_ROOM; }
     | { type: UserActionType.VALIDATE_LOGIN; payload: ValidateLoginPayload }
     | { type: UserActionType.LOGOUT; payload: number }
     | { type: UserActionType.RESIZE_WINDOW; payload: ResizeWindowPayload };
 
-interface SearchPayload {
-    key: string,
-    option: number
-}
+
 
 export interface EnterTheRoomPayload {
-    userId: number,
-    roomId: number
-}
-
-export interface ExitTheRoomPayload {
-    userId: number,
     roomId: number
 }
 

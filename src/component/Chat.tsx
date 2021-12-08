@@ -1,4 +1,4 @@
-import {connector, PropsFromRedux} from '@store/chat/state'
+//import {connector, PropsFromRedux} from '@store/state'
 
 interface RoomBannerProps {
     id: number
@@ -19,4 +19,4 @@ function Chat(
     );
 }
 
-export default connector(Chat);
+export default Chat;
