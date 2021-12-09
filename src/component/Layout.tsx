@@ -13,12 +13,8 @@ interface LayoutProps {
 }
 
 function Layout({children}: LayoutProps) {
-    //add making pop up logic
-    //const popUp = useSelector()
-
     return (
         <div>
-            <div>
                 <PopUpContainer PopUpType={-1}/>
                 <Header/>
                 <div id="layout-body">
@@ -26,9 +22,10 @@ function Layout({children}: LayoutProps) {
                     {children}
                 </div>
                 <Footer/>
-            </div>
         </div>
     );
 }
+
+
 
 export default Layout;

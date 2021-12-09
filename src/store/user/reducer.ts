@@ -19,7 +19,7 @@ export function UserReducer(
                 ...state,
                 user: {
                     ...state.user,
-                    room: undefined
+
                 }
             };
         case UserActionType.LOGOUT:

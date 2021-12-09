@@ -68,7 +68,8 @@ const config: Configuration = {
   devServer: {
     historyApiFallback: true,
     hot: true,
-    port: 3000
+    port: 3000,
+    compress: true
   },
   output: {
     filename: '[name].[hash].js',

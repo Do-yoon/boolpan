@@ -16,12 +16,11 @@ export interface Message {
 }
 
 export type RoomState = {
-    roomId: number
-    messages: Message[] | undefined
+    messages?: Message[]
 }
 
 export type ChatState = {
-    chat_list: Chat[] | undefined
+    chat_list?: Chat[]
 }
 
 export type UserState = {
@@ -44,7 +43,6 @@ export interface State {
     chat: ChatState
     page: PageState
     user: UserState
-    room: RoomState
 }
 
 export const initialState: State = {
@@ -62,11 +60,7 @@ export const initialState: State = {
     },
     user: {
         name: '',
-        isLoggedIn: false
-    },
-    room: {
-        roomId: -1,
-        messages: undefined
+        isLoggedIn: false,
     }
 }
 

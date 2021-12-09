@@ -25,10 +25,14 @@ function CreateRoomPopUp() {
                                     <option value='아이돌'></option>
                                 </select>
                             </li>
-                            <li>패스워드</li>
-                            <li><input type='password' className='createRoomPopup keyword'/></li>
+                            {(isPassword ? (
+                                <li>
+                                    패스워드
+                                    <input type='password' className='createRoomPopup keyword'/>
+                                </li>
+                            ): undefined)}
                             <li>최대 참여 인원 수</li>
-                            (isPassword ? <li><input type='number' className='createRoomPopup limit'/></li> : undefined)
+                            <li><input type='number' className='createRoomPopup limit'/></li>
                             <li>비밀번호 생성</li>
                             <li>
                                 <div onChange={() => setPassword}>

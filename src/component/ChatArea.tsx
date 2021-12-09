@@ -43,44 +43,48 @@ interface ChatTableProps {
 
 function ChatTable() {
     // hooks
-    const getWidth = () => {
-        const {innerWidth: widthValue} = window;
-        return widthValue;
-    }
-    const [windowDimensions, setWindowDimensions] = useState(getWidth);
-    store.dispatch({type: ChatActionType.GET_CHATTING_ROOM_LIST});
+    try {
+        const getWidth = () => {
+            const {innerWidth: widthValue} = window;
+            return widthValue;
+        }
+        const [windowDimensions, setWindowDimensions] = useState(getWidth);
+        store.dispatch({type: ChatActionType.GET_CHATTING_ROOM_LIST});
 
-    const chat_list = useSelector((state: ChatTableProps) => state.chat_list)
+        const chat_list = useSelector((state: ChatTableProps) => state.chat_list)
 
-    // tables
-    const [row, col] = [14, Math.floor((0.8 * windowDimensions - 165) / 140)];
-    let matrix = [...Array(row)].map(() => [...Array(col)].fill(null));
+        // tables
+        const [row, col] = [14, Math.floor((0.8 * windowDimensions - 165) / 140)];
+        let matrix = [...Array(row)].map(() => [...Array(col)].fill(null));
 
-    const data_length = columns.length;
+        const data_length = columns.length;
 
-    useEffect(() => {
-        async function handleResize() {
-            setWindowDimensions(getWidth());
+        useEffect(() => {
+            async function handleResize() {
+                setWindowDimensions(getWidth());
+            }
+
+            window.addEventListener('resize', handleResize);
+            window.removeEventListener('resize', handleResize);
+
+        }, []);
+
+        console.log('here!! : ' + chat_list)
+
+        for (let i = 0; i < min(row, data_length); i++) {
+            const idx = Math.floor(Math.random()) % col;
+            const temp = columns[i];
+            console.log(`instance is ${temp}`)
+            matrix[i][idx] = <Chat id={temp.id} name={temp.name} limit={temp.limit} current={temp.current}/>
         }
 
-        window.addEventListener('resize', handleResize);
-        window.removeEventListener('resize', handleResize);
-
-    }, []);
-
-    console.log('here!! : ' + chat_list)
-
-    for (let i = 0; i < min(row, data_length); i++) {
-        const idx = Math.floor(Math.random()) % col;
-        const temp = columns[i];
-        console.log(`instance is ${temp}`)
-        matrix[i][idx] = <Chat id={temp.id} name={temp.name} limit={temp.limit} current={temp.current}/>
-    }
-
-    let table: JSX.Element[] = [];
-    for (let i = 0; i < row; i++) {
-        const t = matrix[i].map((e, idx) => <td className={`chatRoomCol${idx}`}>{e}</td>);
-        table.push(<tr id={`chatRoomRow${i}`} className="table-row">{t}</tr>)
+        let table: JSX.Element[] = [];
+        for (let i = 0; i < row; i++) {
+            const t = matrix[i].map((e, idx) => <td className={`chatRoomCol${idx}`}>{e}</td>);
+            table.push(<tr id={`chatRoomRow${i}`} className="table-row">{t}</tr>)
+        }
+    } catch (e) {
+        console.log(e)
     }
 
     return (
