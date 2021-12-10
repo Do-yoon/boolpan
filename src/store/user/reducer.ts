@@ -1,43 +1,30 @@
 import {UserActionType, UserAction} from "@store/user/action";
-import {initialState, State} from "@store/state";
+import {initialUserState, UserState} from "@store/user/state";
 
 export function UserReducer(
-    state = initialState,
+    state = initialUserState,
     action: UserAction
-): State {
+): UserState {
     switch (action.type) {
         case UserActionType.ENTER_THE_ROOM:
             return {
                 ...state,
-                user: {
-                    ...state.user,
-                    room: action.payload.roomId
-                }
+                room: action?.payload?.roomId
             };
         case UserActionType.EXIT_THE_ROOM:
             return {
                 ...state,
-                user: {
-                    ...state.user,
-
-                }
             };
         case UserActionType.LOGOUT:
             return {
                 ...state,
-                user: {
-                    ...state.user,
-                    isLoggedIn: false
-                }
+                isLoggedIn: false
             };
         case UserActionType.VALIDATE_LOGIN:
             let isValid = false;
             return {
                 ...state,
-                user: {
-                    ...state.user,
-                    isLoggedIn: isValid
-                }
+                isLoggedIn: isValid
             };
 
         default:

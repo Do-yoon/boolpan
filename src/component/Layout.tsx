@@ -6,7 +6,6 @@ import 'css/MainLayout.css'
 import store, {AppDispatch, RootState} from '.././store'
 import {useDispatch, useSelector} from "react-redux";
 import PopUpContainer from "@component/pop-up/PopUpContainer";
-import {State} from "@store/state";
 
 interface LayoutProps {
     children?: React.ReactNode,

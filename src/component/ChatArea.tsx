@@ -6,7 +6,6 @@ import store from "@store/index";
 import {useDispatch, useSelector} from "react-redux";
 import Chat from "@component/Chat";
 //import {PropsFromRedux} from "@store/state";
-import {State} from "@store/state";
 import {type} from "os";
 
 
@@ -33,9 +32,6 @@ interface ChatTableProps extends PropsFromRedux{
 }
  */
 
-const mapStateToProps = (state: ChatTableProps) => {
-}
-
 interface ChatTableProps {
     chat_list: typeof Chat[]
 }
@@ -43,31 +39,35 @@ interface ChatTableProps {
 
 function ChatTable() {
     // hooks
-    try {
-        const getWidth = () => {
-            const {innerWidth: widthValue} = window;
-            return widthValue;
+    let table: JSX.Element[] = [];
+    const getWidth = () => {
+        const {innerWidth: widthValue} = window;
+        return widthValue;
+    }
+    const [windowDimensions, setWindowDimensions] = useState(getWidth);
+    store.dispatch({type: ChatActionType.GET_CHATTING_ROOM_LIST});
+
+    const chat_list = useSelector((state: ChatTableProps) => state.chat_list)
+
+    // tables
+    const [row, col] = [14, Math.floor((0.8 * windowDimensions - 165) / 140)];
+    let matrix = [...Array(row)].map(() => [...Array(col)].fill(null));
+
+    const data_length = columns.length;
+
+    useEffect(() => {
+        async function handleResize() {
+            setWindowDimensions(getWidth());
         }
-        const [windowDimensions, setWindowDimensions] = useState(getWidth);
-        store.dispatch({type: ChatActionType.GET_CHATTING_ROOM_LIST});
 
-        const chat_list = useSelector((state: ChatTableProps) => state.chat_list)
+        window.addEventListener('resize', handleResize);
+        window.removeEventListener('resize', handleResize);
 
-        // tables
-        const [row, col] = [14, Math.floor((0.8 * windowDimensions - 165) / 140)];
-        let matrix = [...Array(row)].map(() => [...Array(col)].fill(null));
+    }, []);
 
-        const data_length = columns.length;
 
-        useEffect(() => {
-            async function handleResize() {
-                setWindowDimensions(getWidth());
-            }
+    try {
 
-            window.addEventListener('resize', handleResize);
-            window.removeEventListener('resize', handleResize);
-
-        }, []);
 
         console.log('here!! : ' + chat_list)
 
@@ -78,7 +78,7 @@ function ChatTable() {
             matrix[i][idx] = <Chat id={temp.id} name={temp.name} limit={temp.limit} current={temp.current}/>
         }
 
-        let table: JSX.Element[] = [];
+
         for (let i = 0; i < row; i++) {
             const t = matrix[i].map((e, idx) => <td className={`chatRoomCol${idx}`}>{e}</td>);
             table.push(<tr id={`chatRoomRow${i}`} className="table-row">{t}</tr>)

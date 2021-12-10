@@ -1,4 +1,4 @@
-import {PopUpType} from "@store/state";
+import {PopUpType} from "@store/page/state";
 
 export enum PageActionType {
     OPEN_POP_UP,

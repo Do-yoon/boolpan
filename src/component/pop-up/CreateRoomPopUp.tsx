@@ -1,6 +1,5 @@
 import * as events from "events";
 import React, {useState} from "react";
-import {State} from "@store/state";
 
 function submit(e: React.FormEvent) {
     alert('summited')

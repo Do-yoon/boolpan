@@ -1,11 +1,11 @@
 import {ChatActionType, ChatAction} from "@store/chat/action";
-import {Chat, initialState, State} from "@store/state";
 import axios from 'axios';
+import {Chat, ChatState, initialChatState} from "@store/chat/state";
 
 export function ChatReducer(
-    state = initialState,
+    state = initialChatState,
     action: ChatAction
-): State {
+): ChatState {
     const axiosInstance = axios.create({
         baseURL: 'http://localhost:8080/v0',
         timeout: 1000
@@ -21,16 +21,12 @@ export function ChatReducer(
                 })
             return {
                 ...state,
-                chat: {
-                    chat_list: data
-                }
+                chat_list: data
             };
         case ChatActionType.SEND_MESSAGE:
             return {
                 ...state,
-                chat: {
-                    chat_list: []
-                }
+                chat_list: []
             };
         default:
             return state;

@@ -1,16 +1,15 @@
 import SearchResult from 'page/SearchResult';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Home from 'page/Home';
-import Layout from 'component/Layout';
-import CreateRoomPopUp from "@component/pop-up/CreateRoomPopUp";
 import {useDispatch, useSelector} from "react-redux";
-import {State} from "@store/state";
 import {PageActionType} from "@store/page/action";
+import {RootState} from "@store/index";
 
 
 function MainRouter() {
-    const popUp = useSelector((state: State) => state.page.popUp);
+    const popUp = useSelector((state: RootState) => state.pages.popUp);
     const dispatch = useDispatch()
+    console.log(popUp)
     return (
             <BrowserRouter>
                 <Switch>

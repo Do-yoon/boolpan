@@ -1,5 +1,4 @@
 import Constant from "util/Constant";
-import {PopUpType} from "@store/state";
 
 interface CountBannerProps {
     n: number

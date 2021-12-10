@@ -1,5 +1,4 @@
-import {State} from "@store/state";
-import {PopUpType} from "@store/state";
+import {PopUpType} from "@store/page/state";
 import {AppDispatch} from "@store/index";
 import {connect} from "react-redux";
 import CreateRoomPopUp from "@component/pop-up/CreateRoomPopUp";
