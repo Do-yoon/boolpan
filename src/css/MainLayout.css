@@ -29,6 +29,22 @@ html {
     font-family: Roboto;
 }
 
+.pop-up-wrapper {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    margin-top: auto;
+}
+
+.close-button {
+    width: 20px;
+    text-align: center;
+}
+
+#createRoomPopUp inner > div{
+    text-align: right;
+}
+
 #category-text {
     text-align: center;
     width: 80px;

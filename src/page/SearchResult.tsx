@@ -1,6 +1,7 @@
 import SearchResultList from "@component/SearchResultList";
 import qs from "qs"
 import { useLocation } from "react-router-dom";
+import Layout from "@component/Layout";
 
 function SearchResult() {
     const location = useLocation();
@@ -9,7 +10,9 @@ function SearchResult() {
     });
 
     return (
-        <SearchResultList key={query["key"] as string} option="room_name"/>
+        <Layout>
+            <SearchResultList key={query["key"] as string} option="room_name"/>
+        </Layout>
 
     )
 }

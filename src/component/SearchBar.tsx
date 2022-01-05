@@ -1,6 +1,10 @@
 import Constant, {Urls} from "util/Constant";
 import React, {Dispatch, useState} from "react";
 import {useHistory} from "react-router-dom";
+import CreateRoomPopUp from "@component/pop-up/CreateRoomPopUp";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "@store/index";
+import {PageActionType} from "@store/page/action";
 
 
 function TextInputArea() {
@@ -24,12 +28,22 @@ function TextInputArea() {
     );
 }
 
-
+function OpenCreateRoomPopUp(setPopUp: Function) {
+    const popUp = useSelector((state: RootState) => state.pages.popUp)
+    console.log('I clicked button')
+    console.log(popUp)
+    if (popUp === null) {
+        setPopUp()
+    } else {
+        return;
+    }
+}
 
 function CreateRoomButton() {
+    const dispatch = useDispatch()
 
     return (
-        <div id='create-room-button' onClick={() => alert('good')}>
+        <div id='create-room-button' onClick={() => dispatch({ type: PageActionType.SET_POP_UP, payload: {popUp: <CreateRoomPopUp/>}})}>
             <span>{Constant.CREATE_ROOM}</span>
         </div>
     )

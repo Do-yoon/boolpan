@@ -1,21 +1,9 @@
-import {PopUpType} from "@store/page/state";
-import {AppDispatch} from "@store/index";
-import {connect} from "react-redux";
-import CreateRoomPopUp from "@component/pop-up/CreateRoomPopUp";
+import {connect, useSelector} from "react-redux";
+import {RootState} from "@store/index";
 
-type Props = {
-    PopUpType: PopUpType
-    PopUpContainer: Function
-}
 
-function PopUpContainer(props: Props) {
-    let popUp = null;
-    switch (props.PopUpType) {
-        case PopUpType.CREATE_ROOM:
-            popUp = <CreateRoomPopUp/>
-        default:
-            popUp = <></>
-    }
+function PopUpContainer() {
+    const popUp = useSelector((state: RootState) => state.pages.popUp);
 
     return (
         <div className='pop-up-wrapper'>

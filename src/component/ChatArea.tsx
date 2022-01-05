@@ -45,15 +45,11 @@ const axiosInstance = axios.create({
 function ChatTable() {
     let table = [];
     let data = test_column;
-    axiosInstance.get('/chat')
-        .then(res => (data = res.data))
-
     const getWidth = () => {
         const {innerWidth: widthValue} = window;
         return widthValue;
     }
     const [windowDimensions, setWindowDimensions] = useState(getWidth);
-    store.dispatch({type: ChatActionType.GET_CHATTING_ROOM_LIST});
 
     // tables
     const [row, col] = [14, Math.floor((0.8 * windowDimensions - 165) / 140)];
@@ -62,6 +58,14 @@ function ChatTable() {
     const data_length = (data.length);
     console.log(`length: ${data_length}`)
 
+    try {
+        axiosInstance.get('/chat')
+            .then(res => (data = res.data))
+
+        store.dispatch({type: ChatActionType.GET_CHATTING_ROOM_LIST});
+    } catch (e) {
+
+    }
     useEffect(() => {
         async function handleResize() {
             setWindowDimensions(getWidth());

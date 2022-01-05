@@ -4,9 +4,9 @@ export enum PopUpType {
 }
 
 export type PageState = {
-    popUp: PopUpType
+    popUp: null | React.ReactNode
 }
 
 export const initialPageState: PageState = {
-    popUp: PopUpType.NONE
+    popUp: null
 }

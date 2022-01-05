@@ -1,4 +1,4 @@
-import {PageActionType, PageAction} from "@store/page/action";
+import {PageActionType, PageAction, SetPopUpPayload, SearchPayload, ResizeWindowPayload} from "@store/page/action";
 import {initialPageState, PageState} from "@store/page/state";
 
 export function PageReducer(
@@ -9,6 +9,13 @@ export function PageReducer(
         case PageActionType.RESIZE_WINDOW:
             return {
                 ...state,
+            };
+        case PageActionType.SET_POP_UP:
+            console.log('action.payload.popUp')
+            console.log(action.payload.popUp)
+            return {
+                ...state,
+                popUp: action.payload.popUp
             };
         default:
             return state;

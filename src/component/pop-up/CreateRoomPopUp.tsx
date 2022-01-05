@@ -1,5 +1,7 @@
 import * as events from "events";
 import React, {useState} from "react";
+import {useDispatch} from "react-redux";
+import {PageActionType} from "@store/page/action";
 
 function submit(e: React.FormEvent) {
     alert('summited')
@@ -7,10 +9,12 @@ function submit(e: React.FormEvent) {
 
 function CreateRoomPopUp() {
     const [isPassword, setPassword] = useState(false);
+    const dispatch = useDispatch()
 
     return (
             <div className='createRoomPopUp outer'>
                 <div className='createRoomPopUp inner'>
+                    <div className='close-button' onClick={() => dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: null}})}>X</div>
                     <form onSubmit={submit}>
                         <ol>
                             <li>방 이름</li>

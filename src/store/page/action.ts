@@ -1,25 +1,25 @@
 import {PopUpType} from "@store/page/state";
 
 export enum PageActionType {
-    OPEN_POP_UP,
+    SET_POP_UP,
     RESIZE_WINDOW,
     SEARCH,
 }
 
 
 export type PageAction =
-    { type: PageActionType.OPEN_POP_UP; payload: OpenPopUpPayload }
+    { type: PageActionType.SET_POP_UP; payload: SetPopUpPayload }
     | { type: PageActionType.RESIZE_WINDOW; payload: ResizeWindowPayload }
     | { type: PageActionType.SEARCH; payload: SearchPayload }
 
-interface SearchPayload {
-    key: string,
+export type SearchPayload = {
+    key: string
     option: number
 }
-export interface OpenPopUpPayload {
-    type: PopUpType
+export type SetPopUpPayload = {
+    popUp: null | React.ReactNode
 }
 
-export interface ResizeWindowPayload {
+export type ResizeWindowPayload = {
     width: number
 }
