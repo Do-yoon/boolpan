@@ -4,19 +4,16 @@ import CreateRoomPopUp from "@component/pop-up/CreateRoomPopUp";
 import Layout from "@component/Layout";
 import PopUpContainer from "@component/pop-up/PopUpContainer";
 
-interface Props {
-    popUp: number
-    popUpController: Function
-}
 
-function Home({popUpController, popUp}: Props) {
+function Home() {
     return (
         <Layout>
-            <PopUpContainer PopUpType={popUp}></PopUpContainer>
-            <div id={'search-area'}>
-                <SearchBar/>
+            <div id='container'>
+                <div id={'search-area'}>
+                    <SearchBar/>
+                </div>
+                <ChatArea/>
             </div>
-            <ChatArea/>
         </Layout>
     );
 }

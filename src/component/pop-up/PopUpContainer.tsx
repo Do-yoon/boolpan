@@ -5,7 +5,7 @@ import CreateRoomPopUp from "@component/pop-up/CreateRoomPopUp";
 
 type Props = {
     PopUpType: PopUpType
-
+    PopUpContainer: Function
 }
 
 function PopUpContainer(props: Props) {
@@ -14,7 +14,7 @@ function PopUpContainer(props: Props) {
         case PopUpType.CREATE_ROOM:
             popUp = <CreateRoomPopUp/>
         default:
-            popUp = null
+            popUp = <></>
     }
 
     return (

@@ -347,6 +347,10 @@ li {
     left: 50%;
 }
 
+#container {
+    position: relative;
+}
+
 /* mobile */
 @media (max-width: 768px) {
     body {

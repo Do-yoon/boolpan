@@ -1,7 +1,6 @@
 import Constant, {Urls} from "util/Constant";
 import React, {Dispatch, useState} from "react";
 import {useHistory} from "react-router-dom";
-import CreateRoomPopUp from "@component/pop-up/CreateRoomPopUp";
 
 
 function TextInputArea() {
@@ -37,7 +36,6 @@ function CreateRoomButton() {
 }
 
 function SearchBar() {
-    const [createRoom, setCreateRoom] = useState(false);
 
     return (
         <div id='search-bar'>
