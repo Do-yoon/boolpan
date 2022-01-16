@@ -10,9 +10,7 @@ function SearchResult() {
     });
 
     return (
-        <Layout>
             <SearchResultList key={query["key"] as string} option="room_name"/>
-        </Layout>
 
     )
 }

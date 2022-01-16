@@ -7,14 +7,12 @@ import PopUpContainer from "@component/pop-up/PopUpContainer";
 
 function Home() {
     return (
-        <Layout>
             <div id='container'>
                 <div id={'search-area'}>
                     <SearchBar/>
                 </div>
                 <ChatArea/>
             </div>
-        </Layout>
     );
 }
 

@@ -20,11 +20,10 @@ export function UserReducer(
                 ...state,
                 isLoggedIn: false
             };
-        case UserActionType.VALIDATE_LOGIN:
-            let isValid = false;
+        case UserActionType.LOGIN:
             return {
                 ...state,
-                isLoggedIn: isValid
+                isLoggedIn: true
             };
 
         default:

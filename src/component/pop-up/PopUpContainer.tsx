@@ -7,7 +7,7 @@ function PopUpContainer() {
 
     return (
         <div className='pop-up-container'>
-            {popUp}
+                    {popUp}
         </div>
     );
 }
