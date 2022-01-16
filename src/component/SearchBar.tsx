@@ -28,17 +28,6 @@ function TextInputArea() {
     );
 }
 
-function OpenCreateRoomPopUp(setPopUp: Function) {
-    const popUp = useSelector((state: RootState) => state.pages.popUp)
-    console.log('I clicked button')
-    console.log(popUp)
-    if (popUp === null) {
-        setPopUp()
-    } else {
-        return;
-    }
-}
-
 function CreateRoomButton() {
     const dispatch = useDispatch()
 

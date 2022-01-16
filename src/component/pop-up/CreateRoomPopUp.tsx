@@ -14,9 +14,14 @@ function CreateRoomPopUp() {
     return (
             <div className='createRoomPopUp outer'>
                 <div className='createRoomPopUp inner'>
-                    <div className='close-button' onClick={() => dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: null}})}>X</div>
+                    <div className='createRoomPopUp button-container'>
+                        <div className='createRoomPopUp button' onClick={() => dispatch({ type: PageActionType.SET_POP_UP, payload: {popUp: null}})}>
+                            <span>X</span>
+                        </div>
+                    </div>
+                    <p className='createRoomPopUp title'>방 만들기</p>
                     <form onSubmit={submit}>
-                        <ol>
+                        <ol className='createRoomPopUp form-field'>
                             <li>방 이름</li>
                             <li><input className='createRoomPopup chat_name'/></li>
                             <li>카테고리 분류</li>
@@ -46,7 +51,9 @@ function CreateRoomPopUp() {
                                 </div>
                             </li>
                         </ol>
-                        <input type='submit' value='제출'/>
+                        <div className='createRoomPopUp button-container'>
+                            <input type='submit' value='제출' className='createRoomPopUp summit-button'/>
+                        </div>
                     </form>
                 </div>
             </div>
