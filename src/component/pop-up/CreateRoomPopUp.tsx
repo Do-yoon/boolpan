@@ -14,13 +14,13 @@ function CreateRoomPopUp() {
     return (
         <div className='createRoomPopUp outer'>
             <div className='createRoomPopUp inner'>
-                <div className='createRoomPopUp button-container'>
-                    <div className='createRoomPopUp button'
+                <div className='createRoomPopUp close-pop-up-button-container'>
+                    <div className='createRoomPopUp close-pop-up-button'
                          onClick={() => dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: null}})}>
                         <span>X</span>
                     </div>
                 </div>
-                <p className='createRoomPopUp title'>방 만들기</p>
+                <p className='createRoomPopUp pop-up-title'>방 만들기</p>
                 <form onSubmit={submit}>
                     <ol className='createRoomPopUp form-field'>
                         <li>방 이름</li>

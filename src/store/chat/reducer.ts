@@ -12,6 +12,7 @@ export function ChatReducer(
             // call backend API
             return {
                 ...state,
+                chat_list: action.payload.chat_list
             };
         case ChatActionType.SEND_MESSAGE:
             return {

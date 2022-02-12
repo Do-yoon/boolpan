@@ -29,12 +29,12 @@ function getResult(query: Params) {
 
 function ResultElement({ elementList }: ResultElementProps) {
     const element = elementList.map((element: ChatRoomArea) => (
-        <table>
+        <table className="search-result-list">
             <thead>
                 {element.name}
             </thead>
             <tbody>
-                <p>{Constant.LIMITATION}: {element.n}/{element.limit}</p>
+                <p className="search-result-list room-banner">{Constant.LIMITATION}: {element.n}/{element.limit}</p>
             </tbody>
         </table>
     ));

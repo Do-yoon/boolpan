@@ -9,16 +9,20 @@ export enum UserActionType {
 export type UserAction =
     | { type: UserActionType.ENTER_THE_ROOM; payload: EnterTheRoomPayload }
     | { type: UserActionType.EXIT_THE_ROOM; }
-    | { type: UserActionType.LOGIN }
+    | { type: UserActionType.LOGIN, payload: LoginFetchPayload}
     | { type: UserActionType.LOGOUT; payload: number }
     | { type: UserActionType.RESIZE_WINDOW; payload: ResizeWindowPayload };
 
 
+export type LoginFetchPayload = {
+    email: string
+    password: string
+}
 
-export interface EnterTheRoomPayload {
+export type EnterTheRoomPayload = {
     roomId: number
 }
 
-export interface ResizeWindowPayload {
+export type ResizeWindowPayload = {
     width: number
 }

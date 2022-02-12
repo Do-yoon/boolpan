@@ -1,3 +1,5 @@
+import {Chat} from "@store/chat/state";
+
 export enum ChatActionType {
     GET_CHATTING_ROOM_LIST,
     GET_CHATTING_ROOM_INFO,
@@ -6,10 +8,14 @@ export enum ChatActionType {
 }
 
 export type ChatAction =
-    { type: ChatActionType.GET_CHATTING_ROOM_LIST}
+    { type: ChatActionType.GET_CHATTING_ROOM_LIST; payload: GetChattingRoomListPayload}
     | { type: ChatActionType.SEND_MESSAGE; payload: SendMessagePayload}
 
 
-interface SendMessagePayload {
+type SendMessagePayload = {
     message: string
+}
+
+type GetChattingRoomListPayload = {
+    chat_list: Chat[]
 }

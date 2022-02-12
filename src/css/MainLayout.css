@@ -40,6 +40,7 @@ html {
     flex-wrap: wrap;
 }
 
+
 .createRoomPopUp {
     z-index: auto;
 }
@@ -331,13 +332,17 @@ li {
     border: 1px #FFFFFF solid;
     height: 50px;
     width: 140px;
-    display: inline-block;
+    display: block;
 }
 
 
-.createRoomPopUp.outer {
-    width: 300px;
-    height: 250px;
+
+.room-banner > span {
+    display: block;
+    vertical-align: center;
+}
+
+.outer {
     display: inline-flex;
     position: absolute;
     justify-content: center;
@@ -345,10 +350,7 @@ li {
     flex-wrap: wrap;
 }
 
-.createRoomPopUp.inner {
-    margin: auto;
-    width: 300px;
-    height: 250px;
+.inner {
     display: inline-block;
     align-items: center;
     border-radius: 2px;
@@ -356,23 +358,35 @@ li {
     background-color: #FFFFFF;
 }
 
-.createRoomPopUp.form-field {
+.login-pop-up.outer {
+    width: 300px;
+    height: 200px;
+}
+
+.login-pop-up.inner {
+    margin: auto;
+    width: 300px;
+    height: 200px;
+}
+
+.form-field {
     width: 100%;
     text-align: left;
     margin-left: 20px;
     margin-right: 20px;
 }
 
-.createRoomPopUp.title {
-    position: relative;
-    text-align: center;
+.button-container {
     width: 100%;
-    height: 15px;
-    padding-botton: 5px;
-    font-size: 20px;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
-.createRoomPopUp.button-container {
+.close-pop-up-button-container {
     width: 100%;
     height: fit-content;
     display: flex;
@@ -382,7 +396,34 @@ li {
     justify-content:flex-end;
 }
 
-.createRoomPopUp.button {
+.createRoomPopUp.outer {
+    width: 300px;
+    height: 250px;
+}
+
+.createRoomPopUp.inner {
+    margin: auto;
+    width: 300px;
+    height: 250px;
+}
+
+.createRoomPopUp.form-field {
+    width: 100%;
+    text-align: left;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.pop-up-title {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 15px;
+    padding-botton: 5px;
+    font-size: 20px;
+}
+
+.button {
     width: 40px;
     height: 40px;
     text-align: center;
@@ -408,6 +449,11 @@ li {
 #container {
     position: relative;
     z-index: auto;
+}
+
+#search-bar-form {
+    display: inline;
+    
 }
 
 /* mobile */

@@ -2,7 +2,7 @@ import 'css/MainLayout.css'
 import {ChatActionType, ChatAction} from "@store/chat/action";
 import {useEffect, useState} from 'react';
 import {min} from "mathjs";
-import store from "@store/index";
+import store, {RootState} from "@store/index";
 import {useDispatch, useSelector} from "react-redux";
 import Chat from "@component/Chat";
 //import {PropsFromRedux} from "@store/state";
@@ -33,39 +33,23 @@ interface ChatTableProps extends PropsFromRedux{
 }
  */
 
-interface ChatTableProps {
-    chat_list: typeof Chat[]
+type ChatProps = {
+    id: number
+    name: string
+    limit: number
+    current: number
 }
 
-const axiosInstance = axios.create({
-    baseURL: 'http://localhost:8080/v0',
-    timeout: 1000
-})
-
 function ChatTable() {
-    let table = [];
-    let data = test_column;
     const getWidth = () => {
         const {innerWidth: widthValue} = window;
         return widthValue;
     }
     const [windowDimensions, setWindowDimensions] = useState(getWidth);
+    const [data, setData]
+        : [ChatProps[], Function]
+        = useState([]);
 
-    // tables
-    const [row, col] = [14, Math.floor((0.8 * windowDimensions - 165) / 140)];
-    let matrix = [...Array(row)].map(() => [...Array(col)].fill(null));
-
-    const data_length = (data.length);
-    console.log(`length: ${data_length}`)
-
-    try {
-        axiosInstance.get('/chat')
-            .then(res => (data = res.data))
-
-        store.dispatch({type: ChatActionType.GET_CHATTING_ROOM_LIST});
-    } catch (e) {
-
-    }
     useEffect(() => {
         async function handleResize() {
             setWindowDimensions(getWidth());
@@ -76,23 +60,44 @@ function ChatTable() {
 
     }, []);
 
-    try {
+    // tables
+    const [row, col] = [14, Math.floor((0.8 * windowDimensions - 165) / 140)];
+    let matrix = [...Array(row)].map(() => [...Array(col)].fill(null));
 
-        for (let i = 0; i < min(row, data_length); i++) {
-            const idx = Math.floor(Math.random()) % col;
-            const temp = data[i];
-            console.log(temp)
-            matrix[i][idx] = <Chat id={temp.id} name={temp.name} limit={temp.limit} current={temp.current}/>
+
+    // let data = test_column;
+    useEffect(() => {
+        const fetchChats = async () => {
+            try {
+                const res = await axios.get("http://localhost:8080/v0/chat")
+                setData(res.data)
+
+            } catch (e) {
+                console.log(e)
+            }
         }
 
-        for (let i = 0; i < row; i++) {
-            const t = matrix[i].map((e, idx) => <td className={`chatRoomCol${idx}`}>{e}</td>);
-            table.push(<tr id={`chatRoomRow${i}`} className="table-row">{t}</tr>)
-        }
-        console.log(table)
-    } catch (e) {
-        console.log(e)
+        fetchChats();
+    }, [])
+
+    let table = [];
+    // const data: ChatProps[] = res.data;
+    const data_length = data.length
+    // console.log("I got data: ", data)
+
+    for (let i = 0; i < min(row, data_length); i++) {
+        const idx = Math.floor(Math.random()) % col;
+        const temp = data[i];
+        console.log(temp);
+        matrix[i][idx] =
+            <Chat id={temp.id} name={temp.name} limit={temp.limit} current={temp.current}/>
     }
+
+    for (let i = 0; i < row; i++) {
+        const t = matrix[i].map((e, idx) => <td className={`chatRoomCol${idx}`}>{e}</td>);
+        table.push(<tr id={`chatRoomRow${i}`} className="table-row">{t}</tr>)
+    }
+    console.log(table)
 
     return (
         <table id="chat-room-table">
@@ -102,13 +107,14 @@ function ChatTable() {
             </tbody>
         </table>
     );
+
 }
 
 function ChatArea() {
 
     return (
         <div id="table-area">
-            <ChatTable />
+            <ChatTable/>
         </div>
     );
 }
