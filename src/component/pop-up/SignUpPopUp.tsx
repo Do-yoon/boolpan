@@ -2,14 +2,28 @@ import {useDispatch} from "react-redux";
 import {PageActionType} from "@store/page/action";
 import {UserActionType} from "@store/user/action";
 import React from "react";
+import LoginPopUp from "@component/pop-up/LoginPopUp";
+import axios from "axios";
 
 
 function SignUpPopUp() {
     const dispatch = useDispatch();
-    const SignUpSubmit = (e: React.FormEvent) => {
-        alert('logged in')
-        dispatch({type: UserActionType.LOGIN})
-        dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: null}})
+    const SignUpSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        const loginFetch = await axios.post("http://localhost:8080/v0/user/signup", {
+            userinfo: {
+                email: "aaa@aaa.a",
+                password: "aa111"
+            }
+        });
+        const data = loginFetch.data
+        console.log(data)
+        alert('회원가입이 완료되었습니다.')
+        dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: <LoginPopUp/>}})
+    }
+
+    const OnClickToLogin = (e: React.MouseEvent) => {
+        dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: <LoginPopUp/>}})
     }
 
     return (
@@ -29,10 +43,10 @@ function SignUpPopUp() {
                         <li>패스워드 확인<input type="password"/></li>
                     </ol>
                     <div className="sign-up-pop-up button-container">
-                        <input type="submit" className="summit-button" value="기존 계정으로 로그인"/>
-                        <input type="button" value="회원가입"/>
+                        <input type="submit" value="회원가입"/>
                     </div>
                 </form>
+                <input type="button" className="summit-button" value="기존 계정으로 로그인" onClick={OnClickToLogin}/>
             </div>
         </div>
     );
