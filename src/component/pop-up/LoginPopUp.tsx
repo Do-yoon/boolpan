@@ -17,22 +17,31 @@ function LoginPopUp() {
         const loginFetch = await axios.post("http://localhost:8080/v0/user/login", {
             userinfo: {
                 email: email,
-                password: "aa111"
+                password: password
             }
         });
+        // console.log(typeof email);
+        // console.log(email);
         const data = loginFetch.data
         console.log(data)
         if (data) {
             dispatch({type: UserActionType.LOGIN, payload: {data}})
             dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: null}})
         } else {
-            alert('invalid')
+            alert('유효하지 않습니다.')
         }
     }
 
     const OnChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+        //console.log(e.target.value)
         setEmail(e.target.value)
     }
+
+    const OnChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+        //console.log(e.target.value)
+        setPassword(e.target.value)
+    }
+
     const OnClickSignUp = (e: React.MouseEvent) => {
         dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: <SignUpPopUp/>}})
     }
@@ -50,7 +59,7 @@ function LoginPopUp() {
                 <form onSubmit={LoginSubmit}>
                     <ol className="form-field">
                         <li>아이디 <input type="email" value={email} onChange={OnChangeEmail}/></li>
-                        <li>패스워드<input type="password" value={password}/></li>
+                        <li>패스워드<input type="password" value={password} onChange={OnChangePassword}/></li>
                     </ol>
                     <div className="login-pop-up button-container">
                         <input type="submit" className="summit-button" value="로그인"/>
