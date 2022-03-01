@@ -14,7 +14,7 @@ function LoginPopUp() {
 
     const LoginSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const loginFetch = await axios.post("http://localhost:8081/v0/user/login", {
+        const loginFetch = await axios.post("http://3.37.61.56:8081/v0/user/login", {
             userinfo: {
                 email: email,
                 password: password
