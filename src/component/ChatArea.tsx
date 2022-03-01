@@ -69,7 +69,7 @@ function ChatTable() {
     useEffect(() => {
         const fetchChats = async () => {
             try {
-                const res = await axios.get("http://localhost:8080/v0/chat")
+                const res = await axios.get("http://localhost:8081/v0/chat")
                 setData(res.data)
 
             } catch (e) {

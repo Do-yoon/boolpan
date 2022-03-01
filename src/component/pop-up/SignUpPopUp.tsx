@@ -19,7 +19,7 @@ function SignUpPopUp() {
             return;
         }
 
-        const loginFetch = await axios.post("http://localhost:8080/v0/user/signup", {
+        const loginFetch = await axios.post("http://localhost:8081/v0/user/signup", {
             userinfo: {
                 email: email,
                 password: password
