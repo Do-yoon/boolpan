@@ -12,10 +12,13 @@ export function ChatReducer(
             return {
                 ...state,
                 roominfo: {
-                    ...state.roominfo,
-                    name: action?.payload.room_name,
-                    category: action?.payload.category,
-                    limit: action?.payload.limit
+                    room_id: action?.payload.room_id,
+                    name: action?.payload.name,
+                    category: action.payload.category,
+                    current: 1,
+                    limit: action.payload.limit,
+                    end_time: 0,
+                    messages: []
                 }
             };
         case ChatActionType.GET_CHATTING_ROOM_LIST:

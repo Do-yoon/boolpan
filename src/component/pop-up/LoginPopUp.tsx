@@ -24,7 +24,7 @@ function LoginPopUp() {
         // console.log(typeof email);
         // console.log(email);
         const data = loginFetch.data
-        console.log(data)
+        console.log(`got the data: ${data}`)
         if (data !== null) {
             dispatch({type: UserActionType.LOGIN, payload: {...data, email: email}})
             dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: null}})

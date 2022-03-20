@@ -19,11 +19,12 @@ const message = (msg: string, time: Date, sender: string) => {
 }
 
 function ChattingPopUp() {
-    const room = useSelector((state: RootState) => state.chats.roominfo)
+    const room = useSelector((state: RootState) => state.chats.roominfo.room_id)
     const user = useSelector((state: RootState) => state.users.userinfo.id)
     // input message onchange state
-    console.log(`user: ${user}`)
-    const ENDPOINT = REST_BASE_URL+`/sendMessage/${room}?${user?.valueOf()}`;
+    console.log(`user: ${typeof user}`)
+    console.log(`room: ${typeof room}`)
+    const ENDPOINT = REST_BASE_URL+`/sendMessage/${room}?user=${user}`;
     const dispatch = useDispatch()
 
 

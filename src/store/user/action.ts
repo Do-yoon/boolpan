@@ -17,11 +17,14 @@ export type UserAction =
 export type LoginFetchPayload = {
     email: string
     name: string
-    id: number
+    id: string
 }
 
 export type EnterTheRoomPayload = {
-    roomId: number
+    name: string,
+    category: string,
+    limit: string
+    room_id: string
 }
 
 export type ResizeWindowPayload = {

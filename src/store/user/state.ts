@@ -2,7 +2,7 @@ export type UserState = {
     userinfo: {
         name?: string
         email?: string
-        id?: number
+        id?: string
     }
     isLoggedIn: boolean
     room?: number

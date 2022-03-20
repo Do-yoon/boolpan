@@ -19,7 +19,9 @@ function CreateRoomPopUp() {
 
     const CreateRoomSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const createRoomFetch = await axios.post(REST_BASE_URL + "/user/login", {
+        // console.log(typeof email);
+        // console.log(email);
+        const createRoomFetch = await axios.post(REST_BASE_URL + "/chat/createRoom", {
             roominfo: {
                 name: name,
                 category: category,
@@ -27,12 +29,11 @@ function CreateRoomPopUp() {
                 password: password
             }
         });
-        // console.log(typeof email);
-        // console.log(email);
-        const data = createRoomFetch.data
-        console.log(data)
+
+        const data = createRoomFetch.data;
+        console.log(`data: ${data.name}`)
         if (data) {
-            dispatch({type: ChatActionType.ENTER_THE_ROOM, payload: {room_name: name, category: category, limit: limit}})
+            dispatch({type: ChatActionType.ENTER_THE_ROOM, payload: {name: name, category: category, limit: limit, room_id: data.room_id, end_time: data.end_time}})
             dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: <ChattingPopUp/>}})
         } else {
             alert('유효하지 않습니다.')

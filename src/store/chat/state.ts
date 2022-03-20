@@ -18,6 +18,7 @@ export type RoomState = {
 export type ChatState = {
     chat_list?: Chat[]
     roominfo: {
+        room_id: string | null
         name: string | null
         current: number | null
         limit: number | null
@@ -41,6 +42,7 @@ export const initialChatState: ChatState = {
         }
     ],
     roominfo: {
+        room_id: null,
         name: null,
         current: null,
         limit: null,
