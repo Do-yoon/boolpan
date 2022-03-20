@@ -9,7 +9,7 @@ export function UserReducer(
         case UserActionType.ENTER_THE_ROOM:
             return {
                 ...state,
-                room: action?.payload?.roomId
+
             };
         case UserActionType.EXIT_THE_ROOM:
             return {
@@ -23,6 +23,11 @@ export function UserReducer(
         case UserActionType.LOGIN:
             return {
                 ...state,
+                userinfo: {
+                    id: action.payload.id,
+                    email: action.payload.email,
+                    name: action.payload.name
+                },
                 isLoggedIn: true
             };
 

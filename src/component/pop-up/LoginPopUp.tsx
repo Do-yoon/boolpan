@@ -4,6 +4,7 @@ import {UserActionType} from "@store/user/action";
 import React, {useState} from "react";
 import axios from "axios";
 import SignUpPopUp from "@component/pop-up/SignUpPopUp";
+import {REST_BASE_URL} from "../../util/Constant";
 
 
 
@@ -14,7 +15,7 @@ function LoginPopUp() {
 
     const LoginSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const loginFetch = await axios.post("http://3.37.61.56:8081/v0/user/login", {
+        const loginFetch = await axios.post(REST_BASE_URL + "/user/login", {
             userinfo: {
                 email: email,
                 password: password
@@ -24,8 +25,8 @@ function LoginPopUp() {
         // console.log(email);
         const data = loginFetch.data
         console.log(data)
-        if (data) {
-            dispatch({type: UserActionType.LOGIN, payload: {data}})
+        if (data !== null) {
+            dispatch({type: UserActionType.LOGIN, payload: {...data, email: email}})
             dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: null}})
         } else {
             alert('유효하지 않습니다.')

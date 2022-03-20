@@ -456,6 +456,10 @@ li {
     
 }
 
+.CreateRoomPopUp select-category {
+    width: 50px;
+}
+
 /* mobile */
 @media (max-width: 768px) {
     body {

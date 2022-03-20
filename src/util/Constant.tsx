@@ -14,6 +14,10 @@ const Constant = {
     KEYWORD_SEARCH_PLACEHOLDER: "키워드를 입력하세요"
 }
 
+export const REST_BASE_URL = process.env.NODE_ENV === 'production'
+    ? `http://3.37.61.56:8081/v0`
+    : 'http://localhost:8081/v0';
+
 export const Urls = {
     SEARCH: '/search'
 }

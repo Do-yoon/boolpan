@@ -43,6 +43,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "redux": "^4.1.1",
+    "socket.io-client": "^4.4.1",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.5",
     "ts-node": "^10.2.1",

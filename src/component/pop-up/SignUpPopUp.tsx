@@ -4,6 +4,7 @@ import {UserActionType} from "@store/user/action";
 import React, {useState} from "react";
 import LoginPopUp from "@component/pop-up/LoginPopUp";
 import axios from "axios";
+import {REST_BASE_URL} from "../../util/Constant";
 
 
 function SignUpPopUp() {
@@ -11,6 +12,7 @@ function SignUpPopUp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [verifyPassword, setVerifyPassword] = useState("");
+    const [name, setName] = useState("");
 
     const SignUpSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -19,7 +21,7 @@ function SignUpPopUp() {
             return;
         }
 
-        const loginFetch = await axios.post("http://3.37.61.56:8081/v0/user/signup", {
+        const loginFetch = await axios.post(REST_BASE_URL + "/user/signup", {
             userinfo: {
                 email: email,
                 password: password
@@ -69,8 +71,8 @@ function SignUpPopUp() {
                     <ol className="form-field">
                         <li>아이디 <input type="email" value={email} onChange={OnChangeEmail}/></li>
                         <li>패스워드<input type="password" value={password} onChange={OnChangePassword}/></li>
-                        <li>패스워드 확인<input type="password" value={verifyPassword} onChange={OnChangeVerifyPassword}/>
-                        </li>
+                        <li>패스워드 확인<input type="password" value={verifyPassword} onChange={OnChangeVerifyPassword}/></li>
+                        <li>이름<input type="text" value={name}/></li>
                     </ol>
                     <div className="sign-up-pop-up button-container">
                         <input type="submit" value="회원가입"/>

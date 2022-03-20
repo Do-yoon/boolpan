@@ -16,7 +16,8 @@ export type UserAction =
 
 export type LoginFetchPayload = {
     email: string
-    password: string
+    name: string
+    id: number
 }
 
 export type EnterTheRoomPayload = {
