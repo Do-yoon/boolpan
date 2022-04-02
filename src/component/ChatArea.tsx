@@ -8,6 +8,7 @@ import Chat from "@component/Chat";
 //import {PropsFromRedux} from "@store/state";
 import {type} from "os";
 import axios from "axios";
+import {REST_BASE_URL} from "../util/Constant";
 
 
 let test_column = [
@@ -69,7 +70,7 @@ function ChatTable() {
     useEffect(() => {
         const fetchChats = async () => {
             try {
-                const res = await axios.get("http://localhost:8081/v0/chat")
+                const res = await axios.get(REST_BASE_URL + "/chat")
                 setData(res.data)
 
             } catch (e) {

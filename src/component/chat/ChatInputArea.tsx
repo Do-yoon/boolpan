@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "@store/index";
 import React from "react";
 import {ChatActionType} from "@store/chat/action";
+import "./css/ChatInputArea.css"
 
 
 function ChatInputArea() {
@@ -10,8 +11,10 @@ function ChatInputArea() {
     const dispatch = useDispatch()
     const OnSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        setMessage('')
-        dispatch({type: ChatActionType.SEND_MESSAGE, payload: {text: message}});
+        if (message.length > 0) {
+            setMessage('')
+            dispatch({type: ChatActionType.SEND_MESSAGE, payload: {text: message}});
+        }
     }
     const OnChange = (e: any) => {
         setMessage(e.target.value)
@@ -19,8 +22,8 @@ function ChatInputArea() {
 
     return <div>
         <form onSubmit={OnSubmit}>
-            <input type="text" value={message} onChange={OnChange} />
-            <input type="submit"/>
+            <input className="chat input-area" type="text" value={message} onChange={OnChange} />
+            <input className="chat input-submit" type="submit"/>
         </form>
     </div>
 }

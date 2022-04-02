@@ -28,7 +28,13 @@ export function ChatReducer(
                 chat_list: action.payload.chat_list
             };
         case ChatActionType.SEND_MESSAGE:
-            const now = Date.now();
+            const now = new Date();
+            let hours = now.getHours();
+            const noon = ((hours / 12) == 0) ? '오전' : '오후';
+            hours = (hours > 12) ? hours % 12 : hours;
+
+            const minutes = now.getMinutes();
+            const zero = minutes < 10 ? '0' : ''
             return {
                 ...state,
                 roominfo: {
@@ -37,7 +43,7 @@ export function ChatReducer(
                         {
                             text: action?.payload.text,
                             sender: null,
-                            timestamp: new Intl.DateTimeFormat('ko-KR', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(now)
+                            timestamp: `${noon} ${hours}:${zero}${minutes}`
                         }
 
                     ]

@@ -460,6 +460,11 @@ li {
     width: 50px;
 }
 
+.chat .container {
+    background-color: rgb(245, 245, 245);
+    border: 1px solid black;
+}
+
 /* mobile */
 @media (max-width: 768px) {
     body {

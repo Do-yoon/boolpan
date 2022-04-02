@@ -43,8 +43,8 @@ function ChattingPopUp() {
     }, [])
 
     return (
-        <div className='outerContainer'>
-            <div className='container'>
+        <div className='chat outerContainer'>
+            <div className='chat container'>
                 <ChatHeader/>
                 <MessageContainer/>
             </div>

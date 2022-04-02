@@ -1,0 +1,12 @@
+.roominfo {
+    text-align: left;
+    display: block;
+}
+
+.roominfo name {
+    display: inline;
+}
+
+.roominfo current {
+    display: inline;
+}

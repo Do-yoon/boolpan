@@ -10,16 +10,16 @@ export enum ChatActionType {
 }
 
 export type ChatAction =
-    { type: ChatActionType.GET_CHATTING_ROOM_LIST; payload: GetChattingRoomListPayload}
-    | { type: ChatActionType.SEND_MESSAGE; payload: SendMessagePayload}
-    | { type: ChatActionType.SET_MESSAGE_LIST; payload: SetMessageListPayload}
-    | { type: ChatActionType.ENTER_THE_ROOM; payload: EnterTheRoomPayload}
+    { type: ChatActionType.GET_CHATTING_ROOM_LIST; payload: GetChattingRoomListPayload }
+    | { type: ChatActionType.SEND_MESSAGE; payload: SendMessagePayload }
+    | { type: ChatActionType.SET_MESSAGE_LIST; payload: SetMessageListPayload }
+    | { type: ChatActionType.ENTER_THE_ROOM; payload: EnterTheRoomPayload }
+
 
 
 type SendMessagePayload = {
     text: string
 }
-
 type SetMessageListPayload = {
     messages: []
 }

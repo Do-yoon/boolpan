@@ -1,0 +1,93 @@
+.message {
+  display: flex;
+  justify-content: right;
+}
+.send {
+  text-align: right;
+
+}
+
+.send.messageContainer {
+  text-align: right;
+  background-color: white;
+  border-radius: 15px 15px 0px 15px;
+}
+
+.send.text-area {
+  display: inline;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  /* or 21px */
+
+  color: black;
+  z-index: 3;
+
+
+  /* Inside auto layout */
+  margin: 20px 10px;
+}
+
+.send .timestamp {
+  left: 0px;
+  top: 83px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+
+  /* Text / Primary 40 #000000 */
+  /*color: rgba(0, 0, 0, 0.4);*/
+
+
+  /* Inside auto layout */
+  margin: 20px 0px;
+
+}
+
+.receive .message {
+
+}
+
+
+.receive .messageContainer {
+  display: flex;
+  background-color: #E0E0E0;
+  border-radius: 15px 15px 15px 0px;
+}
+
+.receive .text-area {
+  display: inline;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  /* or 21px */
+
+  color: black;
+  z-index: 3;
+
+
+  /* Inside auto layout */
+  margin: 20px 10px;
+}
+
+.receive .timestamp {
+  left: 0px;
+  top: 83px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+
+  /* Text / Primary 40 #000000 */
+  /*color: rgba(0, 0, 0, 0.4);*/
+
+
+  /* Inside auto layout */
+  margin: 20px 0px;
+
+}
