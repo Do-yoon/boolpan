@@ -1,6 +1,5 @@
 import {ChatAction, ChatActionType} from "@store/chat/action";
 import {ChatState, initialChatState} from "@store/chat/state";
-import {Simulate} from "react-dom/test-utils";
 
 export function ChatReducer(
     state = initialChatState,
@@ -8,6 +7,14 @@ export function ChatReducer(
 ): ChatState {
 
     switch (action.type) {
+        case ChatActionType.GET_MESSAGE:
+            return {
+                ...state,
+                roominfo: {
+                    ...state.roominfo,
+                    messages: [...state.roominfo.messages, action.payload.msg]
+                }
+            };
         case ChatActionType.ENTER_THE_ROOM:
             return {
                 ...state,

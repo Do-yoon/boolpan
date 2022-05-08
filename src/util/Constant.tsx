@@ -18,6 +18,8 @@ export const REST_BASE_URL = process.env.NODE_ENV === 'production'
     ? `http://3.37.61.56:8081/v0`
     : 'http://localhost:8081/v0';
 
+export const CHAT_SERVER_BASE_URL = "http://localhost:8083";
+
 export const Urls = {
     SEARCH: '/search'
 }

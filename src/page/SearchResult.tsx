@@ -12,12 +12,14 @@ function SearchResult() {
     });
 
     return (
-        <div id='container'>
-            <div id={'search-area'}>
-                <SearchBar/>
+        <Layout>
+            <div id='container'>
+                <div id={'search-area'}>
+                    <SearchBar/>
+                </div>
+                <SearchResultList key={query["key"] as string} option="room_name"/>
             </div>
-            <SearchResultList key={query["key"] as string} option="room_name"/>
-        </div>
+        </Layout>
     )
 }
 

@@ -6,20 +6,20 @@ import {PageActionType} from "@store/page/action";
 import {RootState} from "@store/index";
 import Layout from "@component/Layout";
 import LoginPopUp from "@component/pop-up/LoginPopUp";
+import Admin from "@page/Admin";
 
 
 function MainRouter() {
 
     return (
-        <Layout>
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <Route exact path="/search" component={SearchResult}/>
+                    <Route exact path="/boolpan_admin" component={Admin}/>
                     <Redirect path="/*" to="/" />
                 </Switch>
             </BrowserRouter>
-        </Layout>
     )
 }
 

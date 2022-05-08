@@ -1,36 +1,71 @@
-function Admin() {
-    const OnSubmitLogin = () => {
+import {useDispatch} from "react-redux";
+import {PageActionType} from "@store/page/action";
+import {UserActionType} from "@store/user/action";
+import React, {useState} from "react";
+import axios from "axios";
+import SignUpPopUp from "@component/pop-up/SignUpPopUp";
+import {REST_BASE_URL} from "@util/Constant";
+import {AdminActionType} from "@store/admin/action";
+
+
+
+function LoginPopUp() {
+    const dispatch = useDispatch();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const LoginSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        const loginFetch = await axios.post(REST_BASE_URL + "/admin/login", {
+            admininfo: {
+                email: email,
+                password: password
+            }
+        });
+        // console.log(typeof email);
+        // console.log(email);
+        const data = loginFetch.data
+        console.log(`got the data: ${data}`)
+        if (data !== null) {
+            dispatch({type: AdminActionType.ADMIN_LOGIN, payload: {email: email}})
+        } else {
+            alert('유효하지 않습니다.')
+        }
+    }
+
+    const OnChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+        //console.log(e.target.value)
+        setEmail(e.target.value)
+    }
+
+    const OnChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+        //console.log(e.target.value)
+        setPassword(e.target.value)
     }
 
     return (
-        <div>
-            <div className="login-box hb_adm_login">
-                <div className="login-box-body">
-                    <form method="post" name="loginfrm" id="loginfrm">
-                        <input type="text" name="hb_admin_id" id="hb_admin_id" className="form-control" placeholder="ID"
-                               value=""/>
-                            <input type="password" name="hb_admin_pass" id="hb_admin_pass" className="form-control" placeholder="Password"/>
-                                <div className="row">
-                                    <div className="col-xs-8">
-                                        <div className="checkbox icheck">
-                                            <label>
-                                                <div className="icheckbox_square-blue" aria-checked="false"
-                                                     aria-disabled="false">
-                                                    <input type="checkbox" name="keepid" id="keepid" value="1" />
-                                                    <ins className="iCheck-helper"></ins>
-                                                </div>
-                                                ID 저장 </label>
-                                        </div>
-                                    </div>
-                                    <div className="col-xs-4">
-                                        <button type="submit" className="btn btn-primary btn-block btn-flat" onClick={OnSubmitLogin}>로그인</button>
-                                    </div>
-                                </div>
-                    </form>
-                <br/>
-                    <a href="register.html" className="text-center">회원 가입하기</a> </div>
+        <div className="login-pop-up outer">
+            <div className="login-pop-up inner">
+                <div className="login-pop-up close-pop-up-button-container">
+                    <div className='login-pop-up close-pop-up-button'
+                         onClick={() => dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: null}})}>
+                        <span>X</span>
+                    </div>
+                </div>
+                <p className='login-pop-up pop-up-title'>로그인</p>
+                <form onSubmit={LoginSubmit}>
+                    <ol className="form-field">
+                        <li>아이디 <input type="email" value={email} onChange={OnChangeEmail}/></li>
+                        <li>패스워드<input type="password" value={password} onChange={OnChangePassword}/></li>
+                    </ol>
+                    <div className="login-pop-up button-container">
+                        <input type="submit" className="summit-button" value="로그인"/>
+
+                    </div>
+                </form>
             </div>
-        </div>);
+        </div>
+    );
 }
 
-export default Admin;
+export default LoginPopUp;

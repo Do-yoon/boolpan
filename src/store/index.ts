@@ -3,11 +3,13 @@ import {combineReducers, configureStore, createStore} from '@reduxjs/toolkit'
 import {ChatReducer} from "@store/chat/reducer";
 import {PageReducer} from "@store/page/reducer";
 import {composeWithDevTools} from "redux-devtools-extension";
+import {AdminReducer} from "@store/admin/reducer";
 
 const rootReducer = combineReducers({
     users: UserReducer,
     pages: PageReducer,
-    chats: ChatReducer
+    chats: ChatReducer,
+    admin: AdminReducer
 })
 
 const store = createStore(rootReducer, composeWithDevTools())

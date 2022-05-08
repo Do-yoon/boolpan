@@ -29,7 +29,7 @@ function RoomBanner({n}: CountBannerProps) {
     );
 }
 
-function NavBar() {
+function AdminNavBar() {
     return (
         <div className="navbar">
             {categoryText}
@@ -44,4 +44,4 @@ function NavBar() {
     )
 }
 
-export default NavBar;
+export default AdminNavBar;
