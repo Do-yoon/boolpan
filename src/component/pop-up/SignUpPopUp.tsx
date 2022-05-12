@@ -5,6 +5,7 @@ import React, {useState} from "react";
 import LoginPopUp from "@component/pop-up/LoginPopUp";
 import axios from "axios";
 import {REST_BASE_URL} from "../../util/Constant";
+import PopUp from "@component/pop-up/PopUp";
 
 
 function SignUpPopUp() {
@@ -58,29 +59,21 @@ function SignUpPopUp() {
     }
 
     return (
-        <div className="sign-up-pop-up outer">
-            <div className="sign-up-pop-up inner">
-                <div className="sign-up-pop-up close-pop-up-button-container">
-                    <div className="sign-up-pop-up close-pop-up-button"
-                         onClick={() => dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: null}})}>
-                        <span>X</span>
-                    </div>
+        <PopUp classname='sign-up-pop-up'>
+            <p className='sign-up-pop-up pop-up-title'>회원가입</p>
+            <form onSubmit={SignUpSubmit}>
+                <ol className="form-field">
+                    <li>아이디 <input type="email" value={email} onChange={OnChangeEmail}/></li>
+                    <li>패스워드<input type="password" value={password} onChange={OnChangePassword}/></li>
+                    <li>패스워드 확인<input type="password" value={verifyPassword} onChange={OnChangeVerifyPassword}/></li>
+                    <li>이름<input type="text" value={name}/></li>
+                </ol>
+                <div className="sign-up-pop-up button-container">
+                    <input type="submit" value="회원가입"/>
                 </div>
-                <p className='sign-up-pop-up pop-up-title'>회원가입</p>
-                <form onSubmit={SignUpSubmit}>
-                    <ol className="form-field">
-                        <li>아이디 <input type="email" value={email} onChange={OnChangeEmail}/></li>
-                        <li>패스워드<input type="password" value={password} onChange={OnChangePassword}/></li>
-                        <li>패스워드 확인<input type="password" value={verifyPassword} onChange={OnChangeVerifyPassword}/></li>
-                        <li>이름<input type="text" value={name}/></li>
-                    </ol>
-                    <div className="sign-up-pop-up button-container">
-                        <input type="submit" value="회원가입"/>
-                    </div>
-                </form>
-                <input type="button" className="summit-button" value="기존 계정으로 로그인" onClick={OnClickToLogin}/>
-            </div>
-        </div>
+            </form>
+            <input type="button" className="summit-button" value="기존 계정으로 로그인" onClick={OnClickToLogin}/>
+        </PopUp>
     );
 }
 

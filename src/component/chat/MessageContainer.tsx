@@ -14,7 +14,7 @@ function MessageContainer() {
     const messages = useSelector((state: RootState) => state.chats.roominfo.messages)
     
     return (
-        <div>
+        <div className="message-container">
             {messages.map((message) =>
                     <Message
                         sender={message.sender}
