@@ -11,11 +11,11 @@ interface MessageContainerProps {
 }
 
 function MessageContainer() {
-    const messages = useSelector((state: RootState) => state.chats.roominfo.messages)
+    const messages = useSelector((state: RootState) => state.chats.roominfo?.messages)
     
     return (
         <div>
-            {messages.map((message) =>
+            {messages!.map((message) =>
                     <Message
                         sender={message.sender}
                         text={message.text}

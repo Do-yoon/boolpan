@@ -26,7 +26,7 @@ const message = (msg: string, time: Date, sender: string) => {
 }
 
 
-function ChatInputArea() {
+function ChatInputArea({room}: {room: string}) {
     const [message, setMessage] = useState('')
     const dispatch = useDispatch()
 
@@ -34,7 +34,7 @@ function ChatInputArea() {
         e.preventDefault();
         console.log(`OnSubmit`);
         console.log(socket.connected)
-        socket.emit('chatMessage', message);
+        socket.emit('chatMessage', {room: room, msg: message});
 
         if (message.length > 0) {
             setMessage('')
@@ -65,7 +65,7 @@ function getTimestampString() {
 }
 
 function ChattingPopUp() {
-    const room = useSelector((state: RootState) => state.chats.roominfo.room_id)
+    const room = useSelector((state: RootState) => state.chats.roominfo!.room_id)
     const user = useSelector((state: RootState) => state.users.userinfo.id)
     // input message onchange state
     console.log(`user: ${typeof user}`)
@@ -101,7 +101,7 @@ function ChattingPopUp() {
                 <ChatHeader/>
                 <MessageContainer/>
             </div>
-            <ChatInputArea/>
+            <ChatInputArea room={room!}/>
         </div>
     );
 }
