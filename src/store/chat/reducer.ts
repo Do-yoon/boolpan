@@ -12,7 +12,7 @@ export function ChatReducer(
                 ...state,
                 roominfo: {
                     ...state.roominfo!,
-                    messages: [...state.roominfo!.messages, action.payload.msg]
+                    messages: [...state.roominfo!.messages!, action.payload.msg]
                 }
             };
         case ChatActionType.ENTER_THE_ROOM:
@@ -46,7 +46,7 @@ export function ChatReducer(
                 ...state,
                 roominfo: {
                     ...state.roominfo!,
-                    messages: [...state.roominfo!.messages,
+                    messages: [...state.roominfo!.messages!,
                         {
                             text: action?.payload.text,
                             sender: null,
@@ -61,7 +61,7 @@ export function ChatReducer(
                 ...state,
                 roominfo: {
                     ...state.roominfo!,
-                    messages: [...state.roominfo!.messages,
+                    messages: [...state.roominfo!.messages!,
                         ...action?.payload.messages
                     ]
                 }

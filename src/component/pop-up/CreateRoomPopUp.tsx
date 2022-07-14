@@ -90,4 +90,4 @@ function CreateRoomPopUp() {
     )
 }
 
-export default CreateRoomPopUp
+export default CreateRoomPopUp;

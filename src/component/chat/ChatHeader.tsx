@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 
 function ChatHeader() {
     const roominfo = useSelector((state: RootState) => state.chats.roominfo)
-    const end_time = useSelector((state: RootState) => state.chats.roominfo!.end_time)
+    const end_time = useSelector((state: RootState) => state.chats.roominfo.end_time)
     const timer = new Date(end_time).getHours();
 
     return <div className="roominfo">

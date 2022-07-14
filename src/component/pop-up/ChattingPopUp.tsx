@@ -15,7 +15,6 @@ const socket = io("http://localhost:8081", {
     transports: ['websocket']
 });
 
-
 const message = (msg: string, time: Date, sender: string) => {
     return (
         <div>
@@ -25,7 +24,6 @@ const message = (msg: string, time: Date, sender: string) => {
     );
 }
 
-
 function ChatInputArea({room}: {room: string}) {
     const [message, setMessage] = useState('')
     const dispatch = useDispatch()
@@ -34,11 +32,11 @@ function ChatInputArea({room}: {room: string}) {
         e.preventDefault();
         console.log(`OnSubmit`);
         console.log(socket.connected)
-        socket.emit('chatMessage', {room: room, msg: message});
 
-        if (message.length > 0) {
-            setMessage('')
+        if (message.length) {
+            socket.emit('chatMessage', {msg: message});
             dispatch({type: ChatActionType.SEND_MESSAGE, payload: {text: message}});
+            setMessage('')
         }
     }
     const OnChange = (e: any) => {
@@ -69,10 +67,11 @@ function ChattingPopUp() {
     const user = useSelector((state: RootState) => state.users.userinfo.id)
     // input message onchange state
     console.log(`user: ${typeof user}`)
+    console.log(`user: ${typeof room}`)
 
     const dispatch = useDispatch();
 
-
+    console.log(socket.connected)
     socket.on('message', (msg: any) => {
         console.log(msg)
         dispatch({
