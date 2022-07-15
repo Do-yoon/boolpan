@@ -86,6 +86,7 @@
   "devDependencies": {
     "@types/qs": "^6.9.7",
     "@types/webpack-dev-server": "^4.7.2",
+    "gojs": "^2.2.12",
     "redux-devtools-extension": "^2.13.9"
   }
 }

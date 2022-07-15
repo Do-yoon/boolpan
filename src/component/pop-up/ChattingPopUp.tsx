@@ -15,18 +15,11 @@ const socket = io("http://localhost:8081", {
     transports: ['websocket']
 });
 
-const message = (msg: string, time: Date, sender: string) => {
-    return (
-        <div>
-            <p>{sender}</p>
-            <p>{msg}</p>
-        </div>
-    );
-}
 
 function ChatInputArea({room}: {room: string}) {
     const [message, setMessage] = useState('')
     const dispatch = useDispatch()
+    const sender = useSelector((state: RootState) => state.users.userinfo.id)
 
     const OnSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -34,7 +27,7 @@ function ChatInputArea({room}: {room: string}) {
         console.log(socket.connected)
 
         if (message.length) {
-            socket.emit('chatMessage', {msg: message});
+            socket.emit('chatMessage', {msg: message, time: "now", sender: sender});
             dispatch({type: ChatActionType.SEND_MESSAGE, payload: {text: message}});
             setMessage('')
         }

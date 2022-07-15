@@ -7,6 +7,7 @@ import {RootState} from "@store/index";
 import Layout from "@component/Layout";
 import LoginPopUp from "@component/pop-up/LoginPopUp";
 import Admin from "@page/Admin";
+import Diagram from "@page/diagram";
 
 
 function MainRouter() {
@@ -17,6 +18,7 @@ function MainRouter() {
                     <Route exact path="/" component={Home}/>
                     <Route exact path="/search" component={SearchResult}/>
                     <Route exact path="/boolpan_admin" component={Admin}/>
+                    <Route exact path="/diagram" component={Diagram}/>
                     <Redirect path="/*" to="/" />
                 </Switch>
             </BrowserRouter>
