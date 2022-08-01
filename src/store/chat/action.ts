@@ -37,8 +37,9 @@ type GetChattingRoomListPayload = {
 }
 
 type EnterTheRoomPayload = {
-    name: string,
+    room_id: string,
     category: string,
-    limit: number
-    room_id: string
+    limit: number,
+    current: number,
+    delete_time: Date
 }

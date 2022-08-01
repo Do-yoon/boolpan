@@ -7,19 +7,14 @@ import {RootState} from "@store/index";
 import axios from "axios";
 import {CHAT_SERVER_BASE_URL, REST_BASE_URL} from "../../util/Constant";
 import {ChatActionType} from "@store/chat/action";
-import socketClient, {io} from "socket.io-client";
+import socketClient, {io, Socket} from "socket.io-client";
 
 const ENDPOINT = REST_BASE_URL // + '/chatRoom/room' // +`/sendMessage/${room}?user=${user}`;
-const socket = io("http://localhost:8081", {
-    // withCredentials: true,
-    transports: ['websocket']
-});
 
-
-function ChatInputArea({room}: {room: string}) {
+function ChatInputArea({socket}: {socket: Socket}) {
     const [message, setMessage] = useState('')
     const dispatch = useDispatch()
-    const sender = useSelector((state: RootState) => state.users.userinfo.id)
+    const room_id = useSelector((state: RootState) => state.chats.roominfo.room_id)
 
     const OnSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -27,7 +22,7 @@ function ChatInputArea({room}: {room: string}) {
         console.log(socket.connected)
 
         if (message.length) {
-            socket.emit('chatMessage', {msg: message, time: "now", sender: sender});
+            socket.emit('sendMessage', {msg: message, room_id: room_id});
             dispatch({type: ChatActionType.SEND_MESSAGE, payload: {text: message}});
             setMessage('')
         }
@@ -55,22 +50,28 @@ function getTimestampString() {
     return `${noon} ${hours}:${zero}${minutes}`;
 }
 
-function ChattingPopUp() {
+function ChattingPopUp({socket}: {socket?: Socket}) {
     const room = useSelector((state: RootState) => state.chats.roominfo!.room_id)
     const user = useSelector((state: RootState) => state.users.userinfo.id)
     // input message onchange state
     console.log(`user: ${typeof user}`)
-    console.log(`user: ${typeof room}`)
+    console.log(`room: ${typeof room}`)
+    socket = (!socket
+        ? io("http://localhost:8081", {
+        // withCredentials: true,
+        transports: ['websocket']
+        })
+        : socket)
 
     const dispatch = useDispatch();
 
     console.log(socket.connected)
-    socket.on('message', (msg: any) => {
+    socket.on('getMessage', (sender: number, msg: string) => {
         console.log(msg)
         dispatch({
             type: ChatActionType.GET_MESSAGE, payload: {
                 msg: {
-                    sender: "익명",
+                    sender: `익명${sender}`,
                     text: msg,
                     timestamp: getTimestampString()
                 }
@@ -78,22 +79,13 @@ function ChattingPopUp() {
         })
     });
 
-    /*
-
-            useEffect(() => {
-                axios.get(ENDPOINT).then(
-                    (res) => dispatch({type: ChatActionType.SET_MESSAGE_LIST, payload: {messages: res.data.messages}})
-                    // setMessages([...messages, res.data.messages])
-                )
-            }, [])
-         */
     return (
         <div className='chat outerContainer'>
             <div className='chat container'>
                 <ChatHeader/>
                 <MessageContainer/>
             </div>
-            <ChatInputArea room={room!}/>
+            <ChatInputArea socket={socket}/>
         </div>
     );
 }
