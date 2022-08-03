@@ -9,6 +9,7 @@ import Chat from "@component/Chat";
 import {type} from "os";
 import axios from "axios";
 import {REST_BASE_URL} from "../util/Constant";
+import {RoomType} from "@util/type";
 
 
 let test_column = [
@@ -48,7 +49,7 @@ function ChatTable() {
     }
     const [windowDimensions, setWindowDimensions] = useState(getWidth);
     const [data, setData]
-        : [ChatProps[], Function]
+        : [RoomType[], Function]
         = useState([]);
 
     useEffect(() => {
@@ -70,6 +71,7 @@ function ChatTable() {
     useEffect(() => {
         const fetchChats = async () => {
             try {
+                // TODO: 백엔드 데이터베이스 + REST send 형식 맞추어 보내기.
                 const res = await axios.get(REST_BASE_URL + "/chat")
                 setData(res.data)
 
@@ -88,10 +90,10 @@ function ChatTable() {
 
     for (let i = 0; i < min(row, data_length); i++) {
         const idx = Math.floor(Math.random()) % col;
-        const temp = data[i];
+        const temp: RoomType = data[i];
         console.log(temp);
         matrix[i][idx] =
-            <Chat id={temp.id} name={temp.name} limit={temp.limit} current={temp.current}/>
+            <Chat name={temp.name} limit={temp.limit} current={temp.current}/>
     }
 
     for (let i = 0; i < row; i++) {
