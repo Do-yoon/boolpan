@@ -7,9 +7,9 @@ import ChattingPopUp from "@component/pop-up/ChattingPopUp";
 import {UserActionType} from "@store/user/action";
 import {RootState} from "@store/index";
 import {ChatActionType} from "@store/chat/action";
+import socket from "@util/socket"
 
 interface RoomBannerProps {
-    id: number
     name: string
     limit: number
     current: number
@@ -22,12 +22,16 @@ function Chat(
     const isLoggedIn = useSelector((state: RootState) => state.users.isLoggedIn);
     const OnClickBanner = () => {
         if (isLoggedIn.valueOf()) {
+            socket.emit("join-room", data.name, (error: string) => {
+                if (error)
+                    alert(error)
+            })
+
             dispatch({
                 type: ChatActionType.ENTER_THE_ROOM, payload: {
                     name: data.name,
                     category: "",
                     limit: data.limit,
-                    room_id: ""
                 }
             })
             dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: <ChattingPopUp/>}})
