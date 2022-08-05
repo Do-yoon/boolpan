@@ -7,25 +7,30 @@ import {RootState} from "@store/index";
 import axios from "axios";
 import {CHAT_SERVER_BASE_URL, REST_BASE_URL} from "../../util/Constant";
 import {ChatActionType} from "@store/chat/action";
-import socketClient, {io, Socket} from "socket.io-client";
+import socketClient, {io} from "socket.io-client";
+import socket from "../../io/socket"
+import {useAppDispatch, useAppSelector, useIOEffect} from "@util/hooks";
+import {getTimestampString} from "@util/getTimestamp";
 
 const ENDPOINT = REST_BASE_URL // + '/chatRoom/room' // +`/sendMessage/${room}?user=${user}`;
 
-function ChatInputArea({socket}: {socket: Socket}) {
+function ChatInputArea() {
     const [message, setMessage] = useState('')
-    const dispatch = useDispatch()
-    const room_id = useSelector((state: RootState) => state.chats.roominfo.room_id)
+    const dispatch = useAppDispatch()
+    const room_id = useAppSelector((state: RootState) => state.chats.roominfo.room_id)
 
     const OnSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log(`OnSubmit`);
         console.log(socket.connected)
 
-        if (message.length) {
-            socket.emit('sendMessage', {msg: message, room_id: room_id});
-            dispatch({type: ChatActionType.SEND_MESSAGE, payload: {text: message}});
-            setMessage('')
-        }
+        useIOEffect(() => {
+            if (message.length) {
+                socket.emit('sendMessage', {msg: message, room_id: room_id});
+                dispatch({type: ChatActionType.SEND_MESSAGE, payload: {text: message}});
+                setMessage('')
+            }
+        }, 'sendMessage');
     }
     const OnChange = (e: any) => {
         setMessage(e.target.value)
@@ -39,45 +44,36 @@ function ChatInputArea({socket}: {socket: Socket}) {
     </div>
 }
 
-function getTimestampString() {
-    const now = new Date();
-    let hours = now.getHours();
-    const noon = ((hours / 12) == 0) ? '오전' : '오후';
-    hours = (hours > 12) ? hours % 12 : hours;
 
-    const minutes = now.getMinutes();
-    const zero = minutes < 10 ? '0' : ''
-    return `${noon} ${hours}:${zero}${minutes}`;
-}
 
-function ChattingPopUp({socket}: {socket?: Socket}) {
-    const room = useSelector((state: RootState) => state.chats.roominfo!.room_id)
-    const user = useSelector((state: RootState) => state.users.userinfo.id)
+function ChattingPopUp() {
+    const room = useAppSelector((state: RootState) => state.chats.roominfo.room_id)
+    const user = useAppSelector((state: RootState) => state.users.userinfo.id)
     // input message onchange state
     console.log(`user: ${typeof user}`)
     console.log(`room: ${typeof room}`)
-    socket = (!socket
-        ? io("http://localhost:8081", {
-        // withCredentials: true,
-        transports: ['websocket']
-        })
-        : socket)
 
-    const dispatch = useDispatch();
-
-    console.log(socket.connected)
-    socket.on('getMessage', (sender: number, msg: string) => {
-        console.log(msg)
-        dispatch({
-            type: ChatActionType.GET_MESSAGE, payload: {
-                msg: {
-                    sender: `익명${sender}`,
-                    text: msg,
-                    timestamp: getTimestampString()
+    const dispatch = useAppDispatch();
+    useIOEffect(() => {
+        socket.on('getMessage', (sender: number, msg: string) => {
+            console.log(msg)
+            dispatch({
+                type: ChatActionType.GET_MESSAGE, payload: {
+                    msg: {
+                        sender: `익명${sender}`,
+                        text: msg,
+                        timestamp: getTimestampString()
+                    }
                 }
-            }
+            })
+        });
+    }, 'getMessage')
+
+    useEffect(() => {
+        socket.on('delete-room', (msg) => {
+            alert(msg)
         })
-    });
+    })
 
     return (
         <div className='chat outerContainer'>
@@ -85,7 +81,7 @@ function ChattingPopUp({socket}: {socket?: Socket}) {
                 <ChatHeader/>
                 <MessageContainer/>
             </div>
-            <ChatInputArea socket={socket}/>
+            <ChatInputArea/>
         </div>
     );
 }

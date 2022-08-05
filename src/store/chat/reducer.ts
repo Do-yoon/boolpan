@@ -19,11 +19,12 @@ export function ChatReducer(
             return {
                 ...state,
                 roominfo: {
-                    room_id: action?.payload.room_id,
+                    room_id: action.payload.room_id,
+                    name: action.payload.name,
                     category: action.payload.category,
-                    current: 1,
+                    current: action.payload.current,
                     limit: action.payload.limit,
-                    delete_time: 0,
+                    explode_time: action.payload.explode_time,
                     messages: []
                 }
             };

@@ -18,11 +18,12 @@ export type RoomState = {
 export type ChatState = {
     chat_list?: Chat[]
     roominfo: {
-        room_id: string | null
+        room_id : string | null
+        name: string | null
         current: number | null
         limit: number | null
         category: string | null
-        delete_time: Date | number
+        explode_time: Date
         messages: {
             sender: string | null
             text: string
@@ -34,10 +35,11 @@ export type ChatState = {
 export const initialChatState: ChatState = {
     roominfo: {
         room_id: null,
+        name: null,
         current: null,
         limit: null,
         category: null,
-        delete_time: 0,
+        explode_time: new Date(),
         messages: []
     }
 }

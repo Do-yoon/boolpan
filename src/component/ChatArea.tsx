@@ -35,12 +35,6 @@ interface ChatTableProps extends PropsFromRedux{
 }
  */
 
-type ChatProps = {
-    name: string
-    limit: number
-    current: number
-}
-
 function ChatTable() {
     const getWidth = () => {
         const {innerWidth: widthValue} = window;
@@ -72,6 +66,7 @@ function ChatTable() {
             try {
                 // TODO: 백엔드 데이터베이스 + REST send 형식 맞추어 보내기.
                 const res = await axios.get(REST_BASE_URL + "/chat")
+                console.log(`data get : ${res.data}`)
                 setData(res.data)
 
             } catch (e) {
@@ -83,16 +78,14 @@ function ChatTable() {
     }, [])
 
     let table = [];
-    // const data: ChatProps[] = res.data;
     const data_length = data.length
-    // console.log("I got data: ", data)
 
     for (let i = 0; i < min(row, data_length); i++) {
         const idx = Math.floor(Math.random()) % col;
         const temp: RoomType = data[i];
         console.log(temp);
         matrix[i][idx] =
-            <Chat name={temp.name} limit={temp.limit} current={temp.current}/>
+            <Chat room_id={temp._id} name={temp.name} limit={temp.limit} current={temp.current}/>
     }
 
     for (let i = 0; i < row; i++) {

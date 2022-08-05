@@ -1,5 +1,5 @@
 import * as events from "events";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import {PageActionType} from "@store/page/action";
 import axios from "axios";
@@ -8,7 +8,8 @@ import ChattingPopUp from "@component/pop-up/ChattingPopUp";
 import {REST_BASE_URL} from "../../util/Constant";
 import {ChatActionType} from "@store/chat/action";
 import PopUp from "@component/pop-up/PopUp";
-import socket from "@util/socket"
+import socket from "../../io/socket"
+import {useIOEffect} from "@util/hooks";
 
 
 function CreateRoomPopUp() {
@@ -18,38 +19,43 @@ function CreateRoomPopUp() {
     const [category, setCategory] = useState("");
     const [limit, setLimit] = useState(1);
     const [password, setPassword] = useState("");
-    const [deleteTime, setDeleteTime] = useState(0);
+    const [keeping_time, setKeepingTime] = useState(0);
 
 
     const CreateRoomSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        const data = {
+            name: name,
+            category: category,
+            limit: limit,
+            password: password,
+            keeping_time: keeping_time
+        }
+        console.log(keeping_time)
 
-        socket.emit('create-room',
-            name,
-            category,
-            limit,
-            password,
-            deleteTime,
+        socket.emit('create-room', data,
             /* acknowledgements */
-            function (response: any) {
-            if (!response.error) {
-                dispatch({
-                    type: ChatActionType.ENTER_THE_ROOM,
-                    payload: {
-                        name: name,
-                        category: category,
-                        limit: limit,
-                        end_time: Date.now() + deleteTime
-                    }
-                })
-                dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: <ChattingPopUp socket = {socket}/>}})
-            }
-            else
-            {
-                alert("방 이름이 중복되었습니다.")
-            }
-        });
+            (response: any) => {
+
+                if (!response.error) {
+                    dispatch({
+                        type: ChatActionType.ENTER_THE_ROOM,
+                        payload: {
+                            name: name,
+                            category: category,
+                            limit: limit,
+                            keeping_time: keeping_time
+                        }
+                    })
+                    dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: <ChattingPopUp/>}})
+                } else {
+                    alert("방 이름이 중복되었습니다.")
+                }
+            });
+        socket.off('create-room')
+
     }
+
 
     return (
         <PopUp classname='createRoomPopUp'>
@@ -91,9 +97,8 @@ function CreateRoomPopUp() {
                     </li>
                     <li>
                         <label htmlFor="time-limit-select">유지시간:</label>
-                        <div onChange={() => setDeleteTime}>
-                            <input id="time-limit-select" type="time" required/>
-                        </div>
+                        <div onChange={() => setKeepingTime}>
+                            <input id="time-limit-select" type="number" min="1" max="100000" required/></div>
                     </li>
                 </ol>
                 <div className='createRoomPopUp button-container'>

@@ -1,8 +1,10 @@
 export type RoomType = {
+    _id: string
     current: number
     limit: number
     password: string
-    delete_time: Date
+    init_time: Date
+    keeping_time: Date
     category: string
     name: string
 }
