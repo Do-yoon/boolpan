@@ -42,5 +42,5 @@ type EnterTheRoomPayload = {
     category: string,
     current: number
     limit: number
-    explode_time: Date
+    explode_time: number
 }

@@ -23,7 +23,7 @@ export type ChatState = {
         current: number | null
         limit: number | null
         category: string | null
-        explode_time: Date
+        explode_time: number
         messages: {
             sender: string | null
             text: string
@@ -39,7 +39,7 @@ export const initialChatState: ChatState = {
         current: null,
         limit: null,
         category: null,
-        explode_time: new Date(),
+        explode_time: 0,
         messages: []
     }
 }

@@ -1,15 +1,10 @@
-import * as events from "events";
-import React, {useEffect, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import {PageActionType} from "@store/page/action";
-import axios from "axios";
-import {UserActionType} from "@store/user/action";
 import ChattingPopUp from "@component/pop-up/ChattingPopUp";
-import {REST_BASE_URL} from "../../util/Constant";
 import {ChatActionType} from "@store/chat/action";
 import PopUp from "@component/pop-up/PopUp";
 import socket from "../../io/socket"
-import {useIOEffect} from "@util/hooks";
 
 
 function CreateRoomPopUp() {
@@ -36,24 +31,23 @@ function CreateRoomPopUp() {
         socket.emit('create-room', data,
             /* acknowledgements */
             (response: any) => {
-
                 if (!response.error) {
                     dispatch({
                         type: ChatActionType.ENTER_THE_ROOM,
                         payload: {
-                            name: name,
-                            category: category,
-                            limit: limit,
-                            keeping_time: keeping_time
+                            ...data,
+                            explode_time: Number(Date.now() / 1000) + keeping_time
                         }
                     })
+                    console.log(Date.now())
+                    console.log(keeping_time)
+                    console.log(Date.now() / 1000 + keeping_time)
                     dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: <ChattingPopUp/>}})
                 } else {
                     alert("방 이름이 중복되었습니다.")
                 }
             });
         socket.off('create-room')
-
     }
 
 
@@ -97,8 +91,7 @@ function CreateRoomPopUp() {
                     </li>
                     <li>
                         <label htmlFor="time-limit-select">유지시간:</label>
-                        <div onChange={() => setKeepingTime}>
-                            <input id="time-limit-select" type="number" min="1" max="100000" required/></div>
+                        <input id="time-limit-select" value={keeping_time} type="number" min="1" max="100000" onChange={(e: any) => setKeepingTime(e.target.value)} required/>
                     </li>
                 </ol>
                 <div className='createRoomPopUp button-container'>

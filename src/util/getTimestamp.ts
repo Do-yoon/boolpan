@@ -9,7 +9,7 @@ export function getTimestampString() {
     return `${noon} ${hours}:${zero}${minutes}`;
 }
 
-export function getTimer(explode_time: Date) {
-    return explode_time.getMilliseconds() - Date.now();
+export function getTimer(explode_time: number) {
+    return new Date((explode_time - Date.now()) * 1000);
 
 }

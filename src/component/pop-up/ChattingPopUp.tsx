@@ -9,7 +9,7 @@ import {CHAT_SERVER_BASE_URL, REST_BASE_URL} from "../../util/Constant";
 import {ChatActionType} from "@store/chat/action";
 import socketClient, {io} from "socket.io-client";
 import socket from "../../io/socket"
-import {useAppDispatch, useAppSelector, useIOEffect} from "@util/hooks";
+import {useAppDispatch, useAppSelector} from "@util/hooks";
 import {getTimestampString} from "@util/getTimestamp";
 
 const ENDPOINT = REST_BASE_URL // + '/chatRoom/room' // +`/sendMessage/${room}?user=${user}`;
@@ -19,19 +19,25 @@ function ChatInputArea() {
     const dispatch = useAppDispatch()
     const room_id = useAppSelector((state: RootState) => state.chats.roominfo.room_id)
 
+    const sendMessage = () => {
+        if (message.length) {
+            socket.emit('sendMessage', {msg: message, room_id: room_id});
+            dispatch({type: ChatActionType.SEND_MESSAGE, payload: {text: message}});
+            setMessage('')
+        }
+        return function cleanup() {
+            socket.off('sendMessage')
+        }
+    }
+
     const OnSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log(`OnSubmit`);
-        console.log(socket.connected)
-
-        useIOEffect(() => {
-            if (message.length) {
-                socket.emit('sendMessage', {msg: message, room_id: room_id});
-                dispatch({type: ChatActionType.SEND_MESSAGE, payload: {text: message}});
-                setMessage('')
-            }
-        }, 'sendMessage');
+        sendMessage();
     }
+
+    useEffect(() => {
+        sendMessage()
+    }, []);
     const OnChange = (e: any) => {
         setMessage(e.target.value)
     }
@@ -45,7 +51,6 @@ function ChatInputArea() {
 }
 
 
-
 function ChattingPopUp() {
     const room = useAppSelector((state: RootState) => state.chats.roominfo.room_id)
     const user = useAppSelector((state: RootState) => state.users.userinfo.id)
@@ -54,7 +59,7 @@ function ChattingPopUp() {
     console.log(`room: ${typeof room}`)
 
     const dispatch = useAppDispatch();
-    useIOEffect(() => {
+    useEffect(() => {
         socket.on('getMessage', (sender: number, msg: string) => {
             console.log(msg)
             dispatch({
@@ -67,11 +72,14 @@ function ChattingPopUp() {
                 }
             })
         });
-    }, 'getMessage')
+        return function cleanup() {
+            socket.off('getMessage')
+        }
+    }, []);
 
     useEffect(() => {
-        socket.on('delete-room', (msg) => {
-            alert(msg)
+        socket.on('delete-room', (data) => {
+            alert(data.msg)
         })
     })
 
