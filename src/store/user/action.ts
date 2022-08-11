@@ -8,9 +8,9 @@ export enum UserActionType {
 
 export type UserAction =
     | { type: UserActionType.ENTER_THE_ROOM; payload: EnterTheRoomPayload }
-    | { type: UserActionType.EXIT_THE_ROOM; }
+    | { type: UserActionType.EXIT_THE_ROOM}
     | { type: UserActionType.LOGIN, payload: LoginFetchPayload}
-    | { type: UserActionType.LOGOUT; payload: number }
+    | { type: UserActionType.LOGOUT}
     | { type: UserActionType.RESIZE_WINDOW; payload: ResizeWindowPayload };
 
 

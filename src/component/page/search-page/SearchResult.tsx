@@ -1,9 +1,9 @@
-import SearchResultList from "@component/SearchResultList";
+import SearchResultList from "@component/page/search-page/SearchResultList";
 import qs from "qs"
 import { useLocation } from "react-router-dom";
-import Layout from "@component/Layout";
-import SearchBar from "@component/SearchBar";
-import ChatArea from "@component/ChatArea";
+import Layout from "@component/layout/Layout";
+import SearchBar from "@component/layout/SearchBar";
+import Chats from "@component/page/Chats";
 
 function SearchResult() {
     const location = useLocation();

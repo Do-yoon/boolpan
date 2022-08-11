@@ -1,14 +1,10 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
-import * as queryString from "querystring";
-import ChatHeader from "@component/chat/ChatHeader";
-import MessageContainer from "@component/chat/MessageContainer";
-import {useDispatch, useSelector} from "react-redux";
+import ChatHeader from "@component/pop-up/chat-popup/modules/ChatHeader";
+import MessageContainer from "@component/pop-up/chat-popup/modules/MessageContainer";
 import {RootState} from "@store/index";
-import axios from "axios";
-import {CHAT_SERVER_BASE_URL, REST_BASE_URL} from "../../util/Constant";
+import {CHAT_SERVER_BASE_URL, REST_BASE_URL} from "@util/Constant";
 import {ChatActionType} from "@store/chat/action";
-import socketClient, {io} from "socket.io-client";
-import socket from "../../io/socket"
+import socket from "@io/socket"
 import {useAppDispatch, useAppSelector, useIOEffect} from "@util/hooks";
 import {getTimestampString} from "@util/getTimestamp";
 
@@ -30,7 +26,7 @@ function ChatInputArea() {
                 dispatch({type: ChatActionType.SEND_MESSAGE, payload: {text: message}});
                 setMessage('')
             }
-        }, 'sendMessage');
+        }, message);
     }
     const OnChange = (e: any) => {
         setMessage(e.target.value)
@@ -49,18 +45,19 @@ function ChatInputArea() {
 function ChattingPopUp() {
     const room = useAppSelector((state: RootState) => state.chats.roominfo.room_id)
     const user = useAppSelector((state: RootState) => state.users.userinfo.id)
+    const messages = useAppSelector((state: RootState) => state.chats.roominfo.messages)
     // input message onchange state
     console.log(`user: ${typeof user}`)
     console.log(`room: ${typeof room}`)
 
     const dispatch = useAppDispatch();
     useIOEffect(() => {
-        socket.on('getMessage', (sender: number, msg: string) => {
+        socket.on('getMessage', (sender: string, msg: string) => {
             console.log(msg)
             dispatch({
                 type: ChatActionType.GET_MESSAGE, payload: {
                     msg: {
-                        sender: `익명${sender}`,
+                        sender: sender,
                         text: msg,
                         timestamp: getTimestampString()
                     }
@@ -79,7 +76,7 @@ function ChattingPopUp() {
         <div className='chat outerContainer'>
             <div className='chat container'>
                 <ChatHeader/>
-                <MessageContainer/>
+                <MessageContainer messages={messages}/>
             </div>
             <ChatInputArea/>
         </div>

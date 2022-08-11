@@ -1,7 +1,7 @@
-import Constant, {Urls} from "util/Constant";
+import Constant, {Urls} from "@util/Constant";
 import React, {Dispatch, useState} from "react";
 import {useHistory} from "react-router-dom";
-import CreateRoomPopUp from "@component/pop-up/CreateRoomPopUp";
+import CreateRoomPopUp from "@component/pop-up/create-room-popup/CreateRoomPopUp";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "@store/index";
 import {PageActionType} from "@store/page/action";

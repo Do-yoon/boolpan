@@ -1,5 +1,6 @@
-import {ChatAction, ChatActionType} from "@store/chat/action";
+import {ChatAction} from "@store/chat/action";
 import {ChatState, initialChatState} from "@store/chat/state";
+import {GetMessageListPayload} from "@store/chat/PayloadTypes";
 
 export function ChatReducer(
     state = initialChatState,
@@ -7,14 +8,14 @@ export function ChatReducer(
 ): ChatState {
 
     switch (action.type) {
-        case ChatActionType.GET_MESSAGE:
+        case "GetChattingRoomList":
             return {
                 ...state,
                 roominfo: {
                     ...state.roominfo!,
                     messages: [...state.roominfo!.messages!, action.payload.msg]
                 }
-            };
+            });
         case ChatActionType.ENTER_THE_ROOM:
             return {
                 ...state,
@@ -32,7 +33,7 @@ export function ChatReducer(
             // call backend API
             return {
                 ...state,
-                chat_list: action.payload.chat_list
+                chat_list: action.payload.c
             };
         case ChatActionType.SEND_MESSAGE:
             const now = new Date();

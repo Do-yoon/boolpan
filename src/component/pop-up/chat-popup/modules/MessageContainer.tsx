@@ -1,21 +1,21 @@
 import {useState} from "react";
-import Message from "@component/chat/Message";
+import Message from "@component/pop-up/chat-popup/modules/Message";
 import {useSelector} from "react-redux";
 import {RootState} from "@store/index";
 
 interface MessageContainerProps {
     messages: {
-        sender: number | null
+        sender: string | null
         text: string
+        timestamp: string
     }[]
 }
 
-function MessageContainer() {
-    const messages = useSelector((state: RootState) => state.chats.roominfo?.messages)
+function MessageContainer(props: MessageContainerProps) {
     
     return (
         <div>
-            {messages!.map((message) =>
+            {props.messages!.map((message) =>
                     <Message
                         sender={message.sender}
                         text={message.text}

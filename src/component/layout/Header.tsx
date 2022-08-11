@@ -1,8 +1,8 @@
-import Constant from "util/Constant";
-import type { RootState } from "store";
+import Constant from "@util/Constant";
+import type { RootState } from "@store/index";
 import { useDispatch, useSelector } from 'react-redux';
 import {PageActionType} from "@store/page/action";
-import LoginPopUp from "@component/pop-up/LoginPopUp";
+import LoginPopUp from "@component/pop-up/login-popup/LoginPopUp";
 import {UserActionType} from "@store/user/action";
 
 interface LocalProps {

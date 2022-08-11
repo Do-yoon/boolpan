@@ -1,46 +1,41 @@
 import {Chat} from "@store/chat/state";
 
-export enum ChatActionType {
-    GET_CHATTING_ROOM_LIST,
-    GET_CHATTING_ROOM_INFO,
-    SEND_MESSAGE,
-    GET_MESSAGE,
-    SET_MESSAGE_LIST,
-    GET_CHATTING_ROOM_USERS,
-    ENTER_THE_ROOM
-}
+import {action, createAction} from 'typesafe-actions';
 
-export type ChatAction =
-    { type: ChatActionType.GET_CHATTING_ROOM_LIST; payload: GetChattingRoomListPayload }
-    | { type: ChatActionType.SEND_MESSAGE; payload: SendMessagePayload }
-    | { type: ChatActionType.SET_MESSAGE_LIST; payload: SetMessageListPayload }
-    | { type: ChatActionType.ENTER_THE_ROOM; payload: EnterTheRoomPayload }
-    | { type: ChatActionType.GET_MESSAGE; payload: GetMessagePayload }
+export const GetChattingRoomList = createAction('pages/GetChattingRoomList', action => {
+    return (chat_list: Chat[]) => action({chat_list});
+});
 
-type GetMessagePayload = {
-    msg: {
-        sender: string | null,
-        text: string,
-        timestamp: string
+export const SendMesageAction = createAction('SendMesageAction', () => {
+    text: string
+});
+
+export interface SetMessageListAction {
+    type: "SetMessageListAction"
+    payload: {
+        messages: []
     }
 }
 
-type SendMessagePayload = {
-    text: string
-}
-type SetMessageListPayload = {
-    messages: []
+export interface EnterRoomAction {
+    type: "EnterRoomAction"
+    payload: {
+        room_id: string
+        name: string,
+        category: string,
+        current: number
+        limit: number
+        explode_time: number
+    }
 }
 
-type GetChattingRoomListPayload = {
-    chat_list: Chat[]
-}
-
-type EnterTheRoomPayload = {
-    room_id: string
-    name: string,
-    category: string,
-    current: number
-    limit: number
-    explode_time: Date
+export interface GetMessagesAction {
+    type: "GetMessagesAction"
+    payload: {
+        msg: {
+            sender: string | null,
+            text: string,
+            timestamp: string
+        }
+    }
 }

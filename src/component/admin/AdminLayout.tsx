@@ -1,7 +1,7 @@
 import React from 'react';
-import Footer from "@component/Footer";
-import Header from "@component/Header";
-import NavBar from '@component/NavBar';
+import Footer from "@component/layout/Footer";
+import Header from "@component/layout/Header";
+import NavBar from '@component/layout/NavBar';
 import 'css/MainLayout.css'
 import PopUpContainer from "@component/pop-up/PopUpContainer";
 

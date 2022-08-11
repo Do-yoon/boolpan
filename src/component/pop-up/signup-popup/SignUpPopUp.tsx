@@ -2,9 +2,9 @@ import {useDispatch} from "react-redux";
 import {PageActionType} from "@store/page/action";
 import {UserActionType} from "@store/user/action";
 import React, {useState} from "react";
-import LoginPopUp from "@component/pop-up/LoginPopUp";
+import LoginPopUp from "@component/pop-up/login-popup/LoginPopUp";
 import axios from "axios";
-import {REST_BASE_URL} from "../../util/Constant";
+import {REST_BASE_URL} from "@util/Constant";
 import PopUp from "@component/pop-up/PopUp";
 
 

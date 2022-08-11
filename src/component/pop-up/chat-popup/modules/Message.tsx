@@ -1,4 +1,4 @@
-import "./css/Message.css"
+import "../css/Message.css"
 
 function TextContainer({className, text}: { className: string, text: string }) {
     return (

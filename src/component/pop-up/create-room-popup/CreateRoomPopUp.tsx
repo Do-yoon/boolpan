@@ -4,11 +4,11 @@ import {useDispatch} from "react-redux";
 import {PageActionType} from "@store/page/action";
 import axios from "axios";
 import {UserActionType} from "@store/user/action";
-import ChattingPopUp from "@component/pop-up/ChattingPopUp";
-import {REST_BASE_URL} from "../../util/Constant";
+import ChattingPopUp from "@component/pop-up/chat-popup/ChattingPopUp";
+import {REST_BASE_URL} from "@util/Constant";
 import {ChatActionType} from "@store/chat/action";
 import PopUp from "@component/pop-up/PopUp";
-import socket from "../../io/socket"
+import socket from "@io/socket"
 import {useIOEffect} from "@util/hooks";
 
 
@@ -44,7 +44,7 @@ function CreateRoomPopUp() {
                             name: name,
                             category: category,
                             limit: limit,
-                            keeping_time: keeping_time
+                            keeping_time: Date.now() / 1000 + keeping_time
                         }
                     })
                     dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: <ChattingPopUp/>}})

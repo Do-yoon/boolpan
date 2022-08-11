@@ -3,8 +3,8 @@ import {PageActionType} from "@store/page/action";
 import {UserActionType} from "@store/user/action";
 import React, {useState} from "react";
 import axios from "axios";
-import SignUpPopUp from "@component/pop-up/SignUpPopUp";
-import {REST_BASE_URL} from "../../util/Constant";
+import SignUpPopUp from "@component/pop-up/signup-popup/SignUpPopUp";
+import {REST_BASE_URL} from "@util/Constant";
 import PopUp from "@component/pop-up/PopUp";
 
 

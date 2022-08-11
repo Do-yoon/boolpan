@@ -1,14 +1,9 @@
 import 'css/MainLayout.css'
-import {ChatActionType, ChatAction} from "@store/chat/action";
 import {useEffect, useState} from 'react';
 import {min} from "mathjs";
-import store, {RootState} from "@store/index";
-import {useDispatch, useSelector} from "react-redux";
-import Chat from "@component/Chat";
-//import {PropsFromRedux} from "@store/state";
-import {type} from "os";
+import Chat from "@component/page/chat-list-page/Chat";
 import axios from "axios";
-import {REST_BASE_URL} from "../util/Constant";
+import {REST_BASE_URL} from "@util/Constant";
 import {RoomType} from "@util/type";
 
 
@@ -105,7 +100,7 @@ function ChatTable() {
 
 }
 
-function ChatArea() {
+function Chats() {
 
     return (
         <div id="table-area">
@@ -114,4 +109,4 @@ function ChatArea() {
     );
 }
 
-export default ChatArea;
+export default Chats;

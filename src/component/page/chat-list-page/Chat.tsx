@@ -3,11 +3,11 @@
 import {ReactNode} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {PageActionType} from "@store/page/action";
-import ChattingPopUp from "@component/pop-up/ChattingPopUp";
+import ChattingPopUp from "@component/pop-up/chat-popup/ChattingPopUp";
 import {UserActionType} from "@store/user/action";
 import {RootState} from "@store/index";
 import {ChatActionType} from "@store/chat/action";
-import socket from "../io/socket"
+import socket from "@io/socket"
 
 interface RoomBannerProps {
     name: string

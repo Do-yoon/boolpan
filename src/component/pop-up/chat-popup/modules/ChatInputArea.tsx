@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "@store/index";
 import React from "react";
 import {ChatActionType} from "@store/chat/action";
-import "./css/ChatInputArea.css"
+import "../css/ChatInputArea.css"
 
 
 function ChatInputArea() {
