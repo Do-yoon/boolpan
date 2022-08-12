@@ -1,15 +1,4 @@
-export type Chat = {
-    id: number
-    name: string
-    limit: number
-    current: number
-}
-
-export interface Message {
-    user: number,
-    message: string,
-    timestamp: number
-}
+import {Chat, Message} from "@store/chat/type";
 
 export type RoomState = {
     messages?: Message[]

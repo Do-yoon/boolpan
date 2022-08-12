@@ -1,11 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "@store/index";
-import {ChatActionType} from "@store/chat/action";
-import ChatHeader from "@component/pop-up/chat-popup/modules/ChatHeader";
-import MessageContainer from "@component/pop-up/chat-popup/modules/MessageContainer";
 import React from "react";
 import {PageActionType} from "@store/page/action";
-
 
 
 type PopUpProps = {
