@@ -5,7 +5,7 @@ import {RootState} from "@store/index";
 import {CHAT_SERVER_BASE_URL, REST_BASE_URL} from "@util/Constant";
 import {ChatActionType} from "@store/chat/action";
 import socket from "@io/socket"
-import {useAppDispatch, useAppSelector, useIOEffect} from "@util/hooks";
+import {useAppDispatch, useAppSelector} from "@util/hooks";
 import {getTimestampString} from "@util/getTimestamp";
 
 const ENDPOINT = REST_BASE_URL // + '/chatRoom/room' // +`/sendMessage/${room}?user=${user}`;
