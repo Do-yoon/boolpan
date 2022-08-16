@@ -1,9 +1,9 @@
 import React from 'react';
-import Footer from "@component/layout/Footer";
-import Header from "@component/layout/Header";
-import NavBar from '@component/layout/NavBar';
+import Footer from "component/layout/Footer";
+import Header from "component/layout/Header";
+import NavBar from 'component/layout/NavBar';
 import 'css/MainLayout.css'
-import PopUpLayer from "@component/pop-up/PopUpLayer";
+import PopUpLayer from "component/pop-up/PopUpLayer";
 
 interface LayoutProps {
     children?: React.ReactNode,

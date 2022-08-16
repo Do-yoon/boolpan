@@ -1,10 +1,10 @@
 import 'css/MainLayout.css'
 import {useEffect, useState} from 'react';
 import {min} from "mathjs";
-import Chat from "@component/page/chat-list-page/Chat";
+import Chat from "component/page/chat-list-page/Chat";
 import axios from "axios";
-import {REST_BASE_URL} from "@util/Constant";
-import {RoomType} from "@util/type";
+import {REST_BASE_URL} from "util/Constant";
+import {RoomType} from "util/type";
 
 
 let test_column = [

@@ -1,10 +1,7 @@
-import Constant, {Urls} from "@util/Constant";
+import Constant, {Urls} from "util/Constant";
 import React, {Dispatch, useState} from "react";
 import {useHistory} from "react-router-dom";
-import CreateRoomPopUp from "@component/pop-up/create-room-popup/CreateRoomPopUp";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "@store/index";
-import {PageActionType} from "@store/page/action";
 
 
 function TextInputArea() {
@@ -32,7 +29,7 @@ function CreateRoomButton() {
     const dispatch = useDispatch()
 
     return (
-        <div id='create-room-button' onClick={() => dispatch({ type: PageActionType.SET_POP_UP, payload: {popUp: <CreateRoomPopUp/>}})}>
+        <div id='create-room-button' onClick={() => dispatch({ type: "CREATE_ROOM_POP_UP"})}>
             <span>{Constant.CREATE_ROOM}</span>
         </div>
     )

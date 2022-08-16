@@ -1,8 +1,6 @@
 import react, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "@store/index";
 import React from "react";
-import {ChatActionType} from "@store/chat/action";
 import "../css/ChatInputArea.css"
 
 
@@ -13,7 +11,7 @@ function ChatInputArea() {
         e.preventDefault();
         if (message.length > 0) {
             setMessage('')
-            dispatch({type: ChatActionType.SEND_MESSAGE, payload: {text: message}});
+            dispatch({type: "SEND_MESSAGE", payload: {text: message}});
         }
     }
     const OnChange = (e: any) => {

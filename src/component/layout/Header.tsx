@@ -1,8 +1,6 @@
-import Constant from "@util/Constant";
-import type { RootState } from "@store/index";
+import Constant from "util/Constant";
+import type { RootState } from "store/index";
 import { useDispatch, useSelector } from 'react-redux';
-import LoginPopUp from "@component/pop-up/login-popup/LoginPopUp";
-import {UserActionType} from "@store/user/action";
 
 interface LocalProps {
     userName: string
@@ -13,7 +11,7 @@ function LoggedIn({userName}: LocalProps) {
     return (
         <div>
             {userName}
-            <button onClick={() => dispatch({ type: UserActionType.LOGOUT })}>{Constant.LOGOUT}</button>
+            <button onClick={() => dispatch({ type: "LOGOUT" })}>{Constant.LOGOUT}</button>
         </div>
     )
 }
@@ -24,7 +22,7 @@ function LoggedOut() {
     return (
         <div>
             {Constant.PLEASE_LOGIN}
-            <button onClick={() => dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: <LoginPopUp/>}})}>{Constant.LOGIN}</button>
+            <button onClick={() => dispatch({type: "LOGIN_POP_UP"})}>{Constant.LOGIN}</button>
         </div>
     )
 }

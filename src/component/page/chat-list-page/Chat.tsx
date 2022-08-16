@@ -1,13 +1,7 @@
-//import {connector, PropsFromRedux} from '@store/state'
-
-import {ReactNode} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {PageActionType} from "@store/page/action";
-import ChattingPopUp from "@component/pop-up/chat-popup/ChattingPopUp";
-import {UserActionType} from "@store/user/action";
-import {RootState} from "@store/index";
-import {ChatActionType} from "@store/chat/action";
-import socket from "@io/socket"
+import ChattingPopUp from "component/pop-up/chat-popup/ChattingPopUp";
+import {RootState} from "store/index";
+import socket from "io/socket"
 
 interface RoomBannerProps {
     name: string
@@ -31,11 +25,11 @@ function Chat(
                     alert(error)
                 else {
                     dispatch({
-                        type: ChatActionType.ENTER_THE_ROOM, payload: {
+                        type: "ENTER_THE_ROOM", payload: {
                             room_id: props.room_id
                         }
                     })
-                    dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: <ChattingPopUp/>}})
+                    dispatch({type: "CHATTING_POP_UP", payload: {popUp: <ChattingPopUp/>}})
                 }
             })
         } else {
