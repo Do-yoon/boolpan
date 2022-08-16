@@ -1,9 +1,9 @@
-import { UserReducer } from "@store/user/reducer";
+import UserReducer from "store/user/reducer";
 import {combineReducers, configureStore, createStore} from '@reduxjs/toolkit'
-import {ChatReducer} from "@store/chat/reducer";
-import {PageReducer} from "@store/page/reducer";
+import ChatReducer from "store/chat/reducer";
+import PageReducer from "store/page/reducer";
 import {composeWithDevTools} from "redux-devtools-extension";
-import {AdminReducer} from "@store/admin/reducer";
+import {AdminReducer} from "store/admin/reducer";
 
 const rootReducer = combineReducers({
     users: UserReducer,

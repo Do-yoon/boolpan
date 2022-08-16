@@ -1,9 +1,9 @@
-import {Chat, Message} from "@store/chat/type";
+import {Chat, Message} from "store/chat/type";
 import {createActions} from "redux-actions"
 
-export const ChatActions = createActions({
-    GetChattingRoomList: (chat_list: Chat[]) => ({chat_list: chat_list}),
-    SendMessage: (text: string) => {
+const ChatActions = createActions({
+    GET_CHATTING_ROOM_LIST: (chat_list: Chat[]) => ({chat_list}),
+    SEND_MESSAGE: (text: string) => {
         const now = new Date();
         let hours = now.getHours();
         const noon = ((hours / 12) == 0) ? '오전' : '오후';
@@ -23,7 +23,7 @@ export const ChatActions = createActions({
             }
         }
     },
-    GetNewMessage: (message: {
+    GET_NEW_MESSAGE: (message: {
         sender: string,
         text: string,
         timestamp: string
@@ -32,12 +32,15 @@ export const ChatActions = createActions({
             messages: [message]
         }
     }),
-    EnterRoom: (roominfo: {
+    ENTER_ROOM: (roominfo: {
         room_id: string,
         name: string,
         category: string,
         current: number,
         limit: number,
         explode_time: number
-    }) => ({roominfo: roominfo})
+    }) => ({roominfo}),
+    EXIT_THE_ROOM: () => ({}),
 })
+
+export default ChatActions

@@ -1,6 +1,7 @@
 const {defaults} = require('jest-config');
 
 module.exports = {
+    preset: 'ts-jest',
     moduleFileExtensions: ["js", "json", "jsx", "ts", "tsx", "json"],
     transform: {
         '^.+\\.(js|jsx)?$': 'babel-jest'

@@ -1,8 +1,6 @@
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "@store/index";
+import {RootState} from "store/index";
 import {useEffect, useState} from "react";
-import {useAppSelector} from "@util/hooks";
-import {getTimer} from "@util/getTimestamp";
+import {useAppSelector} from "util/hooks";
 
 const Timer = ({ second }: {second: number}) => {
     // initialize timeLeft with the seconds prop
@@ -45,7 +43,7 @@ const Timer = ({ second }: {second: number}) => {
 
 function ChatHeader() {
     const {name, current, limit, explode_time}
-        = useAppSelector((state: RootState) => state.chats.roominfo)
+        = useAppSelector((state: RootState) => state.chats.roominfo!)
     console.log(explode_time - (Date.now() / 1000))
 
     return <div className="roominfo">

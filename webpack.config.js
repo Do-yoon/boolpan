@@ -75,7 +75,7 @@ const config= {
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
-    plugins: [new TsconfigPathsPlugin({ configFile: 'src/tsconfig.json' })]
+    plugins: [new TsconfigPathsPlugin({ configFile: 'tsconfig.json' })]
   },
   plugins: [
     new HtmlWebpackPlugin({

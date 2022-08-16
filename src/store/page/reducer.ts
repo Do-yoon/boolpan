@@ -1,23 +1,22 @@
-import {PageActionType, PageAction, SetPopUpPayload, SearchPayload, ResizeWindowPayload} from "@store/page/action";
-import {initialPageState, PageState} from "@store/page/state";
+import {initialPageState} from "store/page/state";
+import {handleActions} from "redux-actions";
 
-export function PageReducer(
-    state = initialPageState,
-    action: PageAction
-): PageState {
-    switch (action.type) {
-        case PageActionType.RESIZE_WINDOW:
-            return {
-                ...state,
-            };
-        case PageActionType.SET_POP_UP:
-            console.log('action.payload.popUp')
-            console.log(action.payload.popUp)
-            return {
-                ...state,
-                popUp: action.payload.popUp
-            };
-        default:
-            return state;
-    }
-}
+const PageReducer = handleActions({
+    LOGIN_POP_UP: (state, action) => ({
+        popUp: action.payload.popUp
+    }),
+    CHATTING_POP_UP: (state, action) => ({
+        popUp: action.payload.popUp
+    }),
+    SIGNUP_POP_UP: (state, action) => ({
+        popUp: action.payload.popUp
+    }),
+    CREATE_ROOM_POP_UP: (state, action) => ({
+        popUp: action.payload.popUp
+    }),
+    CLOSE_POP_UP: (state, action) => ({
+        popUp: action.payload.popUp
+    })
+}, initialPageState);
+
+export default PageReducer;

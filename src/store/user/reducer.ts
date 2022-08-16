@@ -1,37 +1,16 @@
-import {UserActionType, UserAction} from "@store/user/action";
-import {initialUserState, UserState} from "@store/user/state";
+import {initialUserState, UserState} from "store/user/state";
+import {handleActions} from "redux-actions";
 
-export function UserReducer(
-    state = initialUserState,
-    action: UserAction
-): UserState {
-    switch (action.type) {
-        case UserActionType.ENTER_THE_ROOM:
-            return {
-                ...state,
+const UserReducer = handleActions({
+    LOGIN: (state, action) => ({
+        ...state,
+        userinfo: action.payload.userinfo,
+        isLoggedIn: true
+    }),
+    LOGOUT: (state, action) => ({
+        ...state,
+        isLoggedIn: false
+    })
+}, initialUserState);
 
-            };
-        case UserActionType.EXIT_THE_ROOM:
-            return {
-                ...state,
-            };
-        case UserActionType.LOGOUT:
-            return {
-                ...state,
-                isLoggedIn: false
-            };
-        case UserActionType.LOGIN:
-            return {
-                ...state,
-                userinfo: {
-                    id: action.payload.id,
-                    email: action.payload.email,
-                    name: action.payload.name
-                },
-                isLoggedIn: true
-            };
-
-        default:
-            return state;
-    }
-}
+export default UserReducer;
