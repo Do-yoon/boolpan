@@ -1,15 +1,7 @@
-import * as events from "events";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useDispatch} from "react-redux";
-import {PageActionType} from "@store/page/action";
-import axios from "axios";
-import {UserActionType} from "@store/user/action";
-import ChattingPopUp from "@component/pop-up/chat-popup/ChattingPopUp";
-import {REST_BASE_URL} from "@util/Constant";
-import {ChatActionType} from "@store/chat/action";
-import PopUp from "@component/pop-up/PopUp";
-import socket from "@io/socket"
-import {useIOEffect} from "@util/hooks";
+import PopUp from "component/pop-up/PopUp";
+import socket from "io/socket"
 
 
 function CreateRoomPopUp() {
@@ -39,15 +31,17 @@ function CreateRoomPopUp() {
 
                 if (!response.error) {
                     dispatch({
-                        type: ChatActionType.ENTER_THE_ROOM,
+                        type: "ENTER_THE_ROOM",
                         payload: {
+                            room_id: response.data.room_id,
+                            current: 1,
                             name: name,
                             category: category,
                             limit: limit,
-                            keeping_time: Date.now() / 1000 + keeping_time
+                            explode_time: Date.now() / 1000 + keeping_time
                         }
                     })
-                    dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: <ChattingPopUp/>}})
+                    dispatch({type: "CHATTING_POP_UP"})
                 } else {
                     alert("방 이름이 중복되었습니다.")
                 }

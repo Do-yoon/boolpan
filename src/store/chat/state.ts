@@ -1,15 +1,4 @@
-export type Chat = {
-    id: number
-    name: string
-    limit: number
-    current: number
-}
-
-export interface Message {
-    user: number,
-    message: string,
-    timestamp: number
-}
+import {Chat, Message} from "store/chat/type";
 
 export type RoomState = {
     messages?: Message[]
@@ -17,7 +6,7 @@ export type RoomState = {
 
 export type ChatState = {
     chat_list?: Chat[]
-    roominfo: {
+    roominfo?: {
         room_id : string | null
         name: string | null
         current: number | null
@@ -33,13 +22,4 @@ export type ChatState = {
 }
 
 export const initialChatState: ChatState = {
-    roominfo: {
-        room_id: null,
-        name: null,
-        current: null,
-        limit: null,
-        category: null,
-        explode_time: Date.now(),
-        messages: []
-    }
 }

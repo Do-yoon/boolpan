@@ -2,7 +2,7 @@ import {connect, useDispatch, useSelector} from "react-redux";
 import {RootState} from "@store/index";
 
 
-function PopUpContainer() {
+function PopUpLayer() {
     const popUp = useSelector((state: RootState) => state.pages.popUp);
 
     return (
@@ -12,4 +12,4 @@ function PopUpContainer() {
     );
 }
 
-export default PopUpContainer;
+export default PopUpLayer;

@@ -1,10 +1,7 @@
-import {useState} from "react";
-import Message from "@component/pop-up/chat-popup/modules/Message";
-import {useSelector} from "react-redux";
-import {RootState} from "@store/index";
+import Message from "component/pop-up/chat-popup/modules/Message";
 
 interface MessageContainerProps {
-    messages: {
+    messages?: {
         sender: string | null
         text: string
         timestamp: string

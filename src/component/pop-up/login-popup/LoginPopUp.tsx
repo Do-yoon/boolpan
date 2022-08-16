@@ -1,11 +1,9 @@
 import {useDispatch} from "react-redux";
-import {PageActionType} from "@store/page/action";
-import {UserActionType} from "@store/user/action";
 import React, {useState} from "react";
 import axios from "axios";
-import SignUpPopUp from "@component/pop-up/signup-popup/SignUpPopUp";
-import {REST_BASE_URL} from "@util/Constant";
-import PopUp from "@component/pop-up/PopUp";
+import SignUpPopUp from "component/pop-up/signup-popup/SignUpPopUp";
+import {REST_BASE_URL} from "util/Constant";
+import PopUp from "component/pop-up/PopUp";
 
 
 function LoginPopUp() {
@@ -26,8 +24,8 @@ function LoginPopUp() {
         const data = loginFetch.data
         console.log(`got the data: ${data}`)
         if (data !== null) {
-            dispatch({type: UserActionType.LOGIN, payload: {...data, email: email}})
-            dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: null}})
+            dispatch({type: "LOGIN", payload: {name: data.name}})
+            dispatch({type: "CHATTING_POP_UP"})
         } else {
             alert('유효하지 않습니다.')
         }
@@ -44,7 +42,7 @@ function LoginPopUp() {
     }
 
     const OnClickSignUp = (e: React.MouseEvent) => {
-        dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: <SignUpPopUp/>}})
+        dispatch({type: "SIGNUP_POP_UP"})
     }
 
     return (

@@ -1,11 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "@store/index";
-import {ChatActionType} from "@store/chat/action";
-import ChatHeader from "@component/pop-up/chat-popup/modules/ChatHeader";
-import MessageContainer from "@component/pop-up/chat-popup/modules/MessageContainer";
 import React from "react";
-import {PageActionType} from "@store/page/action";
-
+import {useAppDispatch} from "util/hooks";
 
 
 type PopUpProps = {
@@ -14,14 +9,14 @@ type PopUpProps = {
 }
 
 function PopUp(props: PopUpProps) {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     return (
         <div className={`${props.classname} outer`}>
             <div className={`${props.classname} inner`}>
                 <div className={`${props.classname} close-pop-up-button-container`}>
                     <div className={`${props.classname} close-pop-up-button`}
-                         onClick={() => dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: null}})}>
+                         onClick={() => dispatch({type: 'LOGIN_POP_UP'})}>
                         <span>X</span>
                     </div>
                 </div>
