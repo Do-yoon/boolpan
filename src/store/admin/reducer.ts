@@ -1,5 +1,5 @@
-import {AdminAction, AdminActionType} from "@store/admin/action";
-import {AdminState, initialAdminState} from "@store/admin/state";
+import {AdminAction, AdminActionType} from "store/admin/action";
+import {AdminState, initialAdminState} from "store/admin/state";
 
 export function AdminReducer(
     state = initialAdminState,

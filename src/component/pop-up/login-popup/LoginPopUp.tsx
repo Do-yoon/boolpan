@@ -24,8 +24,8 @@ function LoginPopUp() {
         const data = loginFetch.data
         console.log(`got the data: ${data}`)
         if (data !== null) {
-            dispatch({type: "LOGIN", payload: {name: data.name}})
-            dispatch({type: "CHATTING_POP_UP"})
+            dispatch({type: "login", payload: {name: data.name}})
+            dispatch({type: "closePopUp"})
         } else {
             alert('유효하지 않습니다.')
         }

@@ -2,12 +2,16 @@ import {useDispatch, useSelector} from "react-redux";
 import ChattingPopUp from "component/pop-up/chat-popup/ChattingPopUp";
 import {RootState} from "store/index";
 import socket from "io/socket"
+import PageAction from "../../../store/page/action";
+import ChatAction from "../../../store/chat/action";
+import {REST_BASE_URL} from "../../../util/Constant";
+import axios from "axios";
 
 interface RoomBannerProps {
+    room_id: string
     name: string
     limit: number
     current: number
-    room_id: string
 }
 
 function Chat(
@@ -24,12 +28,14 @@ function Chat(
                 if (error !== "")
                     alert(error)
                 else {
-                    dispatch({
-                        type: "ENTER_THE_ROOM", payload: {
-                            room_id: props.room_id
-                        }
-                    })
-                    dispatch({type: "CHATTING_POP_UP", payload: {popUp: <ChattingPopUp/>}})
+                    axios.get(`${REST_BASE_URL}/chat/${props.room_id}`)
+                        .then((res) => {
+                            dispatch(ChatAction.enterTheRoom({
+                                ...props,
+                                explode_time: res.data.explode_time
+                            }))
+                            dispatch(PageAction.chattingPopUp())
+                        })
                 }
             })
         } else {

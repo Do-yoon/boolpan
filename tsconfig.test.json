@@ -1,8 +1,13 @@
 {
   "compilerOptions": {
     "extends": "./tsconfig.json",
-    "compilerOptions": {
-      "jsx": "react-jsx"
-    }
+    "jsx": "react-jsx",
+  },
+  "include": [
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ],
+  "ts-node": {
+    "transpileOnly": true
   }
 }

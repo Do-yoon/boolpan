@@ -1,28 +1,32 @@
 import Constant from "util/Constant";
 import type { RootState } from "store/index";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import {useAppDispatch} from "../../util/hooks";
+import UserAction from "../../store/user/action";
+import PageAction from "../../store/page/action";
+import React from "react";
 
 interface LocalProps {
     userName: string
 }
 
 function LoggedIn({userName}: LocalProps) {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     return (
         <div>
             {userName}
-            <button onClick={() => dispatch({ type: "LOGOUT" })}>{Constant.LOGOUT}</button>
+            <button onClick={() => dispatch(UserAction.logout())}>{Constant.LOGOUT}</button>
         </div>
     )
 }
 
 function LoggedOut() {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     return (
         <div>
             {Constant.PLEASE_LOGIN}
-            <button onClick={() => dispatch({type: "LOGIN_POP_UP"})}>{Constant.LOGIN}</button>
+            <button onClick={() => dispatch(PageAction.loginPopUp())}>{Constant.LOGIN}</button>
         </div>
     )
 }

@@ -1,6 +1,4 @@
-const {defaults} = require('jest-config');
-
-module.exports = {
+export default {
     preset: 'ts-jest',
     moduleFileExtensions: ["js", "json", "jsx", "ts", "tsx", "json"],
     transform: {

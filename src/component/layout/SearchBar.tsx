@@ -1,14 +1,14 @@
 import Constant, {Urls} from "util/Constant";
-import React, {Dispatch, useState} from "react";
-import {useHistory} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
 
 function TextInputArea() {
     const [key, setKey] = useState('');
-    const history = useHistory();
+    const navigate = useNavigate();
     const searchOnSubmit = () => {
-        history.push({
+        navigate({
             pathname: Urls.SEARCH,
             search: '?' + new URLSearchParams({key: key})
         });

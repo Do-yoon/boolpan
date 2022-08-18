@@ -1,7 +1,7 @@
 import {Chat, Message} from "store/chat/type";
 import {createActions} from "redux-actions"
 
-const ChatActions = createActions({
+const ChatAction = createActions({
     GET_CHATTING_ROOM_LIST: (chat_list: Chat[]) => ({chat_list}),
     SEND_MESSAGE: (text: string) => {
         const now = new Date();
@@ -35,7 +35,6 @@ const ChatActions = createActions({
     ENTER_ROOM: (roominfo: {
         room_id: string,
         name: string,
-        category: string,
         current: number,
         limit: number,
         explode_time: number
@@ -43,4 +42,4 @@ const ChatActions = createActions({
     EXIT_THE_ROOM: () => ({}),
 })
 
-export default ChatActions
+export default ChatAction

@@ -11,7 +11,6 @@ export type ChatState = {
         name: string | null
         current: number | null
         limit: number | null
-        category: string | null
         explode_time: number
         messages: {
             sender: string | null

@@ -11,7 +11,6 @@ const Timer = ({ second }: {second: number}) => {
     const [seconds, setSeconds] = useState(("0" + date.getSeconds()).slice(-2));
 
 
-
     useEffect(() => {
         // exit early when we reach 0
         if (!timeLeft) return;

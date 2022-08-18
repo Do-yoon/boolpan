@@ -57,7 +57,7 @@ function ChattingPopUp() {
         socket.on('getMessage', (sender: string, msg: string) => {
             console.log(msg)
             dispatch({
-                type: "GET_MESSAGE",
+                type: "getMessage",
                 payload: {
                     msg: {
                         sender: sender,

@@ -1,6 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import React from "react";
 import {useAppDispatch} from "util/hooks";
+import PageAction from "../../store/page/action";
 
 
 type PopUpProps = {
@@ -16,7 +17,7 @@ function PopUp(props: PopUpProps) {
             <div className={`${props.classname} inner`}>
                 <div className={`${props.classname} close-pop-up-button-container`}>
                     <div className={`${props.classname} close-pop-up-button`}
-                         onClick={() => dispatch({type: 'LOGIN_POP_UP'})}>
+                         onClick={() => dispatch(PageAction.loginPopUp)}>
                         <span>X</span>
                     </div>
                 </div>
