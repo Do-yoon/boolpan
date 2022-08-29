@@ -1,31 +1,11 @@
-import UserReducer from "store/user/reducer";
-import {combineReducers, configureStore, createStore} from '@reduxjs/toolkit'
-import ChatReducer from "store/chat/reducer";
-import PageReducer from "store/page/reducer";
-import {composeWithDevTools} from "redux-devtools-extension";
-import {AdminReducer} from "store/admin/reducer";
-
-const rootReducer = combineReducers({
-    users: UserReducer,
-    pages: PageReducer,
-    chats: ChatReducer,
-    admin: AdminReducer
-})
-
-const store = createStore(rootReducer, composeWithDevTools())
+import {configureStore} from '@reduxjs/toolkit'
+import {reducer} from "./reducer";
 
 
-/*
-const render = () => {
-    const state = store.getState();
-    if(state.toggle)
-}
+const rootReducer = reducer;
 
-store.subscribe()
- */
+const store = configureStore({reducer: rootReducer})
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
 export default store;

@@ -1,16 +1,16 @@
-import PageActions from "store/page/action";
-import PopUp from "../../component/pop-up/PopUp";
+import PageAction from "src/store/action";
+import PopUpLayout from "../../component/pop-up/PopUpLayout";
 import React from "react";
 import ChattingPopUp from "../../component/pop-up/chat-popup/ChattingPopUp";
+import LoginPopUp from "../../component/pop-up/modules/login-popup/LoginPopUp";
 
 test('action making', () => {
-  expect(PageActions.loginPopUp()).toBe({
+  expect(PageAction.loginPopUp()).toBe({
     type: 'LOGIN_POP_UP',
-    payload: {amount: 1},
-    meta: {key: 'value', amount: 1}
+    payload: {popUp: <LoginPopUp />},
   });
 })
 
 test("pop-up test", () => {
-  expect(<PopUp classname="ChattingPopUp">{ChattingPopUp}</PopUp>).toBe({})
+  expect(<PopUpLayout classname="ChattingPopUp">{ChattingPopUp}</PopUpLayout>).toBe({})
 })

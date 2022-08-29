@@ -1,39 +1,41 @@
-import Constant from "@util/Constant";
-import type { RootState } from "@store/index";
-import { useDispatch, useSelector } from 'react-redux';
-import LoginPopUp from "@component/pop-up/login-popup/LoginPopUp";
-import {UserActionType} from "@store/user/action";
+import Constant from "util/Constant";
+import type { RootState } from "store/index";
+import { useSelector } from 'react-redux';
+import {useAppDispatch} from "../../util/hooks";
+import React from "react";
+import {loginPopUp, logout} from "../../store/action";
 
 interface LocalProps {
     userName: string
 }
 
 function LoggedIn({userName}: LocalProps) {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     return (
         <div>
             {userName}
-            <button onClick={() => dispatch({ type: UserActionType.LOGOUT })}>{Constant.LOGOUT}</button>
+            <button onClick={() => dispatch(logout)}>{Constant.LOGOUT}</button>
         </div>
     )
 }
 
 function LoggedOut() {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     return (
         <div>
             {Constant.PLEASE_LOGIN}
-            <button onClick={() => dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: <LoginPopUp/>}})}>{Constant.LOGIN}</button>
+            <button onClick={() => dispatch(loginPopUp)}>{Constant.LOGIN}</button>
         </div>
     )
 }
 
 function LoginInfoArea({userName}: LocalProps) {
-    const loginSelector = useSelector((state: RootState) => state.users.isLoggedIn);
+    // 로그인 여부용 플래그
+    const isLoggedIn = !!useSelector((state: RootState) => state.user);
     return (
         <div className="login-info-area">
-            {loginSelector
+            {isLoggedIn
                 ? <LoggedIn userName={userName}/>
                 : <LoggedOut/>
             }

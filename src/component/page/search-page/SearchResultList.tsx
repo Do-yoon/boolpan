@@ -1,4 +1,4 @@
-import Constant from "@util/Constant";
+import Constant from "util/Constant";
 
 interface Params {
     key: string,

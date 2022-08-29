@@ -30,8 +30,13 @@ const config= {
       },
       {
         test: /\.(tsx|ts)?$/,
-        use: 'ts-loader',
+        loader: 'ts-loader',
         exclude: /node_modules/,
+        options: {
+          compilerOptions: {
+            noEmit: false,
+          },
+        },
       },
       {
         test: /\.(jsx)?$/,

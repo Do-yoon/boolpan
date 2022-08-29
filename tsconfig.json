@@ -10,7 +10,7 @@
     "allowJs": true,
     "jsx": "react-jsx",
     "sourceMap": true,
-    "outDir": "./",
+    "outDir": "./dist",
     "noEmit": true,
     "strict": true,
     "moduleResolution": "node",
@@ -31,8 +31,8 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "*.test.ts",
-    "*.test.tsx"
+    "**/*.test.ts",
+    "**/*.test.tsx"
   ],
   "ts-node": {
     "transpileOnly": true

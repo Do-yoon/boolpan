@@ -1,17 +1,14 @@
-import Constant, {Urls} from "@util/Constant";
-import React, {Dispatch, useState} from "react";
-import {useHistory} from "react-router-dom";
-import CreateRoomPopUp from "@component/pop-up/create-room-popup/CreateRoomPopUp";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "@store/index";
-import {PageActionType} from "@store/page/action";
+import Constant, {Urls} from "util/Constant";
+import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
 
 function TextInputArea() {
     const [key, setKey] = useState('');
-    const history = useHistory();
+    const navigate = useNavigate();
     const searchOnSubmit = () => {
-        history.push({
+        navigate({
             pathname: Urls.SEARCH,
             search: '?' + new URLSearchParams({key: key})
         });
@@ -32,7 +29,7 @@ function CreateRoomButton() {
     const dispatch = useDispatch()
 
     return (
-        <div id='create-room-button' onClick={() => dispatch({ type: PageActionType.SET_POP_UP, payload: {popUp: <CreateRoomPopUp/>}})}>
+        <div id='create-room-button' onClick={() => dispatch({ type: "CREATE_ROOM_POP_UP"})}>
             <span>{Constant.CREATE_ROOM}</span>
         </div>
     )

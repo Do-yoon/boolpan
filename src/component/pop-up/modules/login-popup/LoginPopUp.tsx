@@ -1,9 +1,10 @@
 import {useDispatch} from "react-redux";
 import React, {useState} from "react";
 import axios from "axios";
-import SignUpPopUp from "component/pop-up/signup-popup/SignUpPopUp";
+import SignUpPopUp from "component/pop-up/modules/signup-popup/SignUpPopUp";
 import {REST_BASE_URL} from "util/Constant";
-import PopUp from "component/pop-up/PopUp";
+import PopUpLayout from "component/pop-up/PopUpLayout";
+import {signUpPopUp} from "../../../../store/action";
 
 
 function LoginPopUp() {
@@ -24,29 +25,27 @@ function LoginPopUp() {
         const data = loginFetch.data
         console.log(`got the data: ${data}`)
         if (data !== null) {
-            dispatch({type: "LOGIN", payload: {name: data.name}})
-            dispatch({type: "CHATTING_POP_UP"})
+            dispatch({type: "login", payload: {name: data.name}})
+            dispatch({type: "closePopUp"})
         } else {
             alert('유효하지 않습니다.')
         }
     }
 
     const OnChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-        //console.log(e.target.value)
         setEmail(e.target.value)
     }
 
     const OnChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-        //console.log(e.target.value)
         setPassword(e.target.value)
     }
 
     const OnClickSignUp = (e: React.MouseEvent) => {
-        dispatch({type: "SIGNUP_POP_UP"})
+        dispatch(signUpPopUp)
     }
 
     return (
-        <PopUp classname='login-pop-up'>
+        <PopUpLayout classname='login-pop-up'>
             <p className='login-pop-up pop-up-title'>로그인</p>
             <form onSubmit={LoginSubmit}>
                 <ol className="form-field">
@@ -59,7 +58,7 @@ function LoginPopUp() {
                 </div>
             </form>
             <input type="button" value="회원가입" onClick={OnClickSignUp}/>
-        </PopUp>
+        </PopUpLayout>
     );
 }
 

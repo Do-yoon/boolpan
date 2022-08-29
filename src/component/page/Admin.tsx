@@ -1,11 +1,9 @@
 import {useDispatch} from "react-redux";
-import {PageActionType} from "@store/page/action";
-import {UserActionType} from "@store/user/action";
 import React, {useState} from "react";
 import axios from "axios";
-import SignUpPopUp from "@component/pop-up/signup-popup/SignUpPopUp";
-import {REST_BASE_URL} from "@util/Constant";
-import {AdminActionType} from "@store/admin/action";
+import SignUpPopUp from "component/pop-up/modules/signup-popup/SignUpPopUp";
+import {REST_BASE_URL} from "util/Constant";
+import {AdminActionType} from "store/admin/action";
 
 
 
@@ -48,7 +46,7 @@ function LoginPopUp() {
             <div className="login-pop-up inner">
                 <div className="login-pop-up close-pop-up-button-container">
                     <div className='login-pop-up close-pop-up-button'
-                         onClick={() => dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: null}})}>
+                         onClick={() => dispatch({type: "CLOSE_POP_UP"})}>
                         <span>X</span>
                     </div>
                 </div>

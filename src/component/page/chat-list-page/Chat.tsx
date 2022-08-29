@@ -1,26 +1,22 @@
-//import {connector, PropsFromRedux} from '@store/state'
-
-import {ReactNode} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {PageActionType} from "@store/page/action";
-import ChattingPopUp from "@component/pop-up/chat-popup/ChattingPopUp";
-import {UserActionType} from "@store/user/action";
-import {RootState} from "@store/index";
-import {ChatActionType} from "@store/chat/action";
-import socket from "@io/socket"
+import {RootState} from "store/index";
+import socket from "io/socket"
+import {REST_BASE_URL} from "../../../util/Constant";
+import axios from "axios";
+import {chattingPopUp, joinRoom} from "store/action";
 
 interface RoomBannerProps {
+    room_id: string
     name: string
     limit: number
     current: number
-    room_id: string
 }
 
 function Chat(
     props: RoomBannerProps
 ): (JSX.Element | null) {
     const dispatch = useDispatch()
-    const isLoggedIn = useSelector((state: RootState) => state.users.isLoggedIn);
+    const isLoggedIn = !!useSelector((state: RootState) => state.user.name);
     const OnClickBanner = () => {
         if (isLoggedIn.valueOf()) {
             socket.emit("join-room", props.room_id, (error: string, data: {
@@ -30,12 +26,14 @@ function Chat(
                 if (error !== "")
                     alert(error)
                 else {
-                    dispatch({
-                        type: ChatActionType.ENTER_THE_ROOM, payload: {
-                            room_id: props.room_id
-                        }
-                    })
-                    dispatch({type: PageActionType.SET_POP_UP, payload: {popUp: <ChattingPopUp/>}})
+                    axios.get(`${REST_BASE_URL}/chat/${props.room_id}`)
+                        .then((res) => {
+                            dispatch(joinRoom({
+                                ...props,
+                                explode_time: res.data.explode_time
+                            }))
+                            dispatch(chattingPopUp())
+                        })
                 }
             })
         } else {
