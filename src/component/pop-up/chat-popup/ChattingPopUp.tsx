@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import ChatHeader from "component/pop-up/chat-popup/modules/ChatHeader";
 import MessageContainer from "component/pop-up/chat-popup/modules/MessageContainer";
 import {RootState} from "store/index";
@@ -12,7 +12,7 @@ const ENDPOINT = REST_BASE_URL // + '/chatRoom/room' // +`/sendMessage/${room}?u
 function ChatInputArea() {
     const [message, setMessage] = useState('')
     const dispatch = useAppDispatch()
-    const room_id = useAppSelector((state: RootState) => state.chats.roominfo?.room_id)
+    const room_id = useAppSelector((state: RootState) => state.chat.roominfo?.room_id)
 
     const OnSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -45,9 +45,9 @@ function ChatInputArea() {
 
 
 function ChattingPopUp() {
-    const room = useAppSelector((state: RootState) => state.chats.roominfo?.room_id);
-    const user = useAppSelector((state: RootState) => state.users.userinfo.name);
-    const messages = useAppSelector((state: RootState) => state.chats.roominfo?.messages);
+    const room = useAppSelector((state: RootState) => state.chat.roominfo?.room_id);
+    const user = useAppSelector((state: RootState) => state.user.name);
+    const messages = useAppSelector((state: RootState) => state.chat.roominfo?.messages);
     // input message onchange state
     console.log(`user: ${typeof user}`)
     console.log(`room: ${typeof room}`)

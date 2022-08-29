@@ -2,9 +2,8 @@ import Constant from "util/Constant";
 import type { RootState } from "store/index";
 import { useSelector } from 'react-redux';
 import {useAppDispatch} from "../../util/hooks";
-import UserAction from "../../store/user/action";
-import PageAction from "../../store/page/action";
 import React from "react";
+import {loginPopUp, logout} from "../../store/action";
 
 interface LocalProps {
     userName: string
@@ -15,7 +14,7 @@ function LoggedIn({userName}: LocalProps) {
     return (
         <div>
             {userName}
-            <button onClick={() => dispatch(UserAction.logout())}>{Constant.LOGOUT}</button>
+            <button onClick={() => dispatch(logout)}>{Constant.LOGOUT}</button>
         </div>
     )
 }
@@ -26,16 +25,17 @@ function LoggedOut() {
     return (
         <div>
             {Constant.PLEASE_LOGIN}
-            <button onClick={() => dispatch(PageAction.loginPopUp())}>{Constant.LOGIN}</button>
+            <button onClick={() => dispatch(loginPopUp)}>{Constant.LOGIN}</button>
         </div>
     )
 }
 
 function LoginInfoArea({userName}: LocalProps) {
-    const loginSelector = useSelector((state: RootState) => state.users.isLoggedIn);
+    // 로그인 여부용 플래그
+    const isLoggedIn = !!useSelector((state: RootState) => state.user);
     return (
         <div className="login-info-area">
-            {loginSelector
+            {isLoggedIn
                 ? <LoggedIn userName={userName}/>
                 : <LoggedOut/>
             }

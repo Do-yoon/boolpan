@@ -1,9 +1,8 @@
 import {useSelector} from "react-redux";
 import {RootState} from "store/index";
 
-
-function PopUpLayer() {
-    const popUp = useSelector((state: RootState) => state.pages.popUp);
+function PopUpWrapper() {
+    const popUp = useSelector((state: RootState) => state.popUp);
 
     return (
         <div className='pop-up-container'>
@@ -12,4 +11,4 @@ function PopUpLayer() {
     );
 }
 
-export default PopUpLayer;
+export default PopUpWrapper;

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
-import PopUp from "component/pop-up/PopUp";
+import PopUpLayout from "component/pop-up/PopUpLayout";
 import socket from "io/socket"
 
 
@@ -52,7 +52,7 @@ function CreateRoomPopUp() {
 
 
     return (
-        <PopUp classname='createRoomPopUp'>
+        <PopUpLayout classname='createRoomPopUp'>
             <p className='createRoomPopUp pop-up-title'>방 만들기</p>
             <form onSubmit={CreateRoomSubmit}>
                 <ol className='createRoomPopUp form-field'>
@@ -99,7 +99,7 @@ function CreateRoomPopUp() {
                     <input type='submit' value='제출' className='createRoomPopUp summit-button'/>
                 </div>
             </form>
-        </PopUp>
+        </PopUpLayout>
     )
 }
 
