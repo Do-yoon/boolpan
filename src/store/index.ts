@@ -1,14 +1,8 @@
-import UserReducer from "store/user/reducer";
-import {combineReducers, configureStore} from '@reduxjs/toolkit'
-import ChatReducer from "store/chat/reducer";
-import PageReducer from "store/reducer";
+import {configureStore} from '@reduxjs/toolkit'
+import {reducer} from "./reducer";
 
-const rootReducer = combineReducers({
-        users: UserReducer,
-        pages: PageReducer,
-        chats: ChatReducer,
-        // admin: AdminReducer
-    })
+
+const rootReducer = reducer;
 
 const store = configureStore({reducer: rootReducer})
 

@@ -42,7 +42,7 @@ const Timer = ({ second }: {second: number}) => {
 
 function ChatHeader() {
     const {name, current, limit, explode_time}
-        = useAppSelector((state: RootState) => state.chats.roominfo!)
+        = useAppSelector((state: RootState) => state.chat.roominfo!)
     console.log(explode_time - (Date.now() / 1000))
 
     return <div className="roominfo">

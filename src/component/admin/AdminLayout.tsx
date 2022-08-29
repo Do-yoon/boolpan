@@ -3,7 +3,7 @@ import Footer from "component/layout/Footer";
 import Header from "component/layout/Header";
 import NavBar from 'component/layout/NavBar';
 import 'css/MainLayout.css'
-import PopUpLayer from "component/pop-up/PopUpLayer";
+import PopUpWrapper from "component/pop-up/PopUpWrapper";
 
 interface LayoutProps {
     children?: React.ReactNode,
@@ -13,7 +13,7 @@ function Layout({children}: LayoutProps) {
 
     return (
         <div>
-            <PopUpLayer/>
+            <PopUpWrapper/>
             <Header/>
             <div id="layout-body">
                 <NavBar/>

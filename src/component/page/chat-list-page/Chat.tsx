@@ -1,11 +1,9 @@
 import {useDispatch, useSelector} from "react-redux";
-import ChattingPopUp from "component/pop-up/chat-popup/ChattingPopUp";
 import {RootState} from "store/index";
 import socket from "io/socket"
-import PageAction from "../../../store/page/action";
-import ChatAction from "../../../store/chat/action";
 import {REST_BASE_URL} from "../../../util/Constant";
 import axios from "axios";
+import {chattingPopUp, joinRoom} from "store/action";
 
 interface RoomBannerProps {
     room_id: string
@@ -18,7 +16,7 @@ function Chat(
     props: RoomBannerProps
 ): (JSX.Element | null) {
     const dispatch = useDispatch()
-    const isLoggedIn = useSelector((state: RootState) => state.users.isLoggedIn);
+    const isLoggedIn = !!useSelector((state: RootState) => state.user.name);
     const OnClickBanner = () => {
         if (isLoggedIn.valueOf()) {
             socket.emit("join-room", props.room_id, (error: string, data: {
@@ -30,11 +28,11 @@ function Chat(
                 else {
                     axios.get(`${REST_BASE_URL}/chat/${props.room_id}`)
                         .then((res) => {
-                            dispatch(ChatAction.enterTheRoom({
+                            dispatch(joinRoom({
                                 ...props,
                                 explode_time: res.data.explode_time
                             }))
-                            dispatch(PageAction.chattingPopUp())
+                            dispatch(chattingPopUp())
                         })
                 }
             })

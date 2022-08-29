@@ -1,5 +1,5 @@
 import {initialState} from "store/state";
-import {AnyAction, createReducer, PayloadAction} from "@reduxjs/toolkit";
+import {createReducer} from "@reduxjs/toolkit";
 import {
     setChattingRoomList,
     sendMessage,
@@ -7,14 +7,19 @@ import {
     signUpPopUp,
     createRoomPopUp,
     closePopUp,
-    resizeWindow, logout, login, setNewMessage, joinRoom, leaveRoom
+    resizeWindow, logout, login, setNewMessage, joinRoom, leaveRoom, loginPopUp
 } from "./action";
 import ChattingPopUp from "../component/pop-up/chat-popup/ChattingPopUp";
-import SignUpPopUp from "../component/pop-up/signup-popup/SignUpPopUp";
-import CreateRoomPopUp from "../component/pop-up/create-room-popup/CreateRoomPopUp";
+import SignUpPopUp from "../component/pop-up/modules/signup-popup/SignUpPopUp";
+import CreateRoomPopUp from "../component/pop-up/modules/create-room-popup/CreateRoomPopUp";
+import LoginPopUp from "../component/pop-up/modules/login-popup/LoginPopUp";
 
 export const reducer = createReducer(initialState, builder =>
     builder
+        .addCase(loginPopUp, (state) => ({
+            ...state,
+            popUp: <LoginPopUp/>
+        }))
         .addCase(chattingPopUp, (state) => ({
             ...state,
             popUp: <ChattingPopUp/>
@@ -74,6 +79,7 @@ export const reducer = createReducer(initialState, builder =>
         .addCase(login, (state, action) => ({
             ...state,
             user: {
+                ...state.user,
                 name: action.payload
             }
         }))

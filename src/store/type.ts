@@ -6,7 +6,7 @@ export type Chat = {
 }
 
 export interface Message {
-    user: number,
-    message: string,
-    timestamp: number
+    sender: string | null
+    text: string
+    timestamp: string
 }
