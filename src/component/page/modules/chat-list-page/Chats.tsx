@@ -1,7 +1,7 @@
 import 'css/MainLayout.css'
 import {useEffect, useState} from 'react';
 import {min} from "mathjs";
-import Chat from "component/page/chat-list-page/Chat";
+import Chat from "component/page/modules/chat-list-page/Chat";
 import axios from "axios";
 import {REST_BASE_URL} from "util/Constant";
 import {RoomType} from "util/type";
@@ -23,12 +23,6 @@ let test_column = [
         current: 100
     }
 ]
-/*
-interface ChatTableProps extends PropsFromRedux{
-    //chat_list: typeof Chat[]
-    windowDimensions: number
-}
- */
 
 function ChatTable() {
     const getWidth = () => {

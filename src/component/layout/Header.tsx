@@ -1,9 +1,9 @@
 import Constant from "util/Constant";
 import type { RootState } from "store/index";
 import { useSelector } from 'react-redux';
-import {useAppDispatch} from "../../util/hooks";
+import { useAppDispatch } from "util/hooks";
 import React from "react";
-import {loginPopUp, logout} from "../../store/action";
+import { loginPopUp, logout } from "store/action";
 
 interface LocalProps {
     userName: string
@@ -31,8 +31,8 @@ function LoggedOut() {
 }
 
 function LoginInfoArea({userName}: LocalProps) {
-    // 로그인 여부용 플래그
-    const isLoggedIn = !!useSelector((state: RootState) => state.user);
+    // 로그인 여부용
+    const isLoggedIn = useSelector((state: RootState) => state.user.name);
     return (
         <div className="login-info-area">
             {isLoggedIn

@@ -11,11 +11,6 @@ export const closePopUp = createAction("closePopUp")
 export const resizeWindow = createAction("resizeWindow")
 export const login = createAction<string>("login")
 export const logout = createAction("logout")
-export const setNewMessage = createAction<{
-    sender: string,
-    text: string,
-    timestamp: string
-}>("setNewMessage")
 export const joinRoom = createAction<{
     room_id: string,
     name: string,

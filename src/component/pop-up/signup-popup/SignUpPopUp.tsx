@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import axios from "axios";
 import {REST_BASE_URL} from "util/Constant";
 import PopUpLayout from "component/pop-up/PopUpLayout";
-import {loginPopUp} from "../../../../store/action";
+import {loginPopUp} from "store/action";
 
 function SignUpPopUp() {
     const dispatch = useDispatch();
@@ -57,7 +57,7 @@ function SignUpPopUp() {
     }
 
     return (
-        <PopUpLayout classname='sign-up-pop-up'>
+        <PopUpLayout className='sign-up-pop-up'>
             <p className='sign-up-pop-up pop-up-title'>회원가입</p>
             <form onSubmit={SignUpSubmit}>
                 <ol className="form-field">

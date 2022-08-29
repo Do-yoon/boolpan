@@ -1,71 +1,77 @@
 import React, {useEffect, useState} from "react";
-import ChatHeader from "component/pop-up/chat-popup/modules/ChatHeader";
-import MessageContainer from "component/pop-up/chat-popup/modules/MessageContainer";
 import {RootState} from "store/index";
 import {REST_BASE_URL} from "util/Constant";
 import socket from "io/socket"
 import {useAppDispatch, useAppSelector} from "util/hooks";
-import {getTimestampString} from "util/getTimestamp";
+import Message from "./modules/Message";
+import {sendMessage} from "../../../store/action";
 
 const ENDPOINT = REST_BASE_URL // + '/chatRoom/room' // +`/sendMessage/${room}?user=${user}`;
 
-function ChatInputArea() {
+function Timer() {
+    // initialize timeLeft with the seconds prop
+    const explode_time = useAppSelector((state: RootState) => state.chat.roominfo!.explode_time)
+    const [timeLeft, setTimeLeft] = useState(Number(explode_time - (Date.now() / 1000)));
+    const date = new Date(timeLeft);
+    const [hours, setHours] = useState(("0" + date.getHours()).slice(-2));
+    const [minutes, setMinutes] = useState(("0" + date.getMinutes()).slice(-2));
+    const [seconds, setSeconds] = useState(("0" + date.getSeconds()).slice(-2));
+
+    useEffect(() => {
+        // exit early when we reach 0
+        if (!timeLeft) return;
+
+        // save intervalId to clear the interval when the
+        // component re-renders
+        function tick() {
+            setTimeLeft(timeLeft - 1);
+            setHours(("0" + date.getHours()).slice(-2));
+            setMinutes(("0" + date.getMinutes()).slice(-2));
+            setSeconds(("0" + date.getSeconds()).slice(-2));
+            console.log()
+        }
+
+        const intervalId = setInterval(() => {
+            tick()
+        }, 1000);
+
+        // clear interval on re-render to avoid memory leaks
+        return () => clearInterval(intervalId);
+        // add timeLeft as a dependency to re-rerun the effect
+        // when we update it
+    }, [timeLeft, hours, minutes, seconds]);
+
+    return (
+        <span>{`${hours}:${minutes}:${seconds}`}</span>
+    );
+};
+
+function ChattingPopUp() {
+    const [messages, setMessages] = useState<JSX.Element[]>([])
     const [message, setMessage] = useState('')
     const dispatch = useAppDispatch()
     const room_id = useAppSelector((state: RootState) => state.chat.roominfo?.room_id)
+    const {name, current, limit}
+        = useAppSelector((state: RootState) => state.chat.roominfo!)
+
 
     const OnSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log(`OnSubmit`);
-        console.log(socket.connected)
-
-        useEffect(() => {
-            if (message.length) {
-                socket.emit('sendMessage', {msg: message, room_id: room_id});
-                dispatch({type: "SEND_MESSAGE"});
-                setMessage('')
-            }
-            return () => {
-                socket.off('sendMessage')
-            }
-        }, [message]);
-    }
-    const OnChange = (e: any) => {
-        setMessage(e.target.value)
+        if (message.length) {
+            socket.emit('sendMessage', {msg: message, room_id: room_id});
+            dispatch(sendMessage);
+            setMessage('')
+        }
+        return () => {
+            socket.off('sendMessage')
+        }
     }
 
-    return <div>
-        <form onSubmit={OnSubmit}>
-            <input className="chat input-area" type="text" value={message} onChange={OnChange}/>
-            <input className="chat input-submit" type="submit"/>
-        </form>
-    </div>
-}
-
-
-
-function ChattingPopUp() {
-    const room = useAppSelector((state: RootState) => state.chat.roominfo?.room_id);
-    const user = useAppSelector((state: RootState) => state.user.name);
-    const messages = useAppSelector((state: RootState) => state.chat.roominfo?.messages);
-    // input message onchange state
-    console.log(`user: ${typeof user}`)
-    console.log(`room: ${typeof room}`)
-
-    const dispatch = useAppDispatch();
     useEffect(() => {
-        socket.on('getMessage', (sender: string, msg: string) => {
-            console.log(msg)
-            dispatch({
-                type: "getMessage",
-                payload: {
-                    msg: {
-                        sender: sender,
-                        text: msg,
-                        timestamp: getTimestampString()
-                    }
-                }
-            })
+        socket.on('getMessage', (newMessage: { sender: string, text: string, timestamp: string }) => {
+            console.log(newMessage.text)
+            const temp = [...messages, <Message {...newMessage}/>]
+            setMessages(temp)
         });
     })
 
@@ -75,13 +81,31 @@ function ChattingPopUp() {
         })
     })
 
+    const OnChange = (e: any) => {
+        setMessage(e.target.value)
+    }
+
     return (
         <div className='chat outerContainer'>
             <div className='chat container'>
-                <ChatHeader/>
-                <MessageContainer messages={messages}/>
+                {/* 채팅 헤더 */}
+                <div className="roominfo">
+                    <span className="roominfo name">{name}</span>
+                    <span className="roominfo current">{`(${current} / ${limit})`}</span>
+                    <Timer/>
+                </div>
+                {/* 채팅 컨테이너 */}
+                <div>
+                    {messages}
+                </div>
             </div>
-            <ChatInputArea/>
+            {/* 채팅 입력 부분 */}
+            <div>
+                <form onSubmit={OnSubmit}>
+                    <input className="chat input-area" type="text" value={message} onChange={OnChange}/>
+                    <input className="chat input-submit" type="submit"/>
+                </form>
+            </div>
         </div>
     );
 }

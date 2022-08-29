@@ -8,8 +8,3 @@ export function getTimestampString() {
     const zero = minutes < 10 ? '0' : ''
     return `${noon} ${hours}:${zero}${minutes}`;
 }
-
-export function getTimer(explode_time: number) {
-    return explode_time - Date.now()/1000;
-
-}

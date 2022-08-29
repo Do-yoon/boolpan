@@ -5,8 +5,3 @@ export type Chat = {
     current: number
 }
 
-export interface Message {
-    sender: string | null
-    text: string
-    timestamp: string
-}
