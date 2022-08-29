@@ -1,9 +1,10 @@
-import {Chat, Message} from "./type";
+import {Chat} from "./type";
 
 export type State = {
     popUp: null | React.ReactNode
     user: {
         name?: string
+        email?:string
     }
     chat: {
         chat_list?: Chat[]
@@ -13,14 +14,12 @@ export type State = {
             current: number | null
             limit: number | null
             explode_time: number
-            messages: Message[]
         }
     }
 }
 
 export const initialState: State = {
     popUp: null,
-    user: {
-    },
+    user: {},
     chat: {}
 }

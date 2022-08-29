@@ -1,4 +1,4 @@
-import SearchResultList from "component/page/search-page/SearchResultList";
+import SearchResultList from "component/page/modules/search-page/SearchResultList";
 import qs from "qs"
 import { useLocation } from "react-router-dom";
 import Layout from "component/layout/Layout";

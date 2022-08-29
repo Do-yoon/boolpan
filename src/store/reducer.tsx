@@ -7,12 +7,12 @@ import {
     signUpPopUp,
     createRoomPopUp,
     closePopUp,
-    resizeWindow, logout, login, setNewMessage, joinRoom, leaveRoom, loginPopUp
+    resizeWindow, logout, login, joinRoom, leaveRoom, loginPopUp
 } from "./action";
 import ChattingPopUp from "../component/pop-up/chat-popup/ChattingPopUp";
-import SignUpPopUp from "../component/pop-up/modules/signup-popup/SignUpPopUp";
-import CreateRoomPopUp from "../component/pop-up/modules/create-room-popup/CreateRoomPopUp";
-import LoginPopUp from "../component/pop-up/modules/login-popup/LoginPopUp";
+import SignUpPopUp from "../component/pop-up/signup-popup/SignUpPopUp";
+import CreateRoomPopUp from "../component/pop-up/create-room-popup/CreateRoomPopUp";
+import LoginPopUp from "../component/pop-up/login-popup/LoginPopUp";
 
 export const reducer = createReducer(initialState, builder =>
     builder
@@ -81,16 +81,6 @@ export const reducer = createReducer(initialState, builder =>
             user: {
                 ...state.user,
                 name: action.payload
-            }
-        }))
-        .addCase(setNewMessage, (state, action) => ({
-            ...state,
-            chat: {
-                ...state.chat,
-                roominfo: {
-                    ...state.chat.roominfo!,
-                    messages: [...state.chat.roominfo?.messages!, action.payload]
-                }
             }
         }))
         .addCase(joinRoom, (state, action) => ({

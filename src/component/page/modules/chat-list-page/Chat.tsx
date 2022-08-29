@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "store/index";
+import {RootState} from "store";
 import socket from "io/socket"
-import {REST_BASE_URL} from "../../../util/Constant";
+import {REST_BASE_URL} from "util/Constant";
 import axios from "axios";
 import {chattingPopUp, joinRoom} from "store/action";
 

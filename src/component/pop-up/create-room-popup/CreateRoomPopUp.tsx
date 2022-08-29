@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import PopUpLayout from "component/pop-up/PopUpLayout";
 import socket from "io/socket"
-
+import {chattingPopUp, joinRoom} from "store/action";
 
 function CreateRoomPopUp() {
     const [isPassword, setIsPassword] = useState(false);
@@ -12,7 +12,6 @@ function CreateRoomPopUp() {
     const [limit, setLimit] = useState(1);
     const [password, setPassword] = useState("");
     const [keeping_time, setKeepingTime] = useState(0);
-
 
     const CreateRoomSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -30,29 +29,23 @@ function CreateRoomPopUp() {
             (response: any) => {
 
                 if (!response.error) {
-                    dispatch({
-                        type: "ENTER_THE_ROOM",
-                        payload: {
-                            room_id: response.data.room_id,
-                            current: 1,
-                            name: name,
-                            category: category,
-                            limit: limit,
-                            explode_time: Date.now() / 1000 + keeping_time
-                        }
-                    })
-                    dispatch({type: "CHATTING_POP_UP"})
+                    dispatch(joinRoom({
+                        room_id: response.data.room_id,
+                        current: 1,
+                        name: name,
+                        limit: limit,
+                        explode_time: Date.now() / 1000 + keeping_time
+                    }))
+                    dispatch(chattingPopUp)
                 } else {
                     alert("방 이름이 중복되었습니다.")
                 }
             });
         socket.off('create-room')
-
     }
 
-
     return (
-        <PopUpLayout classname='createRoomPopUp'>
+        <PopUpLayout className='createRoomPopUp'>
             <p className='createRoomPopUp pop-up-title'>방 만들기</p>
             <form onSubmit={CreateRoomSubmit}>
                 <ol className='createRoomPopUp form-field'>

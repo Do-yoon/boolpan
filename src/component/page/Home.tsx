@@ -1,4 +1,4 @@
-import Chats from 'component/page/chat-list-page/Chats';
+import Chats from 'component/page/modules/chat-list-page/Chats';
 import SearchBar from "component/layout/SearchBar";
 import Layout from "component/layout/Layout";
 

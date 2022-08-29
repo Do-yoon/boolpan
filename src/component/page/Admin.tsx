@@ -1,7 +1,6 @@
 import {useDispatch} from "react-redux";
 import React, {useState} from "react";
 import axios from "axios";
-import SignUpPopUp from "component/pop-up/modules/signup-popup/SignUpPopUp";
 import {REST_BASE_URL} from "util/Constant";
 import {AdminActionType} from "store/admin/action";
 
