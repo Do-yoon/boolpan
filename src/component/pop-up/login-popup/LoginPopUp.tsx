@@ -25,7 +25,7 @@ function LoginPopUp() {
         if (data !== null) {
             socket.emit("init", {email: email})
             dispatch(login(data.name))
-            dispatch(closePopUp)
+            dispatch(closePopUp())
         } else {
             alert('유효하지 않습니다.')
         }
@@ -40,7 +40,7 @@ function LoginPopUp() {
     }
 
     const OnClickSignUp = () => {
-        dispatch(signUpPopUp)
+        dispatch(signUpPopUp())
     }
 
     return (

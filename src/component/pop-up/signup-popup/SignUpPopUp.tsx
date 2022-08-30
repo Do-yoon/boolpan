@@ -25,11 +25,12 @@ function SignUpPopUp() {
                 password: password
             }
         });
+
         const data = loginFetch.data
-        console.log(data)
+
         if (data) {
             alert('회원가입이 완료되었습니다.')
-            dispatch(loginPopUp)
+            dispatch(loginPopUp())
         } else {
             alert('아이디가 이미 존재합니다.')
         }
@@ -37,7 +38,7 @@ function SignUpPopUp() {
     }
 
     const OnClickToLogin = (e: React.MouseEvent) => {
-        dispatch(loginPopUp)
+        dispatch(loginPopUp())
     }
 
     const OnChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {

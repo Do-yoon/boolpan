@@ -59,7 +59,7 @@ function ChattingPopUp() {
         e.preventDefault();
         if (message.length) {
             socket.emit('sendMessage', {msg: message, room_id: room_id});
-            dispatch(sendMessage);
+            dispatch(sendMessage(message));
             setMessage('')
         }
         return () => {

@@ -14,7 +14,7 @@ function LoggedIn({userName}: LocalProps) {
     return (
         <div>
             {userName}
-            <button onClick={() => dispatch(logout)}>{Constant.LOGOUT}</button>
+            <button onClick={() => dispatch(logout())}>{Constant.LOGOUT}</button>
         </div>
     )
 }
@@ -25,7 +25,7 @@ function LoggedOut() {
     return (
         <div>
             {Constant.PLEASE_LOGIN}
-            <button onClick={() => dispatch(loginPopUp)}>{Constant.LOGIN}</button>
+            <button onClick={() => dispatch(loginPopUp())}>{Constant.LOGIN}</button>
         </div>
     )
 }

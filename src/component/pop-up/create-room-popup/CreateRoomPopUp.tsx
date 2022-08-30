@@ -36,7 +36,7 @@ function CreateRoomPopUp() {
                         limit: limit,
                         explode_time: Date.now() / 1000 + keeping_time
                     }))
-                    dispatch(chattingPopUp)
+                    dispatch(chattingPopUp())
                 } else {
                     alert("방 이름이 중복되었습니다.")
                 }
