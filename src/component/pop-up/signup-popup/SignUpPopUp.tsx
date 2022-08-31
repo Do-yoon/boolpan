@@ -12,29 +12,28 @@ function SignUpPopUp() {
     const [verifyPassword, setVerifyPassword] = useState("");
     const [name, setName] = useState("");
 
-    const SignUpSubmit = async (e: React.FormEvent) => {
+    const SignUpSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (password !== verifyPassword) {
             alert('패스워드 확인이 일치하지 않습니다.')
             return;
         }
 
-        const loginFetch = await axios.post(REST_BASE_URL + "/user/signup", {
+        axios.post(REST_BASE_URL + "/user/signup", {
             userinfo: {
+                name: name,
                 email: email,
                 password: password
             }
+        }).then((loginFetch) => {
+            const data = loginFetch.data
+            if (data) {
+                alert('회원가입이 완료되었습니다.')
+                dispatch(loginPopUp())
+            } else {
+                alert('아이디가 이미 존재합니다.')
+            }
         });
-
-        const data = loginFetch.data
-
-        if (data) {
-            alert('회원가입이 완료되었습니다.')
-            dispatch(loginPopUp())
-        } else {
-            alert('아이디가 이미 존재합니다.')
-        }
-
     }
 
     const OnClickToLogin = (e: React.MouseEvent) => {
