@@ -7,7 +7,7 @@ export type State = {
         email?:string
     }
     chat: {
-        chat_list?: Chat[]
+        chat_list?: Map<string, Chat>
         roominfo?: {
             room_id : string | null
             name: string | null

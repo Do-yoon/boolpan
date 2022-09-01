@@ -3,5 +3,6 @@ export type Chat = {
     name: string
     limit: number
     current: number
+    isPassword: boolean
 }
 

@@ -57,18 +57,15 @@ function ChattingPopUp() {
 
     const OnSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (message.length) {
-            socket.emit('sendMessage', {msg: message, room_id: room_id});
+        if (message.length && room_id) {
+            socket.emit('sendMessage', {text: message, room_id: room_id});
             dispatch(sendMessage(message));
             setMessage('')
-        }
-        return () => {
-            socket.off('sendMessage')
         }
     }
 
     useEffect(() => {
-        socket.on('getMessage', (newMessage: { sender: string, text: string, timestamp: string }) => {
+        socket.on('getMessage', (newMessage) => {
             console.log(newMessage.text)
             const temp = [...messages, <Message {...newMessage}/>]
             setMessages(temp)
@@ -76,7 +73,7 @@ function ChattingPopUp() {
     })
 
     useEffect(() => {
-        socket.on('delete-room', (msg) => {
+        socket.on('deleteRoom', (msg: string) => {
             alert(msg)
         })
     })

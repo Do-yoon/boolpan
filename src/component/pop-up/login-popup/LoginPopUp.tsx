@@ -23,7 +23,7 @@ function LoginPopUp() {
         const data = loginFetch.data
         console.log(`got the data: ${data}`)
         if (data !== null) {
-            socket.emit("init", {email: email})
+            socket.emit("init", email)
             dispatch(login(data.name))
             dispatch(closePopUp())
         } else {

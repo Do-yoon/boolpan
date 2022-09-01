@@ -7,12 +7,13 @@ import {
     signUpPopUp,
     createRoomPopUp,
     closePopUp,
-    resizeWindow, logout, login, joinRoom, leaveRoom, loginPopUp
+    resizeWindow, logout, login, joinRoom, leaveRoom, loginPopUp, passwordPopUp
 } from "./action";
 import ChattingPopUp from "../component/pop-up/chat-popup/ChattingPopUp";
 import SignUpPopUp from "../component/pop-up/signup-popup/SignUpPopUp";
 import CreateRoomPopUp from "../component/pop-up/create-room-popup/CreateRoomPopUp";
 import LoginPopUp from "../component/pop-up/login-popup/LoginPopUp";
+import PasswordPopUp from "../component/pop-up/password/PasswordPopUp";
 
 export const reducer = createReducer(initialState, builder =>
     builder
@@ -31,6 +32,10 @@ export const reducer = createReducer(initialState, builder =>
         .addCase(createRoomPopUp, (state) => ({
             ...state,
             popUp: <CreateRoomPopUp/>
+        }))
+        .addCase(passwordPopUp, (state, action) => ({
+            ...state,
+            popUp: <PasswordPopUp room_id={action.payload.room_id}/>
         }))
         .addCase(closePopUp, (state) => ({
             ...state,

@@ -24,13 +24,12 @@ function CreateRoomPopUp() {
         }
         console.log(keeping_time)
 
-        socket.emit('create-room', data,
+        socket.emit('createRoom', data,
             /* acknowledgements */
-            (response: any) => {
-
-                if (!response.error) {
+            (e, data) => {
+                if (!e) {
                     dispatch(joinRoom({
-                        room_id: response.data.room_id,
+                        room_id: data.room_id,
                         current: 1,
                         name: name,
                         limit: limit,
@@ -41,7 +40,6 @@ function CreateRoomPopUp() {
                     alert("방 이름이 중복되었습니다.")
                 }
             });
-        socket.off('create-room')
     }
 
     return (
