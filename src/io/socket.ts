@@ -3,12 +3,13 @@ import {io, Socket} from "socket.io-client";
 export interface ServerToClientEvents {
     init: () => void;
     deleteRoom: (msg: string) => void;
-    getMessage: (
+    getMessage: (args: {
         message: {
             sender: string,
             text: string,
             timestamp: string
-        }) => void;
+        }
+    }) => void;
     newUser: (name: string) => void;
     error: (e: string) => void;
     leaveUser: (name: string) => void;
@@ -16,7 +17,7 @@ export interface ServerToClientEvents {
 
 export interface ClientToServerEvents {
     init: (email: string) => void;
-    sendMessage: (args: { room_id: string, text: string }) => void;
+    sendMessage: (args: {room_id: string, text: string}) => void;
     createRoom: (roomData: {
                      name: string
                      category: string
@@ -24,19 +25,23 @@ export interface ClientToServerEvents {
                      limit: number
                      keeping_time: number
                  },
-                 callback: (e: { error: string }, data: {
+                 callback: (e: {error: string}, data: {
                      room_id: string
                  }) => void) => void;
     joinRoom: (data: {
                    room_id: string,
                    password?: string
                },
-               callback: (roominfo: {
-                              name: string,
-                              current: number,
-                              limit: number,
-                              explode_time: number
-                          }, error: string) => void
+               callback: (data: {
+                   roominfo?: {
+                       name: string,
+                       current: number,
+                       limit: number,
+                       explode_time: number
+                       password?: string
+                   },
+                   error?: string
+               }) => void
     ) => void;
     leaveRoom: (args: {
         room_id: string
@@ -48,7 +53,6 @@ function socket() {
         // withCredentials: true,
         transports: ['websocket']
     });
-
 
     socket.on("connect", () => {
         console.log("connect")

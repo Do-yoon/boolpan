@@ -4,7 +4,7 @@ import {REST_BASE_URL} from "util/Constant";
 import socket from "io/socket"
 import {useAppDispatch, useAppSelector} from "util/hooks";
 import Message from "./modules/Message";
-import {sendMessage} from "../../../store/action";
+import {sendMessage} from "store/action";
 
 const ENDPOINT = REST_BASE_URL // + '/chatRoom/room' // +`/sendMessage/${room}?user=${user}`;
 
@@ -65,9 +65,9 @@ function ChattingPopUp() {
     }
 
     useEffect(() => {
-        socket.on('getMessage', (newMessage) => {
-            console.log(newMessage.text)
-            const temp = [...messages, <Message {...newMessage}/>]
+        socket.on('getMessage', ({message}) => {
+            console.log(message.text)
+            const temp = [...messages, <Message {...message}/>]
             setMessages(temp)
         });
     })

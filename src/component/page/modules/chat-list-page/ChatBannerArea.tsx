@@ -1,28 +1,10 @@
 import 'css/MainLayout.css'
 import {useEffect, useState} from 'react';
 import {min} from "mathjs";
-import Chat from "component/page/modules/chat-list-page/Chat";
+import ChatBanner, {ChatBannerProps} from "component/page/modules/chat-list-page/ChatBanner";
 import axios from "axios";
 import {REST_BASE_URL} from "util/Constant";
-import {RoomType} from "util/type";
 
-
-let test_column = [
-    {
-        id: 1,
-        name: 'roomName',
-        title: 'roomName',
-        limit: 1,
-        current: 1010
-    },
-    {
-        id: 2,
-        name: 'roomName',
-        title: 'roomName',
-        limit: 2,
-        current: 100
-    }
-]
 
 function ChatTable() {
     const getWidth = () => {
@@ -31,7 +13,7 @@ function ChatTable() {
     }
     const [windowDimensions, setWindowDimensions] = useState(getWidth);
     const [data, setData]
-        : [RoomType[], Function]
+        : [ChatBannerProps[], Function]
         = useState([]);
 
     useEffect(() => {
@@ -47,7 +29,6 @@ function ChatTable() {
     // tables
     const [row, col] = [14, Math.floor((0.8 * windowDimensions - 165) / 140)];
     let matrix = [...Array(row)].map(() => [...Array(col)].fill(null));
-
 
     // let data = test_column;
     useEffect(() => {
@@ -71,10 +52,10 @@ function ChatTable() {
 
     for (let i = 0; i < min(row, data_length); i++) {
         const idx = Math.floor(Math.random()) % col;
-        const temp: RoomType = data[i];
+        const temp: ChatBannerProps = data[i];
         console.log(temp);
         matrix[i][idx] =
-            <Chat room_id={temp._id} name={temp.name} limit={temp.limit} current={temp.current}/>
+            <ChatBanner room_id={temp.room_id} name={temp.name} limit={temp.limit} current={temp.current} isPassword={temp.isPassword}/>
     }
 
     for (let i = 0; i < row; i++) {
@@ -94,7 +75,7 @@ function ChatTable() {
 
 }
 
-function Chats() {
+function ChatBannerArea() {
 
     return (
         <div id="table-area">
@@ -103,4 +84,4 @@ function Chats() {
     );
 }
 
-export default Chats;
+export default ChatBannerArea;

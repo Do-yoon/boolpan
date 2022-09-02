@@ -14,10 +14,11 @@ function PasswordPopUp({room_id}: PasswordPopUpProps) {
 
     const OnSubmitPassword = (e: React.FormEvent) => {
         e.preventDefault()
-        socket.emit("joinRoom", {room_id, password}, (data, error) => {
+        socket.emit("joinRoom", {room_id, password}, ({roominfo, error}) => {
             if(error !== "")
                 alert(error)
-            else dispatch(joinRoom({...data, room_id}))
+            else
+                if (roominfo) dispatch(joinRoom({...roominfo, room_id}))
         })
     }
 

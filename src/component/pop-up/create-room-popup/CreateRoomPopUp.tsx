@@ -83,7 +83,7 @@ function CreateRoomPopUp() {
                     <li>
                         <label htmlFor="time-limit-select">유지시간:</label>
                         <div onChange={() => setKeepingTime}>
-                            <input id="time-limit-select" type="number" min="1" max="100000" required/></div>
+                            <input id="time-limit-select" type="number" min="1" max="100000" value={keeping_time} required/></div>
                     </li>
                 </ol>
                 <div className='createRoomPopUp button-container'>
