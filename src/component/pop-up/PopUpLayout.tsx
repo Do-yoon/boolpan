@@ -1,6 +1,6 @@
 import React from "react";
 import {useAppDispatch} from "util/hooks";
-import {loginPopUp} from "../../store/action";
+import {closePopUp} from "../../store/action";
 
 type PopUpProps = {
     className: string
@@ -15,7 +15,7 @@ function PopUpLayout(props: PopUpProps) {
             <div className={`${props.className} inner`}>
                 <div className={`${props.className} close-pop-up-button-container`}>
                     <div className={`${props.className} close-pop-up-button`}
-                         onClick={() => dispatch(loginPopUp)}>
+                         onClick={() => dispatch(closePopUp())}>
                         <span>X</span>
                     </div>
                 </div>

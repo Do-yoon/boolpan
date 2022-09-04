@@ -1,7 +1,6 @@
 import Constant from "util/Constant";
 import type { RootState } from "store/index";
-import { useSelector } from 'react-redux';
-import { useAppDispatch } from "util/hooks";
+import {useAppDispatch, useAppSelector} from "util/hooks";
 import React from "react";
 import { loginPopUp, logout } from "store/action";
 
@@ -30,19 +29,6 @@ function LoggedOut() {
     )
 }
 
-function LoginInfoArea({userName}: LocalProps) {
-    // 로그인 여부용
-    const isLoggedIn = useSelector((state: RootState) => state.user.name);
-    return (
-        <div className="login-info-area">
-            {isLoggedIn
-                ? <LoggedIn userName={userName}/>
-                : <LoggedOut/>
-            }
-        </div>
-    );
-}
-
 function MainLogoArea() {
     return (
         <div id={'main-logo-area'}>
@@ -54,10 +40,16 @@ function MainLogoArea() {
 }
 
 function Header() {
-    const name_test = "name";
+    const name = useAppSelector((state: RootState) => state.user.name);
+
     return (
         <div className="header">
-            <LoginInfoArea userName={name_test}/>
+            <div className="login-info-area">
+                {name
+                    ? <LoggedIn userName={name}/>
+                    : <LoggedOut/>
+                }
+            </div>
             <MainLogoArea/>
         </div>
     );

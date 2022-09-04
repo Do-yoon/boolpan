@@ -12,34 +12,37 @@ import {
 import ChattingPopUp from "../component/pop-up/chat-popup/ChattingPopUp";
 import SignUpPopUp from "../component/pop-up/signup-popup/SignUpPopUp";
 import CreateRoomPopUp from "../component/pop-up/create-room-popup/CreateRoomPopUp";
-import LoginPopUp from "../component/pop-up/login-popup/LoginPopUp";
+import LoginPopUp from "../component/pop-up/LoginPopUp";
 import PasswordPopUp from "../component/pop-up/password/PasswordPopUp";
 
 export const reducer = createReducer(initialState, builder =>
     builder
         .addCase(loginPopUp, (state) => ({
             ...state,
-            popUp: <LoginPopUp/>
+            popUp: { name: "LoginPopUp" }
         }))
         .addCase(chattingPopUp, (state) => ({
             ...state,
-            popUp: <ChattingPopUp/>
+            popUp: { name: "ChattingPopUp" }
         }))
         .addCase(signUpPopUp, (state) => ({
             ...state,
-            popUp: <SignUpPopUp/>
+            popUp: { name: "SignUpPopUp" }
         }))
         .addCase(createRoomPopUp, (state) => ({
             ...state,
-            popUp: <CreateRoomPopUp/>
+            popUp: { name: "CreateRoomPopUp" }
         }))
         .addCase(passwordPopUp, (state, action) => ({
             ...state,
-            popUp: <PasswordPopUp room_id={action.payload.room_id}/>
+            popUp: {
+                name: "PasswordPopUp",
+                props: {room_id: action.payload.room_id}
+            }
         }))
         .addCase(closePopUp, (state) => ({
             ...state,
-            popUp: null
+            popUp: { name: "" }
         }))
         .addCase(resizeWindow, (state) => {
         })
@@ -81,13 +84,16 @@ export const reducer = createReducer(initialState, builder =>
                 name: undefined
             }
         }))
-        .addCase(login, (state, action) => ({
-            ...state,
-            user: {
-                ...state.user,
-                name: action.payload
+        .addCase(login, (state, action) => {
+            console.log(action.payload);
+            return {
+                ...state,
+                user: {
+                    name: action.payload.name,
+                    user_id: action.payload.user_id
+                }
             }
-        }))
+            })
         .addCase(joinRoom, (state, action) => ({
             ...state,
             chat: {

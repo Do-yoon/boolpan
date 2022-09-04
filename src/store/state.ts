@@ -1,10 +1,13 @@
 import {Chat} from "./type";
 
 export type State = {
-    popUp: null | React.ReactNode
+    popUp: {
+        name: string
+        props?: any
+    }
     user: {
+        user_id?: string
         name?: string
-        email?:string
     }
     chat: {
         chat_list?: Map<string, Chat>
@@ -19,7 +22,9 @@ export type State = {
 }
 
 export const initialState: State = {
-    popUp: null,
+    popUp: {
+        name: null
+    },
     user: {},
     chat: {}
 }

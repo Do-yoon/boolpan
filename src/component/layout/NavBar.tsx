@@ -6,7 +6,6 @@ interface CountBannerProps {
 
 const categoryText = <div id="category-text"><span>카테고리</span></div>
 
-
 const categoryList = Constant.CATEGORY.map((category, i) =>
     <div className="category" id={`navbar-${i}`}>
         <span>{category}</span>

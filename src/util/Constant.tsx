@@ -15,8 +15,8 @@ const Constant = {
 }
 
 export const REST_BASE_URL = process.env.NODE_ENV === 'production'
-    ? `http://3.37.61.56:8081/v0`
-    : 'http://localhost:8081/v0';
+    ? `http://3.37.61.56:8081/api`
+    : 'http://localhost:8081/api';
 
 export const CHAT_SERVER_BASE_URL = "http://localhost:8083";
 
