@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {RootState} from "store/index";
+import {RootState} from "store";
 import {REST_BASE_URL} from "util/Constant";
 import socket from "io/socket"
 import {useAppDispatch, useAppSelector} from "util/hooks";
 import Message from "./modules/Message";
-import {sendMessage} from "../../../store/action";
+import {sendMessage} from "store/action";
 
 const ENDPOINT = REST_BASE_URL // + '/chatRoom/room' // +`/sendMessage/${room}?user=${user}`;
 
@@ -51,32 +51,30 @@ function ChattingPopUp() {
     const [message, setMessage] = useState('')
     const dispatch = useAppDispatch()
     const room_id = useAppSelector((state: RootState) => state.chat.roominfo?.room_id)
+    const user_id = useAppSelector((state: RootState) => state.user.user_id)
     const {name, current, limit}
         = useAppSelector((state: RootState) => state.chat.roominfo!)
 
 
     const OnSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (message.length) {
-            socket.emit('sendMessage', {msg: message, room_id: room_id});
-            dispatch(sendMessage);
+        if (message.length && room_id && user_id) {
+            socket.emit('sendMessage', {text: message, room_id: room_id, user_id: user_id});
+            dispatch(sendMessage(message));
             setMessage('')
-        }
-        return () => {
-            socket.off('sendMessage')
         }
     }
 
     useEffect(() => {
-        socket.on('getMessage', (newMessage: { sender: string, text: string, timestamp: string }) => {
-            console.log(newMessage.text)
-            const temp = [...messages, <Message {...newMessage}/>]
+        socket.on('getMessage', ({message}) => {
+            console.log(message.text)
+            const temp = [...messages, <Message {...message}/>]
             setMessages(temp)
         });
     })
 
     useEffect(() => {
-        socket.on('delete-room', (msg) => {
+        socket.on('deleteRoom', (msg: string) => {
             alert(msg)
         })
     })

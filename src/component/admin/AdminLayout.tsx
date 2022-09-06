@@ -3,7 +3,7 @@ import Footer from "component/layout/Footer";
 import Header from "component/layout/Header";
 import NavBar from 'component/layout/NavBar';
 import 'css/MainLayout.css'
-import PopUpWrapper from "component/pop-up/PopUpWrapper";
+import PopUpWrapper from "component/layout/PopUpWrapper";
 
 interface LayoutProps {
     children?: React.ReactNode,

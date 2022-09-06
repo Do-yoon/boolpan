@@ -41,7 +41,7 @@ html {
 }
 
 
-.createRoomPopUp {
+.create-room-pop-up {
     z-index: auto;
 }
 
@@ -396,18 +396,18 @@ li {
     justify-content:flex-end;
 }
 
-.createRoomPopUp.outer {
+.create-room-pop-up.outer {
     width: 300px;
     height: 250px;
 }
 
-.createRoomPopUp.inner {
+.create-room-pop-up.inner {
     margin: auto;
     width: 300px;
     height: 250px;
 }
 
-.createRoomPopUp.form-field {
+.create-room-pop-up.form-field {
     width: 100%;
     text-align: left;
     margin-left: 20px;

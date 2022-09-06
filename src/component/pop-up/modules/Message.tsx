@@ -1,4 +1,4 @@
-import "../css/Message.css"
+import "../chat-popup/css/Message.css"
 
 interface MessageProps {
     sender: string | null

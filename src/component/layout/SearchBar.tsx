@@ -2,6 +2,7 @@ import Constant, {Urls} from "util/Constant";
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
+import {createRoomPopUp} from "../../store/action";
 
 
 function TextInputArea() {
@@ -29,7 +30,7 @@ function CreateRoomButton() {
     const dispatch = useDispatch()
 
     return (
-        <div id='create-room-button' onClick={() => dispatch({ type: "CREATE_ROOM_POP_UP"})}>
+        <div id='create-room-button' onClick={() => dispatch(createRoomPopUp())}>
             <span>{Constant.CREATE_ROOM}</span>
         </div>
     )

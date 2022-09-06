@@ -1,6 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit'
 import {reducer} from "./reducer";
-
+import React from "react";
 
 const rootReducer = reducer;
 

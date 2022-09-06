@@ -1,4 +1,4 @@
-import Chats from 'component/page/modules/chat-list-page/Chats';
+import ChatBannersPage from 'component/page/ChatBannersPage';
 import SearchBar from "component/layout/SearchBar";
 import Layout from "component/layout/Layout";
 
@@ -10,7 +10,7 @@ function Home() {
                 <div id={'search-area'}>
                     <SearchBar/>
                 </div>
-                <Chats/>
+                <ChatBannersPage/>
             </div>
         </Layout>
     );
