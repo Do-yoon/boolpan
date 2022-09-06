@@ -5,7 +5,6 @@ import {REST_BASE_URL} from "util/Constant";
 import {AdminActionType} from "store/admin/action";
 import PopUpLayout from "../pop-up/PopUpLayout";
 
-
 function LoginPopUp() {
     const dispatch = useDispatch();
     const [email, setEmail] = useState("");
@@ -19,8 +18,6 @@ function LoginPopUp() {
                 password: password
             }
         });
-        // console.log(typeof email);
-        // console.log(email);
         const data = loginFetch.data
         console.log(`got the data: ${data}`)
         if (data !== null) {
@@ -31,12 +28,10 @@ function LoginPopUp() {
     }
 
     const OnChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-        //console.log(e.target.value)
         setEmail(e.target.value)
     }
 
     const OnChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-        //console.log(e.target.value)
         setPassword(e.target.value)
     }
 

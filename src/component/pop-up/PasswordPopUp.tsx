@@ -1,8 +1,9 @@
-import PopUpLayout from "../PopUpLayout";
+import PopUpLayout from "./PopUpLayout";
 import React, {useState} from "react";
-import socket from "../../../io/socket";
-import {useAppDispatch} from "../../../util/hooks";
-import {joinRoom} from "../../../store/action";
+import socket from "../../io/socket";
+import {useAppDispatch, useAppSelector} from "../../util/hooks";
+import {joinRoom} from "../../store/action";
+import {RootState} from "../../store";
 
 interface PasswordPopUpProps {
     room_id: string
@@ -11,15 +12,17 @@ interface PasswordPopUpProps {
 function PasswordPopUp({room_id}: PasswordPopUpProps) {
     const [password, setPassword] = useState<string>("");
     const dispatch = useAppDispatch();
+    const user_id = useAppSelector((state: RootState) => state.user.user_id)
+
 
     const OnSubmitPassword = (e: React.FormEvent) => {
         e.preventDefault()
-        socket.emit("joinRoom", {room_id, password}, ({roominfo, error}) => {
-            if(error !== "")
-                alert(error)
-            else
-                if (roominfo) dispatch(joinRoom({...roominfo, room_id}))
-        })
+        if (user_id)
+            socket.emit("joinRoom", {room_id, user_id, password}, ({roominfo, error}) => {
+                if (error !== "")
+                    alert(error)
+                else if (roominfo) dispatch(joinRoom({...roominfo, room_id}))
+            })
     }
 
     return (

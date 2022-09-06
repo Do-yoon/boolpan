@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {RootState} from "store/index";
+import {RootState} from "store";
 import {REST_BASE_URL} from "util/Constant";
 import socket from "io/socket"
 import {useAppDispatch, useAppSelector} from "util/hooks";
@@ -51,14 +51,15 @@ function ChattingPopUp() {
     const [message, setMessage] = useState('')
     const dispatch = useAppDispatch()
     const room_id = useAppSelector((state: RootState) => state.chat.roominfo?.room_id)
+    const user_id = useAppSelector((state: RootState) => state.user.user_id)
     const {name, current, limit}
         = useAppSelector((state: RootState) => state.chat.roominfo!)
 
 
     const OnSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (message.length && room_id) {
-            socket.emit('sendMessage', {text: message, room_id: room_id});
+        if (message.length && room_id && user_id) {
+            socket.emit('sendMessage', {text: message, room_id: room_id, user_id: user_id});
             dispatch(sendMessage(message));
             setMessage('')
         }

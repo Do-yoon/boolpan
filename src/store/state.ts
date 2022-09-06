@@ -1,10 +1,12 @@
 import {Chat} from "./type";
 
 export type State = {
-    popUp: null | React.ReactNode
+    popUp: {
+        type: PopUpType
+    }
     user: {
+        user_id?: string
         name?: string
-        email?:string
     }
     chat: {
         chat_list?: Map<string, Chat>
@@ -18,8 +20,19 @@ export type State = {
     }
 }
 
+export enum PopUpType {
+    None,
+    CreateRoomPopUp,
+    LoginPopUp,
+    PasswordPopUp,
+    ChattingPopUp,
+    SignUpPopUp
+}
+
 export const initialState: State = {
-    popUp: null,
+    popUp: {
+        type: PopUpType.None
+    },
     user: {},
     chat: {}
 }

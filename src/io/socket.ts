@@ -1,5 +1,4 @@
 import {io, Socket} from "socket.io-client";
-
 export interface ServerToClientEvents {
     init: () => void;
     deleteRoom: (msg: string) => void;
@@ -17,7 +16,15 @@ export interface ServerToClientEvents {
 
 export interface ClientToServerEvents {
     init: (email: string) => void;
-    sendMessage: (args: {room_id: string, text: string}) => void;
+    getChattingRoomList: (
+        callback: (data: {
+            room_id: string
+            name: string
+            limit: number
+            current?: number
+            isPassword: boolean
+        }[]) => void) => void
+    sendMessage: (data: {room_id: string, text: string, user_id: string}) => void;
     createRoom: (roomData: {
                      name: string
                      category: string
@@ -25,11 +32,19 @@ export interface ClientToServerEvents {
                      limit: number
                      keeping_time: number
                  },
-                 callback: (e: {error: string}, data: {
+                 user: {
+                     user_id: string
+                 },
+                 callback: (e: string, data: {
                      room_id: string
+                     name: string
+                     limit: number
+                     current?: number
+                     isPassword: boolean
                  }) => void) => void;
     joinRoom: (data: {
                    room_id: string,
+                   user_id: string,
                    password?: string
                },
                callback: (data: {
@@ -44,6 +59,7 @@ export interface ClientToServerEvents {
                }) => void
     ) => void;
     leaveRoom: (args: {
+        user_id: string
         room_id: string
     }) => void;
 }
