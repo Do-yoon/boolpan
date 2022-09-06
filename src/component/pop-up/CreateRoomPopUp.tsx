@@ -3,8 +3,8 @@ import {useDispatch} from "react-redux";
 import PopUpLayout from "component/pop-up/PopUpLayout";
 import socket from "io/socket"
 import {chattingPopUp, joinRoom} from "store/action";
-import {useAppSelector} from "../../../util/hooks";
-import {RootState} from "../../../store";
+import {useAppSelector} from "../../util/hooks";
+import {RootState} from "../../store";
 
 function CreateRoomPopUp() {
     const [isPassword, setIsPassword] = useState(false);
@@ -46,18 +46,18 @@ function CreateRoomPopUp() {
     }
 
     return (
-        <PopUpLayout className='createRoomPopUp'>
-            <p className='createRoomPopUp pop-up-title'>방 만들기</p>
+        <PopUpLayout className='create-room-pop-up'>
+            <p className='create-room-pop-up pop-up-title'>방 만들기</p>
             <form onSubmit={CreateRoomSubmit}>
-                <ol className='createRoomPopUp form-field'>
+                <ol className='create-room-pop-up form-field'>
                     <li>방 이름</li>
-                    <li><input className='createRoomPopup chat_name' value={name}
+                    <li><input className='create-room-pop-up chat_name' value={name}
                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                                    setName(e.target.value)
                                }}/></li>
                     <li>카테고리 분류</li>
                     <li>
-                        <select className='createRoomPopup select-category' value={category}
+                        <select className='create-room-pop-up select-category' value={category}
                                 onChange={(e) => {
                                     setCategory(e.target.value)
                                 }}>
@@ -69,14 +69,14 @@ function CreateRoomPopUp() {
                     {(isPassword ? (
                         <li>
                             패스워드
-                            <input type='password' className='createRoomPopup keyword' value={password}
+                            <input type='password' className='create-room-pop-up keyword' value={password}
                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                                        setPassword(e.target.value)
                                    }}/>
                         </li>
                     ) : null)}
                     <li>최대 참여 인원 수</li>
-                    <li><input type='number' className='createRoomPopup limit' value={limit}
+                    <li><input type='number' className='create-room-pop-up limit' value={limit}
                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                                    setLimit(Number(e.target.value))
                                }}/>
@@ -84,11 +84,11 @@ function CreateRoomPopUp() {
                     <li>비밀번호 생성</li>
                     <li>
                         <div onChange={() => setPassword}>
-                            <input type='radio' className='createRoomPopup passwordToggle' id='usePassword'
+                            <input type='radio' className='create-room-pop-up passwordToggle' id='usePassword'
                                    checked={isPassword} onChange={() => {
                                 setIsPassword(true)
                             }}/>유
-                            <input type='radio' className='createRoomPopup passwordToggle' id='notUsePassword'
+                            <input type='radio' className='create-room-pop-up passwordToggle' id='notUsePassword'
                                    checked={!isPassword} onChange={() => {
                                 setIsPassword(false)
                             }}/>무
@@ -102,8 +102,8 @@ function CreateRoomPopUp() {
                                    required/></div>
                     </li>
                 </ol>
-                <div className='createRoomPopUp button-container'>
-                    <input type='submit' value='제출' className='createRoomPopUp summit-button'/>
+                <div className='create-room-pop-up button-container'>
+                    <input type='submit' value='제출' className='create-room-pop-up summit-button'/>
                 </div>
             </form>
         </PopUpLayout>

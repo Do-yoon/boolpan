@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {RootState} from "store/index";
+import {RootState} from "store";
 import {REST_BASE_URL} from "util/Constant";
 import socket from "io/socket"
 import {useAppDispatch, useAppSelector} from "util/hooks";

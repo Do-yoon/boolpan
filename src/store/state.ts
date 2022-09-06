@@ -2,8 +2,7 @@ import {Chat} from "./type";
 
 export type State = {
     popUp: {
-        name: string
-        props?: any
+        type: PopUpType
     }
     user: {
         user_id?: string
@@ -21,9 +20,18 @@ export type State = {
     }
 }
 
+export enum PopUpType {
+    None,
+    CreateRoomPopUp,
+    LoginPopUp,
+    PasswordPopUp,
+    ChattingPopUp,
+    SignUpPopUp
+}
+
 export const initialState: State = {
     popUp: {
-        name: null
+        type: PopUpType.None
     },
     user: {},
     chat: {}

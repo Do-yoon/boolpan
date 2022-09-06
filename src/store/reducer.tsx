@@ -9,11 +9,11 @@ import {
     closePopUp,
     resizeWindow, logout, login, joinRoom, leaveRoom, loginPopUp, passwordPopUp
 } from "./action";
-import ChattingPopUp from "../component/pop-up/chat-popup/ChattingPopUp";
-import SignUpPopUp from "../component/pop-up/signup-popup/SignUpPopUp";
-import CreateRoomPopUp from "../component/pop-up/create-room-popup/CreateRoomPopUp";
+import ChattingPopUp from "../component/pop-up/ChattingPopUp";
+import SignUpPopUp from "../component/pop-up/SignUpPopUp";
+import CreateRoomPopUp from "../component/pop-up/CreateRoomPopUp";
 import LoginPopUp from "../component/pop-up/LoginPopUp";
-import PasswordPopUp from "../component/pop-up/password/PasswordPopUp";
+import PasswordPopUp from "../component/pop-up/PasswordPopUp";
 
 export const reducer = createReducer(initialState, builder =>
     builder

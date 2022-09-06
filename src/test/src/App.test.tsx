@@ -1,7 +1,7 @@
 import PageAction from "src/store/action";
 import PopUpLayout from "../../component/pop-up/PopUpLayout";
 import React from "react";
-import ChattingPopUp from "../../component/pop-up/chat-popup/ChattingPopUp";
+import ChattingPopUp from "../../component/pop-up/ChattingPopUp";
 import LoginPopUp from "../../component/pop-up/LoginPopUp";
 
 test('action making', () => {

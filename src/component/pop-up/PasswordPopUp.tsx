@@ -1,9 +1,9 @@
-import PopUpLayout from "../PopUpLayout";
+import PopUpLayout from "./PopUpLayout";
 import React, {useState} from "react";
-import socket from "../../../io/socket";
-import {useAppDispatch, useAppSelector} from "../../../util/hooks";
-import {joinRoom} from "../../../store/action";
-import {RootState} from "../../../store";
+import socket from "../../io/socket";
+import {useAppDispatch, useAppSelector} from "../../util/hooks";
+import {joinRoom} from "../../store/action";
+import {RootState} from "../../store";
 
 interface PasswordPopUpProps {
     room_id: string
