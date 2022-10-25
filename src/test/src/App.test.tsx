@@ -1,5 +1,5 @@
 import PageAction from "src/store/action";
-import PopUpLayout from "../../component/pop-up/PopUpLayout";
+import PopUpLayout from "../../component/pop-up/modules/PopUpLayout";
 import React from "react";
 import ChattingPopUp from "../../component/pop-up/ChattingPopUp";
 import LoginPopUp from "../../component/pop-up/LoginPopUp";

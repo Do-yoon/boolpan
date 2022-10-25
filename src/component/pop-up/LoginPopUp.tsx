@@ -2,7 +2,7 @@ import {useDispatch} from "react-redux";
 import React, {useState} from "react";
 import axios, {AxiosResponse} from "axios";
 import {REST_BASE_URL} from "util/Constant";
-import PopUpLayout from "component/pop-up/PopUpLayout";
+import PopUpLayout from "component/pop-up/modules/PopUpLayout";
 import {closePopUp, login, signUpPopUp} from "store/action";
 
 function LoginPopUp() {

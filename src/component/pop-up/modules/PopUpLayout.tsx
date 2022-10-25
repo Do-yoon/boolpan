@@ -1,6 +1,6 @@
 import React from "react";
 import {useAppDispatch, useAppSelector} from "util/hooks";
-import {closePopUp} from "../../store/action";
+import {closePopUp} from "../../../store/action";
 
 type PopUpProps = {
     className: string

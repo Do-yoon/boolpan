@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import axios from "axios";
 import {REST_BASE_URL} from "util/Constant";
 import {AdminActionType} from "store/admin/action";
-import PopUpLayout from "../pop-up/PopUpLayout";
+import PopUpLayout from "../pop-up/modules/PopUpLayout";
 
 function LoginPopUp() {
     const dispatch = useDispatch();

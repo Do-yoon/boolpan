@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
-import PopUpLayout from "component/pop-up/PopUpLayout";
+import PopUpLayout from "component/pop-up/modules/PopUpLayout";
 import socket from "io/socket"
 import {chattingPopUp, joinRoom} from "store/action";
 import {useAppSelector} from "../../util/hooks";

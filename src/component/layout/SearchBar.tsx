@@ -1,13 +1,13 @@
 import Constant, {Urls} from "util/Constant";
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {createRoomPopUp} from "../../store/action";
+import {useAppDispatch} from "util/hooks";
+import {createRoomPopUp} from "store/action";
 
-
-function TextInputArea() {
-    const [key, setKey] = useState('');
+function SearchBar() {
+    const [key, setKey] = useState<string>('');
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const searchOnSubmit = () => {
         navigate({
             pathname: Urls.SEARCH,
@@ -15,33 +15,22 @@ function TextInputArea() {
         });
     }
 
-    return(
-        <form id="search-bar-form" onSubmit={searchOnSubmit}>
-            <input type='text' id='search-text-input-area'
-                   placeholder={Constant.KEYWORD_SEARCH_PLACEHOLDER}
-                   value={key}
-                   onChange={(e) => setKey(e.target.value)}/>
-            <input type='submit' id='search-button' value=''/>
-        </form>
-    );
-}
-
-function CreateRoomButton() {
-    const dispatch = useDispatch()
-
-    return (
-        <div id='create-room-button' onClick={() => dispatch(createRoomPopUp())}>
-            <span>{Constant.CREATE_ROOM}</span>
-        </div>
-    )
-}
-
-function SearchBar() {
+    const CreateRoomButtonOnClick = () => {
+        dispatch(createRoomPopUp())
+    }
 
     return (
         <div id='search-bar'>
-            <CreateRoomButton/>
-            <TextInputArea/>
+            <div id='create-room-button' onClick={CreateRoomButtonOnClick}>
+                <span>{Constant.CREATE_ROOM}</span>
+            </div>
+            <form id="search-bar-form" onSubmit={searchOnSubmit}>
+                <input type='text' id='search-text-input-area'
+                       placeholder={Constant.KEYWORD_SEARCH_PLACEHOLDER}
+                       value={key}
+                       onChange={(e) => setKey(e.target.value)}/>
+                <input type='submit' id='search-button' value=''/>
+            </form>
         </div>
     );
 }

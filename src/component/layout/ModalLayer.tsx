@@ -4,13 +4,13 @@
 
 import React, { MouseEvent, ReactNode } from 'react'
 
-interface IWrapperProps {
+interface IModalLayerProps {
     children: ReactNode
     isOpen: boolean
     className: string
 }
 
-function PopUpWrapper (props: IWrapperProps) {
+function ModalLayer (props: IModalLayerProps) {
 
     return (
         <div
@@ -22,4 +22,4 @@ function PopUpWrapper (props: IWrapperProps) {
     )
 }
 
-export default PopUpWrapper;
+export default ModalLayer;

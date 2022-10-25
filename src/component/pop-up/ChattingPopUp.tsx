@@ -52,8 +52,8 @@ function ChattingPopUp() {
     const dispatch = useAppDispatch()
     const room_id = useAppSelector((state: RootState) => state.chat.roominfo?.room_id)
     const user_id = useAppSelector((state: RootState) => state.user.user_id)
-    const {name, current, limit}
-        = useAppSelector((state: RootState) => state.chat.roominfo!)
+    const {name, current, limit}: any
+        = useAppSelector((state: RootState) => state.chat.roominfo)
 
 
     const OnSubmit = (e: React.FormEvent) => {
