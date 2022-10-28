@@ -6,6 +6,11 @@ import Diagram from "component/page/diagram";
 import Layout from "./component/layout/Layout";
 import AdminLayout from "./component/admin/AdminLayout";
 
+/**
+ * Declares an element that should be rendered at a certain URL path.
+ * See also: https://reactrouter.com/docs/en/v6/api#route
+ */
+
 function MainRouter() {
     return (
             <BrowserRouter>
@@ -13,7 +18,7 @@ function MainRouter() {
                     <Route path="/boolpan_admin" element={<AdminLayout/>}>
                         <Route path="/boolpan_admin" element={<Admin/>}/>
                     </Route>
-                    <Route element={<Layout/>}>
+                    <Route path="/" element={<Layout/>}>
                         <Route path="/" element={<Home/>}/>
                         <Route path="/search" element={<SearchResult/>}/>
                         <Route path="/diagram" element={<Diagram/>}/>

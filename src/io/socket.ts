@@ -64,16 +64,40 @@ export interface ClientToServerEvents {
     }) => void;
 }
 
-function socket() {
-    const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io("http://localhost:8081", {
+
+let chatSocket: Socket<ServerToClientEvents, ClientToServerEvents>;
+let roomSocket: Socket<ServerToClientEvents, ClientToServerEvents>;
+
+export function initChatSocket() {
+    chatSocket = io("http://localhost:8081/chat", {
         // withCredentials: true,
         transports: ['websocket']
     });
 
-    socket.on("connect", () => {
+    chatSocket.on("connect", () => {
         console.log("connect")
     })
-    return socket
 }
 
-export default socket()
+export function initRoomSocket() {
+    roomSocket = io("http://localhost:8081/room", {
+        // withCredentials: true,
+        transports: ['websocket']
+    });
+
+    roomSocket.on("connect", () => {
+        console.log("connect")
+    })
+}
+
+function getChatSocket() {
+    return chatSocket
+}
+
+function getRoomSocket() {
+    return roomSocket
+}
+
+export const RoomSocket = getRoomSocket();
+export const ChatSocket = getChatSocket();
+export default {ChatSocket: getChatSocket(), RoomSocket: getRoomSocket()};

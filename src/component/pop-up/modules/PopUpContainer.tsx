@@ -1,11 +1,11 @@
 import React, {useState, useRef} from "react";
-import {useAppSelector} from "../../util/hooks";
-import {RootState} from "../../store";
-import CreateRoomPopUp from "../pop-up/CreateRoomPopUp";
-import ChattingPopUp from "../pop-up/ChattingPopUp";
-import LoginPopUp from "../pop-up/LoginPopUp";
-import PasswordPopUp from "../pop-up/PasswordPopUp";
-import SignUpPopUp from "../pop-up/SignUpPopUp";
+import {useAppSelector} from "../../../util/hooks";
+import {RootState} from "../../../store";
+import CreateRoomPopUp from "../CreateRoomPopUp";
+import ChattingPopUp from "../ChattingPopUp";
+import LoginPopUp from "../LoginPopUp";
+import PasswordPopUp from "../PasswordPopUp";
+import SignUpPopUp from "../SignUpPopUp";
 
 interface PopUpContainerProps {
     children?: React.ReactNode

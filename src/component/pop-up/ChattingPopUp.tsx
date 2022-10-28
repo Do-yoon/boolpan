@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {RootState} from "store";
 import {REST_BASE_URL} from "util/Constant";
-import socket from "io/socket"
+import SocketIO, {ChatSocket} from "io/socket"
 import {useAppDispatch, useAppSelector} from "util/hooks";
 import Message from "./modules/Message";
 import {sendMessage} from "store/action";
@@ -55,18 +55,17 @@ function ChattingPopUp() {
     const {name, current, limit}: any
         = useAppSelector((state: RootState) => state.chat.roominfo)
 
-
     const OnSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (message.length && room_id && user_id) {
-            socket.emit('sendMessage', {text: message, room_id: room_id, user_id: user_id});
+            ChatSocket.emit('sendMessage', {text: message, room_id: room_id, user_id: user_id});
             dispatch(sendMessage(message));
             setMessage('')
         }
     }
 
     useEffect(() => {
-        socket.on('getMessage', ({message}) => {
+        ChatSocket.on('getMessage', ({message}) => {
             console.log(message.text)
             const temp = [...messages, <Message {...message}/>]
             setMessages(temp)
@@ -74,7 +73,7 @@ function ChattingPopUp() {
     })
 
     useEffect(() => {
-        socket.on('deleteRoom', (msg: string) => {
+        ChatSocket.on('deleteRoom', (msg: string) => {
             alert(msg)
         })
     })

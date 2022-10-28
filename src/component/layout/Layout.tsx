@@ -3,17 +3,11 @@ import Footer from "./Footer";
 import Header from "./Header";
 import NavBar from './NavBar';
 import 'css/MainLayout.css'
-import {useAppSelector} from "../../util/hooks";
-import PopUpContainer from "../pop-up/PopUpContainer";
+import PopUpContainer from "../pop-up/modules/PopUpContainer";
+import {Outlet} from "react-router";
 
-interface LayoutProps {
-    children?: React.ReactNode,
-}
 
-function Layout({children}: LayoutProps) {
-    const modalType = useAppSelector(state => state.popUp.name)
-    const room_id = useAppSelector(state => state.chat.roominfo?.room_id)
-    const pop_up_element = undefined;
+function Layout() {
 
     return (
         <div>
@@ -21,7 +15,7 @@ function Layout({children}: LayoutProps) {
             <Header/>
             <div id="layout-body">
                 <NavBar/>
-                {children}
+                <Outlet/>
             </div>
             <Footer/>
         </div>

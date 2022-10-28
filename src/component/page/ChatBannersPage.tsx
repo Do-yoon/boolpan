@@ -2,7 +2,7 @@ import 'css/MainLayout.css'
 import {useEffect, useState} from 'react';
 import {min} from "mathjs";
 import {RootState} from "store";
-import socket from "io/socket"
+import socket, {RoomSocket} from "io/socket"
 import {chattingPopUp, joinRoom, passwordPopUp} from "store/action";
 import {useAppDispatch, useAppSelector} from "util/hooks";
 
@@ -23,7 +23,7 @@ function ChatBanner(
 
     const OnClickBanner = () => {
         if (!!isLoggedIn && !isPassword && !!user_id) {
-            socket.emit("joinRoom", {room_id, user_id}, ({roominfo, error}) => {
+            RoomSocket.emit("joinRoom", {room_id, user_id}, ({roominfo, error}) => {
                 console.log("joinRoom")
                 if (roominfo) {
                     dispatch(joinRoom({
@@ -80,7 +80,7 @@ function ChatTable() {
     // let data = test_column;
     useEffect(() => {
         const fetchChats = () => {
-            socket.emit("getChattingRoomList", (data: {
+            RoomSocket.emit("getChattingRoomList", (data: {
                 room_id: string
                 name: string
                 limit: number
@@ -92,7 +92,7 @@ function ChatTable() {
             })
         }
 
-        fetchChats();
+            fetchChats();
     }, [])
 
     let table = [];

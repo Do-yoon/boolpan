@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import PopUpLayout from "component/pop-up/modules/PopUpLayout";
-import socket from "io/socket"
+import SocketIO, {RoomSocket} from "io/socket"
 import {chattingPopUp, joinRoom} from "store/action";
 import {useAppSelector} from "../../util/hooks";
 import {RootState} from "../../store";
@@ -26,7 +26,7 @@ function CreateRoomPopUp() {
             keeping_time: keeping_time
         }
         if (user_id) {
-            socket.emit('createRoom', data, {user_id},
+            RoomSocket.emit('createRoom', data, {user_id},
                 (e, {room_id, name, limit, current, isPassword}) => {
                 console.log(e)
                     if (e !== "") {

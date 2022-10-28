@@ -10,15 +10,9 @@ type PopUpProps = {
 function PopUpLayout(props: PopUpProps) {
     const dispatch = useAppDispatch();
 
-    const isDimmedClick = (e: React.MouseEvent<Element>, className: string) => {
-        const { target } = e
-        return (target as any).classList.contains(className)
-    }
-
     const onClickClose = (e: React.MouseEvent<Element>) => {
-        if (isDimmedClick(e, props.className)) {
-            dispatch(closePopUp())
-        }
+        e.preventDefault()
+        dispatch(closePopUp())
     }
 
     return (
