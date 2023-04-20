@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import NavBar from './NavBar';
 import 'css/MainLayout.css'
-import PopUpWrapper from "component/layout/PopUpWrapper";
+import Modal from "component/layout/Modal";
 import {useAppSelector} from "../../util/hooks";
 import CreateRoomPopUp from "../pop-up/CreateRoomPopUp";
 import LoginPopUp from "../pop-up/LoginPopUp";
@@ -17,18 +17,21 @@ interface LayoutProps {
 }
 
 function Layout({children}: LayoutProps) {
-    const room_id = useAppSelector(state => state.chat.roominfo?.room_id)
-    const type = useAppSelector(state => state.popUp.type)
-    const isOpen = (type == PopUpType.None ? false : true)
+    const room_id = useAppSelector(state => state.chat.roominfo?.room_id);
+    const createRoomPopUp = useAppSelector(state => state.popUp.createRoomPopUp);
+    const signUpPopUp = useAppSelector(state => state.popUp.signUpPopUp);
+    const loginPopUp = useAppSelector(state => state.popUp.loginPopUp);
+    const chattingPopUp = useAppSelector(state => state.popUp.chattingPopUp);
+    const passwordPopUp = useAppSelector(state => state.popUp.passwordPopUp);
 
 
     return (
         <div>
-            {type == PopUpType.CreateRoomPopUp ? <PopUpWrapper className="create-room-pop-up" isOpen={isOpen}><CreateRoomPopUp/></PopUpWrapper> : undefined}
-            {type == PopUpType.LoginPopUp ? <PopUpWrapper className="login-pop-up" isOpen={false}><LoginPopUp/></PopUpWrapper> : undefined}
-            {type == PopUpType.ChattingPopUp ? <PopUpWrapper className="chat" isOpen={false}><ChattingPopUp/></PopUpWrapper> : undefined}
-            {type == PopUpType.PasswordPopUp && room_id ? <PopUpWrapper className="password-pop-up" isOpen={false}><PasswordPopUp room_id={room_id}/></PopUpWrapper> : undefined}
-            {type == PopUpType.SignUpPopUp ? <PopUpWrapper className="sign-up-pop-up" isOpen={false}><SignUpPopUp/></PopUpWrapper> : undefined}
+            <Modal isOpen={createRoomPopUp} className="create-room-pop-up"><CreateRoomPopUp/></Modal>
+            <Modal className="login-pop-up" isOpen={signUpPopUp}><LoginPopUp/></Modal>
+            <Modal className="chat" isOpen={loginPopUp}><ChattingPopUp/></Modal>
+            <Modal className="password-pop-up" isOpen={chattingPopUp}><PasswordPopUp room_id={room_id!}/></Modal>
+            <Modal className="sign-up-pop-up" isOpen={chattingPopUp}><SignUpPopUp/></Modal>
             <Header/>
             <div id="layout-body">
                 <NavBar/>

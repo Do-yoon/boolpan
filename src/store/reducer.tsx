@@ -17,6 +17,12 @@ import PasswordPopUp from "../component/pop-up/PasswordPopUp";
 
 export const reducer = createReducer(initialState, builder =>
     builder
+        .addCase(setChattingRoomList, (state, action) => ({
+            ...state,
+            chat: {
+                chat_list: action.payload
+            }
+        }))
         .addCase(loginPopUp, (state) => ({
             ...state,
             popUp: { name: "LoginPopUp" }
@@ -46,12 +52,6 @@ export const reducer = createReducer(initialState, builder =>
         }))
         .addCase(resizeWindow, (state) => {
         })
-        .addCase(setChattingRoomList, (state, action) => ({
-            ...state,
-            chat: {
-                chat_list: action.payload
-            }
-        }))
         .addCase(sendMessage, (state, action) => {
             const now = new Date();
             let hours = now.getHours();

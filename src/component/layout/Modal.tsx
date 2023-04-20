@@ -10,7 +10,7 @@ interface IWrapperProps {
     className: string
 }
 
-function PopUpWrapper (props: IWrapperProps) {
+function Modal (props: IWrapperProps) {
 
     return (
         <div
@@ -22,4 +22,4 @@ function PopUpWrapper (props: IWrapperProps) {
     )
 }
 
-export default PopUpWrapper;
+export default Modal;
